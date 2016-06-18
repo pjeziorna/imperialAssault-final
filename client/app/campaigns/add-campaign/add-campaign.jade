@@ -1,24 +1,23 @@
-form(ng-submit='submitCampaign()')
+form(ng-submit='$ctrl.submitCampaign()')
     div Campaign name
-        input(type='text', placeholder='Campaign name')
+        input(type='text', placeholder='Campaign name', ng-model='$ctrl.campaign.name', required)
     
     div Empire
         span player
-        input(type='text', placeholder='player name')
-        
-        span player's hero
-        input(type='text', placeholder='player`s hero name')
+        input(type='text', placeholder='player login', ng-model='$ctrl.campaign.empire.login')
+        input(type='text', placeholder='player name', ng-model='$ctrl.campaign.empire.player', required)
     
     div Rebelion
         p(ng-repeat='rebel in $ctrl.campaign.rebelion')
             span player
-            input(type='text', placeholder='player name', ng-model='rebel.player')
+            input(type='text', placeholder='player login', ng-model='rebel.login')
+            input(type='text', placeholder='player name', ng-model='rebel.player', required)
             
             span player's hero
-            input(type='text', placeholder='player`s hero name', ng-model='rebel.hero')
-        button(ng-click='$ctrl.addRebelPlayer()', ng-if='$ctrl.campaign.rebelion.length < 4') Add Rebel player
-        button(ng-click='$ctrl.removeRebelPlayer()', ng-if='$ctrl.campaign.rebelion.length > 1') Remove Rebel player
+            input(type='text', placeholder='player`s hero name', ng-model='rebel.hero', required)
+        a(href='', ng-click='$ctrl.addRebelPlayer()', ng-if='$ctrl.campaign.rebelion.length < 4') Add Rebel player
+        a(href='', ng-click='$ctrl.removeRebelPlayer()', ng-if='$ctrl.campaign.rebelion.length > 1') Remove Rebel player
     input(type='submit', value='Add campaign')
-    input(type='reset', ng-click='clearForm()')
+    input(type='reset', value='Reset', ng-click='$ctrl.clearForm()')
         
     

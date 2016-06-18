@@ -6,11 +6,10 @@ var CampaignSchema = new mongoose.Schema({
   name: String,
   owner: String,
   active: Boolean,
-  startDate: Number,
-  endDate: Number,
+  startDate: { type: Date, default: new Date() },
   empire: {
-      player: String,
-      hero: String
+      login: String,
+      player: String
   },
   rebelion: [],
   missions: []

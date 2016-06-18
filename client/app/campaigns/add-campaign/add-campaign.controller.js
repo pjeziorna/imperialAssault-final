@@ -23,7 +23,11 @@
         }
 
         submitCampaign() {
-            this.$http.post('/api/campaigns/', this.campaign);
+            this.$http.post('/api/campaigns/', this.campaign)
+                .then(response => {
+                    // TODO add message component to notify about added campaign
+                    this.clearForm();
+                });
         }
 
         _getEmptyCampaignModel() {
@@ -31,11 +35,8 @@
                 name: '',
                 owner: '',
                 active: true,
-                startDate: Date.now(),
-                endDate: -1,
                 empire: {
-                    player: '',
-                    hero: ''
+                    player: ''
                 },
                 rebelion: [{
                     player: '',

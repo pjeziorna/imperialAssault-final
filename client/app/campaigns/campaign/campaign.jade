@@ -7,8 +7,9 @@ header
     p start date 
         span(ng-bind='$ctrl.campaign.startDate | date')
     p(ng-if='$ctrl.campaign.active') in progress 
-    p(ng-if='!$ctrl.campaign.active') end date
-        span(ng-bind='$ctrl.campaign.endDate | date')
+    p(ng-if='!$ctrl.campaign.active') Ended
+    p Missions played 
+        span(ng-bind='$ctrl.campaign.missions.length | number')
     p Empire
         p player 
             span(ng-bind='$ctrl.campaign.empire.player')
@@ -22,12 +23,16 @@ header
             span(ng-bind='rebel.hero')
     p Delete campaign
         a(ng-click='$ctrl.deleteCampaign()') Remove
+        
+    p(ng-if='$ctrl.campaign.active') End campaign
+        a(ng-click='$ctrl.endCampaign()') End
+        
                 
 div Missions
     ul
         li(ng-repeat='mission in $ctrl.campaign.missions')
             p
-                a(ui-sref='mission({ id:mission._id, mission: mission})', ng-bind='mission.name')
+                a(ui-sref='mission({ id:mission._id, mission: mission})', ng-bind='mission.name') 
                 span edit mission
                 span delete mission
         li

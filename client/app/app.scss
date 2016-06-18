@@ -1,9 +1,24 @@
 $fa-font-path: "../bower_components/font-awesome/fonts";
 @import '../bower_components/font-awesome/scss/font-awesome';
+@import url(https://fonts.googleapis.com/css?family=Cuprum|Archivo+Narrow|Exo|News+Cycle&subset=latin,latin-ext);
+
+$newCuprumFont: 'Cuprum', sans-serif;
+$newArchivoFont: 'Archivo Narrow', sans-serif;
+$newExoFont: 'Exo', sans-serif;
+$newCycleFont: 'News Cycle', sans-serif;
 
 /**
  * App-wide Styles
  */
+
+ body {
+     font-family: $newCuprumFont;
+     font-weight: normal;
+ }
+
+ h1, h2, h3, h4, h5, h6 {
+     font-family: $newExoFont;
+ }
 
 .browserupgrade {
   margin: 0.2em 0;
