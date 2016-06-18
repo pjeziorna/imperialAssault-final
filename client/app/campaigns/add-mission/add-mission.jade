@@ -1,0 +1,58 @@
+form
+    p Mission`s name
+        select
+            option Mission 1
+            option Mission 2
+            option Mission 3
+    p Date od play
+        input(type='date', placeholder='Date of play')
+    div Empire
+        p Exp gained after this mission
+            input(type='number', placeholder='Exp gained after mission', value=0, min=0, max=4)
+        p Influence gained after this mission
+            input(type='number', placeholder='Influence gained after mission', value=0,min=0, max=4)
+            
+        p Influence
+            input(type='number', placeholder='Imperial influence')
+        p Expirience
+            input(type='number', placeholder='Imperial exp')
+    div Rebelion
+        p Exp gained after this mission
+            input(type='number', placeholder='Exp gained after mission', value=0,min=0, max=4)
+        p Credits gained after this mission
+            input(type='number', placeholder='Credits gained after mission', value=0,min=0, max=1000, step=50)
+        p Items possessed
+            select
+                option Card 1
+                option Card 2
+        p Items sold
+            select
+                option Card 1
+                option Card 2
+                
+        div(ng-repeat='rebel in $ctrl.campaign.rebelion')
+            p player name
+                span(ng-bind='rebel.player')
+            p player`s hero
+                span(ng-bind='rebel.hero')
+            p hero`s Expirience
+                input(type='number', placeholder='hero`s exp', min=0, max=10)
+            p hero`s class cards possessed
+                select
+                    option Card 1
+                    option Card 2
+                    
+            p hero`s class cards sold
+                select
+                    option Card 3
+                    option Card 4
+                    
+        p Rebels credits
+            input(type='number', placeholder='rebelion`s credits', min=0, max=3000, step=50)
+    div Winner
+        select
+            option Empire
+            option Rebelion
+    input(type='submit', value='Add mission')
+            
+    

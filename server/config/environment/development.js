@@ -6,7 +6,7 @@ module.exports = {
 
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://localhost/imperialassault-dev'
+    uri: 'mongodb://127.0.0.1:27017/imperialassault-dev'
   },
 
   // Seed database on startup

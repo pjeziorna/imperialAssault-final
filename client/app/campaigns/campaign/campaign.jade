@@ -1,0 +1,35 @@
+header
+    p Campaign basic info
+    p name 
+        span(ng-bind='$ctrl.campaign.name')
+    p creator of campaign 
+        span(ng-bind='$ctrl.campaign.owner')
+    p start date 
+        span(ng-bind='$ctrl.campaign.startDate | date')
+    p(ng-if='$ctrl.campaign.active') in progress 
+    p(ng-if='!$ctrl.campaign.active') end date
+        span(ng-bind='$ctrl.campaign.endDate | date')
+    p Empire
+        p player 
+            span(ng-bind='$ctrl.campaign.empire.player')
+        p hero 
+            span(ng-bind='$ctrl.campaign.empire.hero')
+    p Rebelion
+        p(ng-repeat='rebel in $ctrl.campaign.rebelion')
+            | player 
+            span(ng-bind='rebel.player')
+            |   hero 
+            span(ng-bind='rebel.hero')
+    p Delete campaign
+        a(ng-click='$ctrl.deleteCampaign()') Remove
+                
+div Missions
+    ul
+        li(ng-repeat='mission in $ctrl.campaign.missions')
+            p
+                a(ui-sref='mission({ id:mission._id, mission: mission})', ng-bind='mission.name')
+                span edit mission
+                span delete mission
+        li
+            a(ui-sref='add-mission({ id: $ctrl.campaign._id, campaign: $ctrl.campaign })') Add mission
+    

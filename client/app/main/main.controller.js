@@ -4,10 +4,11 @@
 
   class MainController {
 
-    constructor($http, $scope, socket) {
+    constructor($http, $scope, socket, Auth) {
       this.$http = $http;
       this.socket = socket;
-      this.awesomeThings = [];
+    //   this.awesomeThings = [];
+      this.isLoggedIn = Auth.isLoggedIn;
 
       $scope.$on('$destroy', function() {
         socket.unsyncUpdates('thing');
@@ -15,25 +16,25 @@
     }
 
     $onInit() {
-      this.$http.get('/api/things')
-        .then(response => {
-          this.awesomeThings = response.data;
-          this.socket.syncUpdates('thing', this.awesomeThings);
-        });
+    //   this.$http.get('/api/things')
+    //     .then(response => {
+    //       this.awesomeThings = response.data;
+    //       this.socket.syncUpdates('thing', this.awesomeThings);
+    //     });
     }
 
-    addThing() {
-      if (this.newThing) {
-        this.$http.post('/api/things', {
-          name: this.newThing
-        });
-        this.newThing = '';
-      }
-    }
-
-    deleteThing(thing) {
-      this.$http.delete('/api/things/' + thing._id);
-    }
+    // addThing() {
+    //   if (this.newThing) {
+    //     this.$http.post('/api/things', {
+    //       name: this.newThing
+    //     });
+    //     this.newThing = '';
+    //   }
+    // }
+    //
+    // deleteThing(thing) {
+    //   this.$http.delete('/api/things/' + thing._id);
+    // }
   }
 
   angular.module('imperialAssaultApp')

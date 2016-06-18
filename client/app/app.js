@@ -8,4 +8,12 @@ angular.module('imperialAssaultApp', ['imperialAssaultApp.auth', 'imperialAssaul
     $urlRouterProvider.otherwise('/');
 
     $locationProvider.html5Mode(true);
+  })
+  .run(function ($rootScope, $state) {
+      $rootScope.$on('$stateChangeStart', function (event, next, current) {
+          if (next.name === 'campaign' && !current.id.length ) { //!angular.isObject(current.campaign) &&
+              event.preventDefault();
+              $state.go('my-campaigns');
+          }
+      });
   });

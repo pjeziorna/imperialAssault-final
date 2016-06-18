@@ -17,7 +17,10 @@ function onConnect(socket) {
   });
 
   // Insert sockets below
-  require('../api/thing/thing.socket').register(socket);
+  require('../api/mission/mission.socket').register(socket);
+  require('../api/mission-card/mission-card.socket').register(socket);
+  require('../api/campaign/campaign.socket').register(socket);
+  // require('../api/thing/thing.socket').register(socket);
 
 }
 

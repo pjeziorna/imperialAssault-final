@@ -1,0 +1,24 @@
+form(ng-submit='submitCampaign()')
+    div Campaign name
+        input(type='text', placeholder='Campaign name')
+    
+    div Empire
+        span player
+        input(type='text', placeholder='player name')
+        
+        span player's hero
+        input(type='text', placeholder='player`s hero name')
+    
+    div Rebelion
+        p(ng-repeat='rebel in $ctrl.campaign.rebelion')
+            span player
+            input(type='text', placeholder='player name', ng-model='rebel.player')
+            
+            span player's hero
+            input(type='text', placeholder='player`s hero name', ng-model='rebel.hero')
+        button(ng-click='$ctrl.addRebelPlayer()', ng-if='$ctrl.campaign.rebelion.length < 4') Add Rebel player
+        button(ng-click='$ctrl.removeRebelPlayer()', ng-if='$ctrl.campaign.rebelion.length > 1') Remove Rebel player
+    input(type='submit', value='Add campaign')
+    input(type='reset', ng-click='clearForm()')
+        
+    
