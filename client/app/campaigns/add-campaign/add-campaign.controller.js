@@ -2,9 +2,11 @@
 (function(){
 
     class AddCampaignComponent {
-        constructor($http) {
+        constructor($http, messagesNotify) {
             this.$http = $http;
             this.campaign = this._getEmptyCampaignModel();
+            this.messagesNotify = messagesNotify;
+            this.message = messagesNotify.getMessage();
         }
 
         addRebelPlayer() {
@@ -25,7 +27,7 @@
         submitCampaign() {
             this.$http.post('/api/campaigns/', this.campaign)
                 .then(response => {
-                    // TODO add message component to notify about added campaign
+                    this.messagesNotify.showConstantMessage('New campaign has been added.', 5);
                     this.clearForm();
                 });
         }

@@ -1,3 +1,4 @@
+div(ng-messages='$ctrl.message.show', ng-bind='$ctrl.message.text')
 form(ng-submit='$ctrl.submitCampaign()')
     div Campaign name
         input(type='text', placeholder='Campaign name', ng-model='$ctrl.campaign.name', required)

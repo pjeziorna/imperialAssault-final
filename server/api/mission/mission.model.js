@@ -10,19 +10,23 @@ var MissionSchema = new mongoose.Schema({
     deckType: String,
     missionType: String,
     campaign_id: { type: Schema.Types.ObjectId, index: true},
-    imperialStats: {
-        influenceInMission: Number,
+    empire: {
         influence: Number,
+        influenceInMission: Number,
+        expInMission: Number,
         exp: Number
     },
-    rebelStats: {
+    rebelion: {
         creditsInMission: Number,
         credits: Number,
+        expInMission: Number,
         allys: Array,
-        users: Array,
-        soldItems: Array
+        players: Array,
+        itemsSold: Array,
+        itemsPossessed: Array
     },
     availableSideMissions: Array,
+    nextStoryMission: String,
     timeSpent: {
         hours: Number,
         minutes: Number
