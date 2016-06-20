@@ -9,6 +9,9 @@ class AddMissionComponent {
 
       this.campaignId = this.$stateParams.id;
       this.message = messagesNotify.getMessage();
+      this.missionCards = [];
+      this.itemCards = [];
+      this.heroCards = [];
 
 
       if (this.$stateParams.campaign === null) {
@@ -21,6 +24,28 @@ class AddMissionComponent {
           this.campaign = this.$stateParams.campaign;
           this.mission = this._getEmptyMissionModel();
       }
+  }
+
+  $onInit() {
+      this.$http.get('/api/mission-cards')
+        .then(response => {
+            this.missionCards = response.data;
+        });
+
+      this.$http.get('/api/item-cards')
+        .then(response => {
+            this.itemCards = response.data;
+        });
+
+      this.$http.get('/api/hero-cards')
+        .then(response => {
+            this.heroCards = response.data;
+        });
+
+  }
+
+  submitMission() {
+      console.log('submit mission', this.mission);
   }
 
   _getEmptyMissionModel() {

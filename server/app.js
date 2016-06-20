@@ -18,7 +18,14 @@ mongoose.connection.on('error', function(err) {
 });
 
 // Populate databases with sample data
-if (config.seedDB) { require('./config/seed'); }
+if (config.seedDB) {
+    require('./config/seed');
+    require('./config/seedMissionCards');
+    require('./config/seedItemCards');
+    require('./config/seedHeroCards');
+    require('./config/seedAgendaCards');
+    require('./config/seedEmpireClassCards'); 
+}
 
 // Setup server
 var app = express();

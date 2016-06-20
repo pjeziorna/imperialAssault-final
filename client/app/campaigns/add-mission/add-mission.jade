@@ -1,37 +1,34 @@
 div(ng-messages='$ctrl.message.show', ng-bind='$ctrl.message.text')
-form(ng-submit='submitMission')
+form(ng-submit='$ctrl.submitMission()')
     p Mission`s name
-        select
-            option Mission 1
-            option Mission 2
-            option Mission 3
+        select(ng-model='$ctrl.mission.title')
+            option(ng-repeat='mission in $ctrl.missionCards', ng-bind='mission.title', value='{{mission._id}}')
+                input(ng-model='$ctrl.mission.missionType', value='{{mission.missionType}}', hidden)
     p Date of play
         input(type='date', placeholder='Date of play', ng-model='$ctrl.mission.playDate')
     div Empire
         p Exp gained in this mission
             input(type='number', placeholder='Exp gained after mission', ng-model='$ctrl.mission.empire.expInMission', value=0, min=0, max=4)
         p Influence gained in this mission
-            input(type='number', placeholder='Influence gained after mission', ng-model='$ctrl.mission.empire.influenceInMission', value=0,min=0, max=4)
+            input(type='number', placeholder='Influence gained after mission', ng-model='$ctrl.mission.empire.influenceInMission', value=0, min=0, max=4)
             
         p Influence after upgrade stage
-            input(type='number', placeholder='Imperial influence', ng-model='$ctrl.mission.empire.influence')
+            input(type='number', placeholder='Imperial influence', ng-model='$ctrl.mission.empire.influence', value=0, min=0, max=8)
         p Expirience after upgrade stage
-            input(type='number', placeholder='Imperial exp', ng-model='$ctrl.mission.empire.exp')
+            input(type='number', placeholder='Imperial exp', ng-model='$ctrl.mission.empire.exp', value=0, min=0, max=8)
     div Rebelion
         p Exp gained in this mission
-            input(type='number', placeholder='Exp gained after mission', ng-model='$ctrl.mission.rebelion.expInMission', value=0,min=0, max=4)
+            input(type='number', placeholder='Exp gained after mission', ng-model='$ctrl.mission.rebelion.expInMission', value=0, min=0, max=4)
         p Credits gained in this mission
-            input(type='number', placeholder='Credits gained after mission', ng-model='$ctrl.mission.rebelion.creditsInMission', value=0,min=0, max=1000, step=50)
+            input(type='number', placeholder='Credits gained after mission', ng-model='$ctrl.mission.rebelion.creditsInMission', value=0, min=0, max=1000, step=50)
         p Rebels credits after upgrade stage
             input(type='number', placeholder='rebelion`s credits', ng-model='$ctrl.mission.rebelion.credits', min=0, max=3000, step=50)
         p Items possessed
-            select
-                // TODO change populating this options with proper one
-                option(ng-repeat='item in $ctrl.mission.rebelion.itemsPossessed', ng-bind='item')
+            select(ng-model='$ctrl.mission.rebelion.itemsPossessed', multiple)
+                option(ng-repeat='item in $ctrl.itemCards', ng-bind='item.title', value='{{item.title}}')
         p Items sold
-            select
-            // TODO change populating this options with proper one
-                option(ng-repeat='item in $ctrl.mission.rebelion.itemsSold', ng-bind='item')
+            select(ng-model='$ctrl.mission.rebelion.itemsSold', multiple)
+                option(ng-repeat='item in $ctrl.itemCards', ng-bind='item.title', value='{{item.title}}')
                 
         div(ng-repeat='rebel in $ctrl.mission.rebelion.players')
             p player name
@@ -41,25 +38,23 @@ form(ng-submit='submitMission')
             p hero`s Expirience after upgrade stage
                 input(type='number', placeholder='hero`s exp', ng-model='rebel.exp', min=0, max=10)
             p hero`s class cards possessed after upgrade stage
-                select
-                    // TODO change populating this options with proper one
-                    option Card 1
-                    option Card 2
+                select(ng-repeat='hero in $ctrl.heroCards | heroClassCards:rebel.hero', ng-model='rebel.heroClassCards.possessed', multiple)
+                    option(ng-repeat='card in hero.classCards', ng-bind='card.name', value='{{card.name}}')
                     
             p hero`s class cards sold
-                select
-                    // TODO change populating this options with proper one
-                    option Card 3
-                    option Card 4
+                select(ng-repeat='hero in $ctrl.heroCards | heroClassCards:rebel.hero', ng-model='rebel.heroClassCards.sold')
+                    option(ng-repeat='card in hero.classCards', ng-bind='card.name', value='{{card.name}}')
         div Available side missions
-            input(type='text', ng-model='$ctrl.mission.availableSideMissions')
+            select(ng-model='$ctrl.mission.availableSideMissions', multiple)
+                option(ng-repeat='mission in $ctrl.missionCards | sideMissions', ng-bind='mission.title', value='{{mission._id}}')
         div Next story mission
-            input(type='text', ng-model='$ctrl.mission.nextStoryMission')
+            select(ng-model='$ctrl.mission.nextStoryMission')
+                option(ng-repeat='mission in $ctrl.missionCards | storyMissions', ng-bind='mission.title', value='{{mission._id}}')
         
     div Winner
         select(ng-model='$ctrl.mission.winner')
-            option Empire
-            option Rebelion
+            option(value='empire') Empire
+            option(value='rebelion') Rebelion
     input(type='submit', value='Add mission')
             
     
