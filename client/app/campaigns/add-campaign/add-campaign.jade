@@ -7,6 +7,12 @@ form(ng-submit='$ctrl.submitCampaign()')
         span player
         input(type='text', placeholder='player login', ng-model='$ctrl.campaign.empire.login')
         input(type='text', placeholder='player name', ng-model='$ctrl.campaign.empire.player', required)
+    p Chosen imperial class set
+        select(ng-model='$ctrl.campaign.empire.classSet')
+            option(ng-repeat='empireCard in $ctrl.empireClassCards | empireClassSetName', ng-bind='empireCard.classSet', value='{{empireCard.classSet}}')
+    p Chosen agenda sets
+        select(ng-model='$ctrl.campaign.empire.agendaSets', multiple)
+            option(ng-repeat='empireCard in $ctrl.empireAgendaCards | empireAgendaSetName', ng-bind='empireCard.agendaSet', value='{{empireCard.agendaSet}}')
     
     div Rebelion
         p(ng-repeat='rebel in $ctrl.campaign.rebelion')

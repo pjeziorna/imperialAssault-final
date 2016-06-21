@@ -9,10 +9,12 @@ var CampaignSchema = new mongoose.Schema({
   startDate: { type: Date, default: new Date() },
   empire: {
       login: String,
-      player: String
+      player: String,
+      classSet: String,
+      agendaSets: Array
   },
-  rebelion: [],
-  missions: []
+  rebelion: Array,
+  missions: Array
 });
 
 export default mongoose.model('Campaign', CampaignSchema);

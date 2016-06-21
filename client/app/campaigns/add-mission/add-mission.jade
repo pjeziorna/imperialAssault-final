@@ -1,60 +1,132 @@
 div(ng-messages='$ctrl.message.show', ng-bind='$ctrl.message.text')
-form(ng-submit='$ctrl.submitMission()')
-    p Mission`s name
-        select(ng-model='$ctrl.mission.title')
-            option(ng-repeat='mission in $ctrl.missionCards', ng-bind='mission.title', value='{{mission._id}}')
-                input(ng-model='$ctrl.mission.missionType', value='{{mission.missionType}}', hidden)
-    p Date of play
-        input(type='date', placeholder='Date of play', ng-model='$ctrl.mission.playDate')
-    div Empire
-        p Exp gained in this mission
-            input(type='number', placeholder='Exp gained after mission', ng-model='$ctrl.mission.empire.expInMission', value=0, min=0, max=4)
-        p Influence gained in this mission
-            input(type='number', placeholder='Influence gained after mission', ng-model='$ctrl.mission.empire.influenceInMission', value=0, min=0, max=4)
-            
-        p Influence after upgrade stage
-            input(type='number', placeholder='Imperial influence', ng-model='$ctrl.mission.empire.influence', value=0, min=0, max=8)
-        p Expirience after upgrade stage
-            input(type='number', placeholder='Imperial exp', ng-model='$ctrl.mission.empire.exp', value=0, min=0, max=8)
-    div Rebelion
-        p Exp gained in this mission
-            input(type='number', placeholder='Exp gained after mission', ng-model='$ctrl.mission.rebelion.expInMission', value=0, min=0, max=4)
-        p Credits gained in this mission
-            input(type='number', placeholder='Credits gained after mission', ng-model='$ctrl.mission.rebelion.creditsInMission', value=0, min=0, max=1000, step=50)
-        p Rebels credits after upgrade stage
-            input(type='number', placeholder='rebelion`s credits', ng-model='$ctrl.mission.rebelion.credits', min=0, max=3000, step=50)
-        p Items possessed
-            select(ng-model='$ctrl.mission.rebelion.itemsPossessed', multiple)
-                option(ng-repeat='item in $ctrl.itemCards', ng-bind='item.title', value='{{item.title}}')
-        p Items sold
-            select(ng-model='$ctrl.mission.rebelion.itemsSold', multiple)
-                option(ng-repeat='item in $ctrl.itemCards', ng-bind='item.title', value='{{item.title}}')
+form(ng-submit='$ctrl.submitMission(this)', name='addMissionForm', novalidate)
+    section(layout='column', layout-gt-xs='row', layout-align='center center')
+        md-input-container.md-block(flex)
+            label Mission`s name
+            md-select(name='missionTitle' ng-model='$ctrl.mission.title', required)
+                md-option(ng-repeat='mission in $ctrl.missionCards', ng-bind='mission.title', value='{{mission._id}}')
+                    //- input(ng-model='$ctrl.mission.missionType', value='{{mission.missionType}}', hidden)
+            div.errors(ng-messages='addMissionForm.missionTitle.$error', ng-if='addMissionForm.$submitted')
+                div(ng-message='required') Mission name is required
+        section
+            md-datepicker(name='missionDateOfPlay', md-placeholder='Date of play', ng-model='$ctrl.mission.playDate', md-open-on-focus, required)
+            div.validation-messages(ng-messages='addMissionForm.missionDateOfPlay.$error', ng-if='addMissionForm.$submitted')
+                div(ng-message='required') Date of play is required
+    
+    p Empire
+    section(layout='column', layout-gt-xs='row', layout-wrap)
+        md-input-container(flex)
+            label Exp gained in this mission
+            input(name='missionEmpireMissionExp', type='number', ng-model='$ctrl.mission.empire.expInMission', value=0, min=0, max=4, required)
+            div(ng-messages='addMissionForm.missionEmpireMissionExp.$error')
+                div(ng-message='required') Exp gained field is required
+        md-input-container(flex)
+            label Influence gained in this mission
+            input(name='missionEmpireMissionInfluence', type='number', ng-model='$ctrl.mission.empire.influenceInMission', value=0, min=0, max=4, required)
+            div(ng-messages='addMissionForm.missionEmpireMissionInfluence.$error')
+                div(ng-message='required') Influence gained field is required
+        md-input-container(flex)   
+            label Influence after upgrade stage
+            input(name='missionEmpireInfluence', type='number', ng-model='$ctrl.mission.empire.influence', value=0, min=0, max=8, required)
+            div(ng-messages='addMissionForm.missionEmpireInfluence.$error')
+                div(ng-message='required') Influence field is required
+        md-input-container(flex)
+            label Expirience after upgrade stage
+            input(name='missionEmpireExp', type='number', ng-model='$ctrl.mission.empire.exp', value=0, min=0, max=8, required)
+            div(ng-messages='addMissionForm.missionEmpireExp.$error')
+                div(ng-message='required') Expirience field is required
                 
-        div(ng-repeat='rebel in $ctrl.mission.rebelion.players')
-            p player name
-                span(ng-bind='rebel.player')
-            p player`s hero
-                span(ng-bind='rebel.hero')
-            p hero`s Expirience after upgrade stage
-                input(type='number', placeholder='hero`s exp', ng-model='rebel.exp', min=0, max=10)
-            p hero`s class cards possessed after upgrade stage
-                select(ng-repeat='hero in $ctrl.heroCards | heroClassCards:rebel.hero', ng-model='rebel.heroClassCards.possessed', multiple)
-                    option(ng-repeat='card in hero.classCards', ng-bind='card.name', value='{{card.name}}')
-                    
-            p hero`s class cards sold
-                select(ng-repeat='hero in $ctrl.heroCards | heroClassCards:rebel.hero', ng-model='rebel.heroClassCards.sold')
-                    option(ng-repeat='card in hero.classCards', ng-bind='card.name', value='{{card.name}}')
-        div Available side missions
-            select(ng-model='$ctrl.mission.availableSideMissions', multiple)
-                option(ng-repeat='mission in $ctrl.missionCards | sideMissions', ng-bind='mission.title', value='{{mission._id}}')
-        div Next story mission
-            select(ng-model='$ctrl.mission.nextStoryMission')
-                option(ng-repeat='mission in $ctrl.missionCards | storyMissions', ng-bind='mission.title', value='{{mission._id}}')
-        
-    div Winner
-        select(ng-model='$ctrl.mission.winner')
-            option(value='empire') Empire
-            option(value='rebelion') Rebelion
-    input(type='submit', value='Add mission')
+    div(layout='column', layout-gt-xs='row')
+        md-input-container(flex)
+            label Class cards possessed
+            md-select(name='missionEmpireClassCards', ng-model='$ctrl.mission.empire.classCards', multiple, required)
+                md-option(ng-repeat='card in $ctrl.empireClassCards | empireClassSet:$ctrl.campaign.empire.classSet', ng-bind='card.name')
+            div.errors(ng-messages='addMissionForm.missionEmpireClassCards.$error', ng-if='addMissionForm.$submitted')
+                div(ng-message='required') Class cards field is required
+        md-input-container(flex)
+            label Agenda cards possessed
+            md-select(name='missionAgendaCards', ng-model='$ctrl.mission.empire.agendaCards', multiple)
+                md-option(ng-repeat='card in $ctrl.agendaCards | agendaSet:$ctrl.campaign.empire.agendaSets', ng-bind='card.name')
+    
+    p Rebelion
+    div(layout='column', layout-gt-xs='row')
+        md-input-container(flex)
+            label Exp gained in this mission
+            input(name='missionRebelMissionExp', type='number', ng-model='$ctrl.mission.rebelion.expInMission', value=0, min=0, max=4, required)
+            div.errors(ng-messages='addMissionForm.missionRebelMissionExp.$error')
+                div(ng-message='required') Exp gained field is required
+        md-input-container(flex)
+            label Credits gained in this mission
+            input(name='missionRebelMissionCredits', type='number', ng-model='$ctrl.mission.rebelion.creditsInMission', value=0, min=0, max=1000, step=50, required)
+            div.errors(ng-messages='addMissionForm.missionRebelMissionCredits.$error')
+                div(ng-message='required') Credits gained field is required
+        md-input-container(flex)
+            label Rebels credits after upgrade stage
+            input(name='missionRebelCredits', type='number', ng-model='$ctrl.mission.rebelion.credits', min=0, max=3000, step=50, required)
+            div.errors(ng-messages='addMissionForm.missionRebelCredits.$error')
+                div(ng-message='required') Rebel credits field is required
+                
+    div(layout='column', layout-gt-xs='row')
+        md-input-container(flex)
+            label Items possessed
+            md-select(name='missionRebelItemsPossessed', ng-model='$ctrl.mission.rebelion.itemsPossessed', multiple, required)
+                md-option(ng-repeat='item in $ctrl.itemCards', ng-bind='item.title', value='{{item._id}}')
+            div.errors(ng-messages='addMissionForm.missionRebelItemsPossessed.$error', ng-if='addMissionForm.$submitted')
+                div(ng-message='required') Items possessed field is required
+                
+        md-input-container(flex)
+            label Items sold
+            md-select(name='missionRebelItemsSold', ng-model='$ctrl.mission.rebelion.itemsSold', multiple)
+                md-option(ng-repeat='item in $ctrl.itemCards', ng-bind='item.title', value='{{item._id}}')
+    
+    div(layout='column', layout-gt-xs='row')        
+        div(ng-repeat='rebel in $ctrl.mission.rebelion.players', flex='50')
+            div(layout='column', layout-gt-xs='row')        
+                p(flex) player name
+                    span(ng-bind='rebel.player')
+                p(flex) player`s hero
+                    span(ng-bind='rebel.hero')
+            div(layout='column', layout-gt-xs='row')
+                md-input-container(flex)
+                    label Hero`s expirience after upgrade stage
+                    input(name='missionRebelHeroExp{{$index}}', type='number', ng-model='rebel.exp', min=0, max=10, required)
+                    div.errors(ng-messages="addMissionForm['missionRebelHeroExp' + $index].$error")
+                        div(ng-message='required') Hero's expirience field is required
+                md-input-container(flex)
+                    label Hero`s class cards possessed after upgrade stage
+                    md-select(name='missionRebelHeroClassCardsPossessed{{$parent.$index}}', ng-repeat='hero in $ctrl.heroCards | heroClassCards:rebel.hero', ng-model='rebel.heroClassCards.possessed', multiple, required)
+                        md-option(ng-repeat='card in hero.classCards', ng-bind='card.name', value='{{card.name}}')
+                    div.errors(ng-messages="addMissionForm['missionRebelHeroClassCardsPossessed' + $index].$error", ng-if='addMissionForm.$submitted')
+                        div(ng-message='required') Hero's class cards field is required
+                md-input-container(flex)
+                    label hero`s class cards sold
+                    md-select(name='missionRebelHeroClassCardsSold{{$parent.$index}}', ng-repeat='hero in $ctrl.heroCards | heroClassCards:rebel.hero', ng-model='rebel.heroClassCards.sold')
+                        md-option(ng-repeat='card in hero.classCards', ng-bind='card.name', value='{{card.name}}')
+    
+    div(layout='column', layout-gt-xs='row')        
+        md-input-container(flex)
+            label Available side missions
+            md-select(name='missionAvailableSideMissions', ng-model='$ctrl.mission.availableSideMissions', multiple, required)
+                md-option(ng-repeat='mission in $ctrl.missionCards | sideMissions', ng-bind='mission.title', value='{{mission._id}}')
+            div.errors(ng-messages='addMissionForm.missionAvailableSideMissions.$error', ng-if='addMissionForm.$submitted')
+                div(ng-message='required') Available side missions field is required
+        md-input-container(flex)
+            label Next story mission
+            md-select(name='missionNextStoryMission', ng-model='$ctrl.mission.nextStoryMission', required)
+                md-option(ng-repeat='mission in $ctrl.missionCards | storyMissions', ng-bind='mission.title', value='{{mission._id}}')
+            div.errors(ng-messages='addMissionForm.missionNextStoryMission.$error', ng-if='addMissionForm.$submitted')
+                div(ng-message='required') Next story mission field is required
+                
+    div(layout='column', layout-gt-xs='row')    
+        md-input-container(flex)
+            label Winner
+            md-select(name='missionWinner', ng-model='$ctrl.mission.winner', required)
+                md-option(value='empire') Empire
+                md-option(value='rebelion') Rebelion
+            div.errors(ng-messages='addMissionForm.missionWinner.$error', ng-if='addMissionForm.$submitted')
+                div(ng-message='required') Winner field is required
+    
+    div(layout='column', layout-gt-xs='row', layout-align='center center') 
+        md-button.md-primary.md-raised.md-hue-1(type='submit') Add mission
             
     

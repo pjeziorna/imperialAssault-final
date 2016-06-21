@@ -14,7 +14,9 @@ var MissionSchema = new mongoose.Schema({
         influence: Number,
         influenceInMission: Number,
         expInMission: Number,
-        exp: Number
+        exp: Number,
+        classCards: Array,
+        agendaCards: Array
     },
     rebelion: {
         creditsInMission: Number,

@@ -36,7 +36,9 @@ Campaign.find({}).remove()
             endDate: -1,
             empire: {
                 player: 'admin',
-                hero: 'Diala Passil'
+                login: 'admin',
+                classSet: 'Technological Superiority',
+                agendaSets: ['For the Right Price', 'Agents of the Empire']
             },
             rebelion: [{
                 player: 'test',
@@ -57,8 +59,10 @@ Campaign.find({}).remove()
             startDate: 1466101915866,
             endDate: -1,
             empire: {
-                player: 'admin',
-                hero: 'Mak Eshka\'rey'
+                player: 'test',
+                login: 'test',
+                classSet: 'Subversive Tactics',
+                agendaSets: ['For the Right Price', 'Agents of the Empire']
             },
             rebelion: [{
                 player: 'test',

@@ -36,4 +36,16 @@ angular.module('imperialAssaultApp')
             });
             return filtered;
         }
+    })
+
+    .filter('empireClassSet', function() {
+        return function(items, empireClassSetName) {
+            let filtered = [];
+            angular.forEach(items, function(item) {
+                if(item.classSet.indexOf(empireClassSetName) != -1) {
+                    filtered.push(item);
+                }
+            });
+            return filtered;
+        }
     });

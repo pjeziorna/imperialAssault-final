@@ -13,6 +13,8 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(client) app/vendor.css -->
       <!-- bower:css -->
+      <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+      <link rel="stylesheet" href="bower_components/angular-material-icons/angular-material-icons.css" />
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -52,11 +54,15 @@
       <script src="bower_components/angular-resource/angular-resource.js"></script>
       <script src="bower_components/angular-cookies/angular-cookies.js"></script>
       <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-      <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+      <script src="bower_components/lodash/lodash.js"></script>
       <script src="bower_components/angular-socket-io/socket.js"></script>
       <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
       <script src="bower_components/angular-validation-match/dist/angular-validation-match.min.js"></script>
       <script src="bower_components/angular-messages/angular-messages.js"></script>
+      <script src="bower_components/angular-animate/angular-animate.js"></script>
+      <script src="bower_components/angular-aria/angular-aria.js"></script>
+      <script src="bower_components/angular-material/angular-material.js"></script>
+      <script src="bower_components/angular-material-icons/angular-material-icons.min.js"></script>
       <!-- endbower -->
       <script src="socket.io-client/socket.io.js"></script>
     <!-- endbuild -->
@@ -76,11 +82,14 @@
       <script src="app/app.constant.js"></script>
       <script src="app/campaigns/add-campaign/add-campaign.controller.js"></script>
       <script src="app/campaigns/add-campaign/add-campaign.js"></script>
+      <script src="app/campaigns/add-campaign/card.filter.js"></script>
       <script src="app/campaigns/add-mission/add-mission.controller.js"></script>
       <script src="app/campaigns/add-mission/add-mission.js"></script>
       <script src="app/campaigns/add-mission/card.filter.js"></script>
       <script src="app/campaigns/campaign/campaign.controller.js"></script>
       <script src="app/campaigns/campaign/campaign.js"></script>
+      <script src="app/campaigns/mission/mission.controller.js"></script>
+      <script src="app/campaigns/mission/mission.js"></script>
       <script src="app/campaigns/my-campaigns/my-campaigns.controller.js"></script>
       <script src="app/campaigns/my-campaigns/my-campaigns.js"></script>
       <script src="app/main/main.controller.js"></script>

@@ -42,6 +42,14 @@
                     }
                 });
         }
+
+        editMission() {
+            console.log('edit mission');
+        }
+
+        deleteMission() {
+            console.log('delete mission');
+        }
     }
 
     angular.module('imperialAssaultApp')

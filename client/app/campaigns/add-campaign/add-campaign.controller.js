@@ -7,6 +7,20 @@
             this.campaign = this._getEmptyCampaignModel();
             this.messagesNotify = messagesNotify;
             this.message = messagesNotify.getMessage();
+            this.empireClassCards = [];
+            this.empireAgendaCards = [];
+        }
+
+        $onInit() {
+            this.$http.get('/api/empire-class-cards')
+                .then(response => {
+                    this.empireClassCards = response.data;
+                });
+
+            this.$http.get('/api/agenda-cards')
+                .then(response => {
+                    this.empireAgendaCards = response.data;
+                });
         }
 
         addRebelPlayer() {

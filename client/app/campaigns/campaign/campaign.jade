@@ -1,40 +1,59 @@
 header
-    p Campaign basic info
-    p name 
-        span(ng-bind='$ctrl.campaign.name')
-    p creator of campaign 
-        span(ng-bind='$ctrl.campaign.owner')
-    p start date 
-        span(ng-bind='$ctrl.campaign.startDate | date')
-    p(ng-if='$ctrl.campaign.active') in progress 
-    p(ng-if='!$ctrl.campaign.active') Ended
-    p Missions played 
-        span(ng-bind='$ctrl.campaign.missions.length | number')
-    p Empire
-        p player 
-            span(ng-bind='$ctrl.campaign.empire.player')
-        p hero 
-            span(ng-bind='$ctrl.campaign.empire.hero')
-    p Rebelion
-        p(ng-repeat='rebel in $ctrl.campaign.rebelion')
-            | player 
-            span(ng-bind='rebel.player')
-            |   hero 
-            span(ng-bind='rebel.hero')
-    p Delete campaign
-        a(ng-click='$ctrl.deleteCampaign()') Remove
+    h4 Campaign basic info
+    section(layout='row')
+        span.label(flex='25') Name:
+        span.value(ng-bind='$ctrl.campaign.name', flex)
+    section(layout='row')
+        span.label(flex='25') Creator of campaign:
+        span.value(ng-bind='$ctrl.campaign.owner', flex)
+    section(layout='row')
+        span.label(flex='25') Start date:
+        span.value(ng-bind='$ctrl.campaign.startDate | date', flex)
+    section(layout='row')
+        span.label(flex='25') Status of camapign:
+        span.value(ng-if='$ctrl.campaign.active', flex) in progress 
+        span.value(ng-if='!$ctrl.campaign.active', flex) Ended
+    section(layout='row')
+        span.label(flex='25') Missions played:
+        span.value(ng-bind='$ctrl.campaign.missions.length | number', flex)
+    
+    h4 Empire
+    section(layout='row')
+        span.label(flex='25') Player:
+        span.value(ng-bind='$ctrl.campaign.empire.player', flex)
+    section(layout='row')
+        span.label(flex='25') Login:
+        span.value(ng-bind='$ctrl.campaign.empire.login', flex)
+    section(layout='row')
+        span.label(flex='25') Chosen class set:
+        span.value(ng-bind='$ctrl.campaign.empire.classSet', flex)
+    section(layout='row')
+        span.label(flex='25') Chosen agenda sets:
+        span.value(ng-repeat='agenda in $ctrl.campaign.empire.agendaSets', ng-bind='agenda', flex)
+    
+    h4 Rebelion
+    section(layout='row')
+        section(layout='row', ng-repeat='rebel in $ctrl.campaign.rebelion', flex='50')
+            span.label(flex='25') Player:
+            span.value(ng-bind='rebel.player', flex)
+            span.label(flex='25') Hero:
+            span.value(ng-bind='rebel.hero', flex)
+    section(layout='row', layout-align='center center')
+        span.label(flex='25') Delete campaign:
+        md-button.value.md-raised.md-primary(ng-click='$ctrl.deleteCampaign()', flex) Remove
         
-    p(ng-if='$ctrl.campaign.active') End campaign
-        a(ng-click='$ctrl.endCampaign()') End
+    section(layout='row', layout-align='center center')
+        span.label(ng-if='$ctrl.campaign.active', flex='25') End campaign:
+        md-button.value.md-raised.md-primary(ng-if='$ctrl.campaign.active', ng-click='$ctrl.endCampaign()', flex) End
         
                 
-div Missions
-    ul
-        li(ng-repeat='mission in $ctrl.campaign.missions')
-            p
-                a(ui-sref='mission({ id:mission._id, mission: mission})', ng-bind='mission.name') 
-                span edit mission
-                span delete mission
-        li
-            a(ui-sref='add-mission({ id: $ctrl.campaign._id, campaign: $ctrl.campaign })') Add mission
+h4 Missions
+md-list(ng-cloak)
+    md-list-item(ng-repeat='mission in $ctrl.campaign.missions', ui-sref='mission({ id: mission._id, mission: mission })') 
+        span(ng-bind='mission.name')
+        ng-md-icon.md-secondary(icon='create', size='32', ng-click='$ctrl.editMission()')
+        ng-md-icon.md-secondary(icon='delete_forever', size='32', ng-click='$ctrl.deleteMission()')
+    
+    md-list-item(layout='row')
+        md-button(flex, ui-sref='add-mission({ id: $ctrl.campaign._id, campaign: $ctrl.campaign })') Add mission
     

@@ -1,8 +1,6 @@
 'use strict';
 
-angular.module('imperialAssaultApp', ['imperialAssaultApp.auth', 'imperialAssaultApp.admin',
-    'imperialAssaultApp.constants', 'imperialAssaultApp.messages', 'ngCookies', 'ngMessages', 'ngResource',
-    'ngSanitize', 'btford.socket-io', 'ui.router', 'validation.match'
+angular.module('imperialAssaultApp', ['imperialAssaultApp.auth', 'imperialAssaultApp.admin', 'imperialAssaultApp.constants', 'imperialAssaultApp.messages', 'ngCookies', 'ngMaterial', 'ngMdIcons', 'ngMessages', 'ngResource', 'ngSanitize', 'btford.socket-io', 'ui.router', 'validation.match'
   ])
   .config(function($urlRouterProvider, $locationProvider) {
     $urlRouterProvider.otherwise('/');
