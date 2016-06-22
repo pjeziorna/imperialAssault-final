@@ -48,9 +48,11 @@ Campaign.find({}).remove()
                 hero: 'Gideon Argus'
             }],
             missions: [{
-                name: 'Mission 3'
+                title: 'Homecoming',
+                _id: 'HOMECOMING'
             }, {
-                name: 'Mission 4'
+                title: 'Armed and Operation',
+                _id: 'ARMED_OPERATION'
             }]
         }, {
             name: 'Campaign 2',
@@ -72,9 +74,11 @@ Campaign.find({}).remove()
                 hero: 'Gaarkhan'
             }],
             missions: [{
-                name: 'Mission 1'
+                title: 'Homecoming',
+                _id: 'HOMECOMING'
             }, {
-                name: 'Mission 2'
+                title: 'Armed and Operation',
+                _id: 'ARMED_OPERATION'
             }]
         })
         .then(() => {

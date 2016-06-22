@@ -1,6 +1,7 @@
 'use strict';
 
 import mongoose from 'mongoose';
+let Schema = mongoose.Schema;
 
 var CampaignSchema = new mongoose.Schema({
   name: String,
@@ -14,7 +15,7 @@ var CampaignSchema = new mongoose.Schema({
       agendaSets: Array
   },
   rebelion: Array,
-  missions: Array
+  missions: Schema.Types.Mixed
 });
 
 export default mongoose.model('Campaign', CampaignSchema);

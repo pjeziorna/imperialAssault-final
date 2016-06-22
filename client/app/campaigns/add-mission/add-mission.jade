@@ -3,13 +3,12 @@ form(ng-submit='$ctrl.submitMission(this)', name='addMissionForm', novalidate)
     section(layout='column', layout-gt-xs='row', layout-align='center center')
         md-input-container.md-block(flex)
             label Mission`s name
-            md-select(name='missionTitle' ng-model='$ctrl.mission.title', required)
-                md-option(ng-repeat='mission in $ctrl.missionCards', ng-bind='mission.title', value='{{mission._id}}')
-                    //- input(ng-model='$ctrl.mission.missionType', value='{{mission.missionType}}', hidden)
+            md-select(name='missionTitle' ng-model='$ctrl.mission._id', required)
+                md-option(ng-repeat='mission in $ctrl.missionCards | missionsAvailable:$ctrl.campaign.missions', ng-bind='mission.title', value='{{mission._id}}')
             div.errors(ng-messages='addMissionForm.missionTitle.$error', ng-if='addMissionForm.$submitted')
                 div(ng-message='required') Mission name is required
         section
-            md-datepicker(name='missionDateOfPlay', md-placeholder='Date of play', ng-model='$ctrl.mission.playDate', md-open-on-focus, required)
+            md-datepicker(name='missionDateOfPlay', md-placeholder='Date of play', ng-model='$ctrl.mission.playDate', md-open-on-focus, md-max-date='$ctrl.maxDatePlay' required)
             div.validation-messages(ng-messages='addMissionForm.missionDateOfPlay.$error', ng-if='addMissionForm.$submitted')
                 div(ng-message='required') Date of play is required
     
@@ -21,6 +20,11 @@ form(ng-submit='$ctrl.submitMission(this)', name='addMissionForm', novalidate)
             div(ng-messages='addMissionForm.missionEmpireMissionExp.$error')
                 div(ng-message='required') Exp gained field is required
         md-input-container(flex)
+            label Expirience after upgrade stage
+            input(name='missionEmpireExp', type='number', ng-model='$ctrl.mission.empire.exp', value=0, min=0, max=8, required)
+            div(ng-messages='addMissionForm.missionEmpireExp.$error')
+                div(ng-message='required') Expirience field is required
+        md-input-container(flex)
             label Influence gained in this mission
             input(name='missionEmpireMissionInfluence', type='number', ng-model='$ctrl.mission.empire.influenceInMission', value=0, min=0, max=4, required)
             div(ng-messages='addMissionForm.missionEmpireMissionInfluence.$error')
@@ -30,11 +34,6 @@ form(ng-submit='$ctrl.submitMission(this)', name='addMissionForm', novalidate)
             input(name='missionEmpireInfluence', type='number', ng-model='$ctrl.mission.empire.influence', value=0, min=0, max=8, required)
             div(ng-messages='addMissionForm.missionEmpireInfluence.$error')
                 div(ng-message='required') Influence field is required
-        md-input-container(flex)
-            label Expirience after upgrade stage
-            input(name='missionEmpireExp', type='number', ng-model='$ctrl.mission.empire.exp', value=0, min=0, max=8, required)
-            div(ng-messages='addMissionForm.missionEmpireExp.$error')
-                div(ng-message='required') Expirience field is required
                 
     div(layout='column', layout-gt-xs='row')
         md-input-container(flex)
@@ -69,10 +68,8 @@ form(ng-submit='$ctrl.submitMission(this)', name='addMissionForm', novalidate)
     div(layout='column', layout-gt-xs='row')
         md-input-container(flex)
             label Items possessed
-            md-select(name='missionRebelItemsPossessed', ng-model='$ctrl.mission.rebelion.itemsPossessed', multiple, required)
+            md-select(name='missionRebelItemsPossessed', ng-model='$ctrl.mission.rebelion.itemsPossessed', multiple)
                 md-option(ng-repeat='item in $ctrl.itemCards', ng-bind='item.title', value='{{item._id}}')
-            div.errors(ng-messages='addMissionForm.missionRebelItemsPossessed.$error', ng-if='addMissionForm.$submitted')
-                div(ng-message='required') Items possessed field is required
                 
         md-input-container(flex)
             label Items sold
@@ -106,14 +103,12 @@ form(ng-submit='$ctrl.submitMission(this)', name='addMissionForm', novalidate)
     div(layout='column', layout-gt-xs='row')        
         md-input-container(flex)
             label Available side missions
-            md-select(name='missionAvailableSideMissions', ng-model='$ctrl.mission.availableSideMissions', multiple, required)
-                md-option(ng-repeat='mission in $ctrl.missionCards | sideMissions', ng-bind='mission.title', value='{{mission._id}}')
-            div.errors(ng-messages='addMissionForm.missionAvailableSideMissions.$error', ng-if='addMissionForm.$submitted')
-                div(ng-message='required') Available side missions field is required
+            md-select(name='missionAvailableSideMissions', ng-model='$ctrl.mission.availableSideMissions', multiple)
+                md-option(ng-repeat='mission in $ctrl.missionCards | missionsAvailable:$ctrl.campaign.missions | sideMissions', ng-bind='mission.title', value='{{mission._id}}')
         md-input-container(flex)
             label Next story mission
             md-select(name='missionNextStoryMission', ng-model='$ctrl.mission.nextStoryMission', required)
-                md-option(ng-repeat='mission in $ctrl.missionCards | storyMissions', ng-bind='mission.title', value='{{mission._id}}')
+                md-option(ng-repeat='mission in $ctrl.missionCards | missionsAvailable:$ctrl.campaign.missions | storyMissions', ng-bind='mission.title', value='{{mission._id}}')
             div.errors(ng-messages='addMissionForm.missionNextStoryMission.$error', ng-if='addMissionForm.$submitted')
                 div(ng-message='required') Next story mission field is required
                 

@@ -1,6 +1,12 @@
 'use strict';
 
 angular.module('imperialAssaultApp')
+    .filter('missionsAvailable', function() {
+        return function(items, missionsInCampaign) {
+            return _.differenceBy(items, missionsInCampaign, '_id');
+        }
+    })
+
     .filter('sideMissions', function() {
         return function(items) {
             let filtered = [];

@@ -41,7 +41,7 @@
         submitCampaign() {
             this.$http.post('/api/campaigns/', this.campaign)
                 .then(response => {
-                    this.messagesNotify.showConstantMessage('New campaign has been added.', 5);
+                    this.messagesNotify.showMessageWithTimeout('New campaign has been added.', 5);
                     this.clearForm();
                 });
         }

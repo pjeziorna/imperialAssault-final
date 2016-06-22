@@ -9,6 +9,7 @@
 
             this.campaignId = this.$stateParams.id;
             this.message = messagesNotify.getMessage();
+            this.maxDatePlay = new Date();
             this.missionCards = [];
             this.itemCards = [];
             this.heroCards = [];
@@ -55,10 +56,35 @@
         }
 
         submitMission(scope) {
-            console.log('submit mission', this.mission);
             if(!scope.addMissionForm.$valid) {
                 return;
             }
+            this.mission = this._fillMissionFieldsFromMissionCardModel();
+            this.campaign.missions.push(this.mission);
+
+            this.$http.put('/api/campaigns/' + this.campaign._id, this.campaign)
+                .then(response => {
+                    this.messagesNotify.showMessageWithTimeout('New mission has been added.', 5);
+                    this._clearForm();
+                });
+        }
+
+        _fillMissionFieldsFromMissionCardModel() {
+            let mission = this.mission;
+            let missionCard;
+
+            missionCard = _.find(this.missionCards, {_id: mission._id});
+
+            mission = _.assignIn(mission, {
+                title: missionCard.title,
+                deckType: missionCard.deckType,
+                missionType: missionCard.missionType,
+                empireVictoryBonus: missionCard.empireVictoryBonus,
+                rebelVictoryBonus: missionCard.rebelVictoryBonus,
+                additionalRewards: missionCard.additionalRewards
+            });
+
+            return mission;
         }
 
         _getEmptyMissionModel() {
@@ -91,6 +117,10 @@
 
         _getPlayersFromCampaignObject() {
             return this.campaign.rebelion;
+        }
+
+        _clearForm() {
+            this.mission = {};
         }
     }
 

@@ -12,11 +12,9 @@
                 $http.get('/api/campaigns/' + this.campaignId)
                 .then(response => {
                     this.campaign = response.data;
-                    console.log('campaign', this.campaign);
                 });
             } else {
                 this.campaign = $stateParams.campaign;
-                console.log('campaign', this.campaign);
             }
         }
 

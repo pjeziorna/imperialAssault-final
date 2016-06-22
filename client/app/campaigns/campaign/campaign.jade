@@ -38,22 +38,22 @@ header
             span.value(ng-bind='rebel.player', flex)
             span.label(flex='25') Hero:
             span.value(ng-bind='rebel.hero', flex)
-    section(layout='row', layout-align='center center')
-        span.label(flex='25') Delete campaign:
-        md-button.value.md-raised.md-primary(ng-click='$ctrl.deleteCampaign()', flex) Remove
-        
-    section(layout='row', layout-align='center center')
-        span.label(ng-if='$ctrl.campaign.active', flex='25') End campaign:
-        md-button.value.md-raised.md-primary(ng-if='$ctrl.campaign.active', ng-click='$ctrl.endCampaign()', flex) End
-        
                 
 h4 Missions
 md-list(ng-cloak)
-    md-list-item(ng-repeat='mission in $ctrl.campaign.missions', ui-sref='mission({ id: mission._id, mission: mission })') 
-        span(ng-bind='mission.name')
-        ng-md-icon.md-secondary(icon='create', size='32', ng-click='$ctrl.editMission()')
-        ng-md-icon.md-secondary(icon='delete_forever', size='32', ng-click='$ctrl.deleteMission()')
+    md-list-item(ng-repeat='mission in $ctrl.campaign.missions', ui-sref='mission({ id: mission._id, mission: mission })', aria-label='Mission {{mission.title}}') 
+        span(ng-bind='mission.title')
+        ng-md-icon.md-secondary(icon='create', size='32', ng-click='$ctrl.editMission()', aria-label='edit mission')
+        ng-md-icon.md-secondary(icon='delete_forever', size='32', ng-click='$ctrl.deleteMission()', aria-label='delete mission')
     
     md-list-item(layout='row')
         md-button(flex, ui-sref='add-mission({ id: $ctrl.campaign._id, campaign: $ctrl.campaign })') Add mission
+    
+section(layout='row', layout-align='center center')
+    span.label(ng-if='$ctrl.campaign.active', flex='25') End campaign:
+    md-button.value.md-raised.md-primary(ng-if='$ctrl.campaign.active', ng-click='$ctrl.endCampaign()', flex) End
+
+section(layout='row', layout-align='center center')
+    span.label(flex='25') Delete campaign:
+    md-button.value.md-raised.md-warn(ng-click='$ctrl.deleteCampaign()', flex) Remove
     
