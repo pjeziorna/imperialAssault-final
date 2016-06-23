@@ -2,7 +2,7 @@
 (function(){
 
     class AddMissionComponent {
-        constructor($stateParams, $http, messagesNotify) {
+        constructor($stateParams, $http, $scope, messagesNotify) {
             this.$stateParams = $stateParams;
             this.$http = $http;
             this.messagesNotify = messagesNotify;
@@ -21,10 +21,14 @@
                 .then(response => {
                     this.campaign = response.data;
                     this.mission = this._getEmptyMissionModel();
+                    this._subscribeWatchers($scope);
+                    console.log('campaign', this.campaign);
                 });
             } else {
                 this.campaign = this.$stateParams.campaign;
                 this.mission = this._getEmptyMissionModel();
+                this._subscribeWatchers($scope);
+                console.log('campaign', this.campaign);
             }
         }
 
@@ -56,6 +60,9 @@
         }
 
         submitMission(scope) {
+            this.mission = this._fillMissionFieldsFromMissionCardModel();
+            console.log('this.mission', this.mission);
+            return;
             if(!scope.addMissionForm.$valid) {
                 return;
             }
@@ -67,6 +74,14 @@
                     this.messagesNotify.showMessageWithTimeout('New mission has been added.', 5);
                     this._clearForm();
                 });
+        }
+
+        _subscribeWatchers($scope) {
+            $scope.$watch(() => {
+                return this.mission.rebelion.itemsSold;
+            }, (newVal, oldVal) => {
+                this.mission.rebelion.itemsPossessed = _.difference(this.mission.rebelion.itemsPossessed, newVal);
+            });
         }
 
         _fillMissionFieldsFromMissionCardModel() {
@@ -97,7 +112,8 @@
                     influence: null,
                     influenceInMission: null,
                     expInMission: null,
-                    exp: null
+                    exp: null,
+                    classCards: this._getEmpireClassCardsPossessed()
                 },
                 rebelion: {
                     creditsInMission: null,
@@ -105,8 +121,8 @@
                     expInMission: null,
                     allys: [],
                     players: this._getPlayersFromCampaignObject(),
-                    itemsSold: [],
-                    itemsPossessed: []
+                    itemsSold: this._getRebelionItemsSoldFromLastMission(),
+                    itemsPossessed: this._getRebelionItemsPossessedFromLastMission()
                 },
                 availableSideMissions: [],
                 nextStoryMission: null,
@@ -116,7 +132,39 @@
         }
 
         _getPlayersFromCampaignObject() {
-            return this.campaign.rebelion;
+            if(!this.campaign.missions.length) {
+                var players = angular.copy(this.campaign.rebelion);
+                _.forEach(players, function(player) {
+                    player.heroClassCards = {
+                        possessed: [],
+                        sold: []
+                    };
+                    player.exp = null;
+                });
+                return players;
+            }
+            return this.campaign.missions[this.campaign.missions.length - 1].rebelion.players;
+        }
+
+        _getEmpireClassCardsPossessed() {
+            if(!this.campaign.missions.length) {
+                return [];
+            }
+            return this.campaign.missions[this.campaign.missions.length - 1].empire.classCards;
+        }
+
+        _getRebelionItemsPossessedFromLastMission() {
+            if(!this.campaign.missions.length) {
+                return [];
+            }
+            return this.campaign.missions[this.campaign.missions.length - 1].rebelion.itemsPossessed;
+        }
+
+        _getRebelionItemsSoldFromLastMission() {
+            if(!this.campaign.missions.length) {
+                return [];
+            }
+            return this.campaign.missions[this.campaign.missions.length - 1].rebelion.itemsSold;
         }
 
         _clearForm() {

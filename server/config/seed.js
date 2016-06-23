@@ -49,10 +49,40 @@ Campaign.find({}).remove()
             }],
             missions: [{
                 title: 'Homecoming',
-                _id: 'HOMECOMING'
+                _id: 'HOMECOMING',
+                rebelion: {
+                    itemsPossessed: ["DH-17"]
+                },
+                empire: {
+                    classCards: ["Technical Support"]
+                }
             }, {
                 title: 'Armed and Operation',
-                _id: 'ARMED_OPERATION'
+                _id: 'ARMED_OPERATION',
+                rebelion: {
+                    itemsPossessed: ["DH-17"],
+                    itemsSold: ['DL-44'],
+                    players: [{
+                        player: 'test',
+                        hero: 'Fenn Signis',
+                        heroClassCards: {
+                            possessed: ['Take Cover'],
+                            sold: ['Infantry Rifle']
+                        },
+                        exp: 1
+                    }, {
+                        player: 'test3',
+                        hero: 'Gideon Argus',
+                        heroClassCards: {
+                            possessed: ['Mobile Tactician'],
+                            sold: ['Holdout Blaster']
+                        },
+                        exp: 1
+                    }]
+                },
+                empire: {
+                    classCards: ["Technical Support","Jetpacks"]
+                }
             }]
         }, {
             name: 'Campaign 2',
