@@ -2,23 +2,9 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
 @import '../bower_components/font-awesome/scss/font-awesome';
 @import url(https://fonts.googleapis.com/css?family=Cuprum|Archivo+Narrow|Exo|News+Cycle&subset=latin,latin-ext);
 
-$newCuprumFont: 'Cuprum', sans-serif;
-$newArchivoFont: 'Archivo Narrow', sans-serif;
-$newExoFont: 'Exo', sans-serif;
-$newCycleFont: 'News Cycle', sans-serif;
-
 /**
  * App-wide Styles
  */
-
- body {
-     font-family: $newCuprumFont;
-     font-weight: normal;
- }
-
- h1, h2, h3, h4, h5, h6 {
-     font-family: $newExoFont;
- }
 
 .browserupgrade {
   margin: 0.2em 0;
@@ -27,12 +13,8 @@ $newCycleFont: 'News Cycle', sans-serif;
   padding: 0.2em 0;
 }
 
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-  .container {
-    max-width: 730px;
-  }
-}
+@import 'styles/variables';
+@import 'styles/main';
 
 // Component styles are injected through grunt
 /* inject:scss */
@@ -44,4 +26,5 @@ $newCycleFont: 'News Cycle', sans-serif;
 @import 'campaigns/my-campaigns/my-campaigns';
 @import 'main/main';
 @import '../components/footer/footer';
+@import '../components/navbar/navbar';
 /* endinject */

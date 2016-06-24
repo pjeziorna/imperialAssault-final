@@ -1,0 +1,31 @@
+.btn {
+    @include linearGradient($btnBgTop, $btnBgBottom);
+
+    border-top: 1px solid $btnBorderColor;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+
+    color: $textColor;
+    padding: 8px 20px;
+
+    + .btn {
+        margin-left: 6px;
+    }
+
+    &:hover, &:focus {
+        @include linearGradient($btnBgTopFocused, $btnBgBottomFocused);
+        border-top-color: $btnBorderColorFocused;
+        color: $textColor;
+    }
+
+    &.btn-warn {
+        @include linearGradient($btnBgTopWarn, $btnBgBottomWarn);
+        border-top-color: $btnBorderColorWarn;
+
+        &:hover, &:focus {
+            @include linearGradient($btnBgTopWarnFocused, $btnBgBottomWarnFocused);
+            border-top-color: $btnBorderColorWarnFocused;
+        }
+    }
+}

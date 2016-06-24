@@ -1,0 +1,24 @@
+body {
+    font-family: $newCuprumFont;
+    font-weight: normal;
+    font-size: $textSize;
+    color: $textColor;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: $newExoFont;
+    color: $headingsColor;
+}
+
+a {
+    color: $linkColor;
+    text-decoration: none;
+
+    &:hover, &:focus {
+        color: $linkHoverColor;
+    }
+}
+
+input {
+    font-family: $newCuprumFont;
+}

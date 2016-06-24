@@ -1,0 +1,22 @@
+body {
+    background-color: $siteBgColor;
+}
+
+.container {
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 1200px) {
+  .container {
+    max-width: 1150px;
+  }
+}
+
+@import 'mixins';
+@import 'glyphicons';
+@import 'typography';
+@import 'forms';
+@import 'buttons';

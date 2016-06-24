@@ -19,7 +19,7 @@
       form.form(name='form', ng-submit='vm.login(form)', novalidate='')
         .form-group
           label Email
-          input.form-control(type='email', name='email', ng-model='vm.user.email')
+          input.form-control(type='email', name='email', ng-model='vm.user.email', placeholder='email')
         .form-group
           label Password
           input.form-control(type='password', name='password', ng-model='vm.user.password')

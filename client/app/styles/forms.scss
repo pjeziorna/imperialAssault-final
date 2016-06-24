@@ -1,0 +1,27 @@
+input, select, textarea {
+    &, &[type='text'], &[type='number'], &[type='date'], &[type='email'], , &[type='password']  {
+        background-color: transparent;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-bottom: 1px solid $inputBorderColor;
+        outline: none;
+        color: $inputColor;
+        padding: 7px 4px;
+        margin: 3px 8px;
+    }
+
+    &::-webkit-input-placeholder,
+    &:-moz-placeholder,
+    ::-moz-placeholder,
+    :-ms-input-placeholder {
+        color: $inputPlaceholderColor;
+    }
+}
+
+input, select, textarea {
+    &:-webkit-autofill {
+        -webkit-box-shadow:0 0 0 50px $siteBgColor inset;
+        -webkit-text-fill-color: $textColor;
+    }
+}
