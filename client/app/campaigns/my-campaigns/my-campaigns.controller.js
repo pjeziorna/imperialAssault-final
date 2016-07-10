@@ -9,7 +9,8 @@ class MyCampaignsComponent {
   }
 
   $onInit() {
-      this.$http.get('/api/campaigns/', {
+      console.log('user', this.user);
+      this.$http.get('/api/campaigns/' + this.user.email + '/' , {
           userId: this.user._id
       })
       .then(response => {

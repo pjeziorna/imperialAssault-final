@@ -30,31 +30,31 @@ Campaign.find({}).remove()
     .then(() => {
         Campaign.create({
             name: 'Campaign 1',
-            owner: 'test',
+            owner: 'test@example.com',
             active: true,
             startDate: 1466101831972,
             endDate: -1,
             empire: {
                 player: 'admin',
-                login: 'admin',
+                login: 'admin@example.com',
                 classSet: 'Technological Superiority',
                 agendaSets: ['For the Right Price', 'Agents of the Empire']
             },
             rebelion: [{
                 player: 'test',
-                login: 'test',
+                login: 'test@example.com',
                 hero: 'Fenn Signis'
             }, {
                 player: 'test3',
-                login: 'test3',
+                login: 'test3@example.com',
                 hero: 'Gideon Argus'
             }, {
                 player: 'test4',
-                login: 'test4',
+                login: 'test4@example.com',
                 hero: 'Diana Passil'
             }, {
                 player: 'test5',
-                login: 'test5',
+                login: 'test5@example.com',
                 hero: 'Biv Bodrik'
             }],
             missions: [{
@@ -96,18 +96,19 @@ Campaign.find({}).remove()
             }]
         }, {
             name: 'Campaign 2',
-            owner: 'test',
+            owner: 'admin@example.com',
             active: true,
             startDate: 1466101915866,
             endDate: -1,
             empire: {
-                player: 'test',
-                login: 'test',
+                player: 'test2',
+                login: 'test2@example.com',
                 classSet: 'Subversive Tactics',
                 agendaSets: ['For the Right Price', 'Agents of the Empire']
             },
             rebelion: [{
                 player: 'test',
+                login: 'test@example.com',
                 hero: 'Fenn Signis'
             }, {
                 player: 'test2',

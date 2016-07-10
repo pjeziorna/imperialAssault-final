@@ -1,8 +1,8 @@
 /**
  * Using Rails-like standard naming convention for endpoints.
- * GET     /api/campaigns              ->  index
+ * GET     /api/campaigns/:userName    ->  index
  * POST    /api/campaigns              ->  create
- * GET     /api/campaigns/:id          ->  show
+ * GET     /api/campaigns/:userName/:id->  show
  * PUT     /api/campaigns/:id          ->  update
  * DELETE  /api/campaigns/:id          ->  destroy
  */
@@ -62,10 +62,19 @@ function handleError(res, statusCode) {
 
 // Gets a list of Campaigns
 export function index(req, res) {
-  return Campaign.find().exec()
+  return Campaign.find({
+      $or: [{
+          owner: req.params.userName
+      }, {
+          'empire.login': req.params.userName
+      }, {
+          rebelion: { $elemMatch: {login: req.params.userName }}
+      }]
+  }).exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
+
 
 // Gets a single Campaign from the DB
 export function show(req, res) {

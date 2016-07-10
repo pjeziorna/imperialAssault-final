@@ -2,10 +2,11 @@
 (function(){
 
     class AddMissionComponent {
-        constructor($stateParams, $http, $scope, messagesNotify) {
+        constructor($stateParams, $http, $scope, messagesNotify, Auth) {
             this.$stateParams = $stateParams;
             this.$http = $http;
             this.messagesNotify = messagesNotify;
+            this.currentUser = Auth.getCurrentUser();
 
             this.campaignId = this.$stateParams.id;
             this.message = messagesNotify.getMessage();
@@ -17,7 +18,7 @@
             this.agendaCards = [];
 
             if (this.$stateParams.campaign === null) {
-                this.$http.get('/api/campaigns/' + this.campaignId)
+                this.$http.get('/api/campaigns/' + this.currentUser.email + '/' + this.campaignId)
                 .then(response => {
                     this.campaign = response.data;
                     this.mission = this._getEmptyMissionModel();

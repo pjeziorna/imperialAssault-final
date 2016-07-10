@@ -2,14 +2,15 @@
 (function(){
 
     class CampaignComponent {
-        constructor($stateParams, $state, $http) {
+        constructor($stateParams, $state, $http, Auth) {
             this.$http = $http;
             this.$stateParams = $stateParams;
             this.$state = $state;
             this.campaignId = $stateParams.id;
+            this.currentUser = Auth.getCurrentUser();
 
             if ($stateParams.campaign === null) {
-                $http.get('/api/campaigns/' + this.campaignId)
+                $http.get('/api/campaigns/' + this.currentUser.email + '/' + this.campaignId)
                 .then(response => {
                     this.campaign = response.data;
                 });
@@ -31,6 +32,7 @@
         }
 
         endCampaign() {
+            // TODO here should be used some confirmation component
             this.campaign.active = false;
             this.$http.patch('/api/campaigns/' + this.campaignId, this.campaign)
                 .then(response => {
@@ -47,6 +49,10 @@
 
         deleteMission() {
             console.log('delete mission');
+        }
+
+        isCampaignOwner() {
+            return this.campaign && this.currentUser.email === this.campaign.owner;
         }
     }
 

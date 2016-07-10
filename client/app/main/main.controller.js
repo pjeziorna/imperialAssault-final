@@ -10,9 +10,9 @@
     //   this.awesomeThings = [];
       this.isLoggedIn = Auth.isLoggedIn;
 
-      $scope.$on('$destroy', function() {
-        socket.unsyncUpdates('thing');
-      });
+    //   $scope.$on('$destroy', function() {
+    //     socket.unsyncUpdates('thing');
+    //   });
     }
 
     $onInit() {

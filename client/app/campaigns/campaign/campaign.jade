@@ -1,9 +1,9 @@
 .container
     header
         h2(ng-bind='$ctrl.campaign.name')
-        a(href='', ng-click='$ctrl.editCampaign()')
+        a(href='', ng-click='$ctrl.editCampaign()', ng-if='$ctrl.isCampaignOwner()')
             span.glyphicon.glyphicon-pencil
-        a(href='', ng-click='$ctrl.deleteCampaign()')
+        a(href='', ng-click='$ctrl.deleteCampaign()', ng-if='$ctrl.isCampaignOwner()')
             span.glyphicon.glyphicon-trash
     .panel.campaign-info
         section
@@ -58,22 +58,16 @@
             ul.custom-list.missions-list
                 li.list-item(ng-repeat='mission in $ctrl.campaign.missions', aria-label='Mission {{mission.title}}') 
                     a(ui-sref='mission({ id: mission._id, mission: mission })', ng-bind='mission.title')
-                    a.icon(href='', ng-click='$ctrl.editMission()', aria-label='edit mission')
+                    a.icon(href='', ng-click='$ctrl.editMission()', aria-label='edit mission', ng-if='$ctrl.isCampaignOwner()')
                         span.glyphicon.glyphicon-pencil
-                    a.icon(href='', ng-click='$ctrl.deleteMission()', aria-label='delete mission')
+                    a.icon(href='', ng-click='$ctrl.deleteMission()', aria-label='delete mission', ng-if='$ctrl.isCampaignOwner()')
                         span.glyphicon.glyphicon-trash
-        section.btn-container(ng-if='$ctrl.campaign.active')
+        section.btn-container(ng-if='$ctrl.campaign.active && $ctrl.isCampaignOwner()')
             a.btn.btn-right(ui-sref='add-mission({ id: $ctrl.campaign._id, campaign: $ctrl.campaign })') Add mission
         
-        hr(ng-if='$ctrl.campaign.active')
+        hr(ng-if='$ctrl.campaign.active && $ctrl.isCampaignOwner()')
         
-        section.btn-container
+        section.btn-container(ng-if='$ctrl.isCampaignOwner()')
             a.btn.btn-lg.btn-warn.btn-block(href='', ng-if='$ctrl.campaign.active', ng-click='$ctrl.endCampaign()') End campaign
-        //- section(layout='row', layout-align='center center')
-        //-     span.label(ng-if='$ctrl.campaign.active', flex='25') End campaign:
-        //-     md-button.value.md-raised.md-primary(ng-if='$ctrl.campaign.active', ng-click='$ctrl.endCampaign()', flex) End
 
-        //- section(layout='row', layout-align='center center')
-        //-     span.label(flex='25') Delete campaign:
-        //-     md-button.value.md-raised.md-warn(ng-click='$ctrl.deleteCampaign()', flex) Remove
-        
+    a.btn(href='', back-button) Go back
