@@ -19,9 +19,184 @@ input, select, textarea {
     }
 }
 
+md-input-container input {
+    &, &[type='text'], &[type='number'], &[type='date'], &[type='email'], , &[type='password']  {
+        margin: 0;
+    }
+}
+
 input, select, textarea {
     &:-webkit-autofill {
         -webkit-box-shadow:0 0 0 50px $siteBgColor inset;
         -webkit-text-fill-color: $textColor;
     }
 }
+
+/**
+ * MD theme
+ **/
+md-select.md-default-theme, md-select {
+    ._md-select-value {
+        border-bottom-color: $inputBorderColor;
+        padding: 7px 4px;
+    }
+
+    ._md-select-value._md-select-placeholder {
+        color: $inputPlaceholderColor;
+    }
+
+    &:not([disabled]):focus {
+        ._md-select-value {
+            color: $inputColor;
+            border-bottom-width: 1px;
+            border-bottom-color: $inputPlaceholderColor;
+            padding-bottom: 7px;
+
+            &._md-select-placeholder {
+                color: $inputPlaceholderColor;
+            }
+        }
+    }
+}
+
+md-input-container , md-input-container.md-default-theme{
+    &:not(.md-input-invalid).md-input-has-value label {
+        color: $inputColor;
+    }
+
+    &:not(.md-input-focused):not(.md-input-invalid) label.md-required:after {
+        color: $textColor;
+    }
+
+    label {
+        color: $inputPlaceholderColor;
+
+        &:not(._md-container-ignore) {
+            left: 12px;
+        }
+    }
+}
+
+md-icon {
+    color: $textColor;
+}
+
+.md-block {
+    display: block;
+    width: 100%;
+}
+
+/**
+ * Datepicker
+ **/
+md-datepicker {
+    margin-right: 0;
+    display: flex;
+
+    > * {
+        flex: 1 1 100%;
+    }
+
+    &.ng-touched {
+        .md-datepicker-input-container.md-datepicker-invalid {
+            border-bottom-color: $inputInvalidColor;
+            color: $inputInvalidColor;
+        }
+
+        &.ng-invalid {
+            .md-datepicker-button.md-button.md-icon-button {
+                border-bottom-color: $inputInvalidColor;
+            }
+        }
+    }
+
+    &.ng-untouched.ng-invalid {
+        .md-datepicker-input-container {
+            border-bottom-color: $inputBorderColor;
+            color: $inputPlaceholderColor;
+        }
+    }
+
+    .md-datepicker-input {
+        color: $inputPlaceholderColor;
+
+        &::-webkit-input-placeholder {
+            color: $inputPlaceholderColor;
+        }
+    }
+
+    .md-datepicker-input-container {
+        padding-bottom: 0;
+        margin-bottom: 5px;
+        margin-left: 0;
+        border-bottom-color: $inputBorderColor;
+
+        &.md-datepicker-focused {
+            border-bottom-width: 1px;
+        }
+
+        .md-datepicker-triangle-button {
+            .md-datepicker-expand-triangle {
+                border-top-color: $inputPlaceholderColor;
+            }
+        }
+    }
+
+    .md-datepicker-button.md-button.md-icon-button {
+        padding-bottom: 14px;
+        margin-right: 0;
+        margin-top: 5px;
+        border-bottom: 1px solid $inputBorderColor;
+        border-radius: 0;
+    }
+}
+
+.md-calendar,  .md-datepicker-calendar {
+    background-color: $calendarBg;
+    color: $calendarDayHeaderColor;
+
+    tr:last-child td {
+        border-color: $calendarHrColor;
+    }
+}
+
+.md-calendar-date-disabled, .md-calendar-month-label-disabled {
+    color: $calendarDayDisabledColor;
+}
+
+.md-datepicker-calendar-pane {
+    border-width: 0;
+}
+
+.md-calendar-day-header {
+    background-color: $calendarDayHeaderBg;
+    color: $calendarDayHeaderColor;
+    box-shadow: 0 0 15px $calendarDayHeaderShadowColor inset;
+}
+
+.md-calendar-date {
+    &.md-focus {
+        &, &.md-calendar-selected-date {
+            .md-calendar-date-selection-indicator {
+                box-shadow: 0 0 15px $calendarDayHeaderShadowColor inset;
+                background-color: $calendarTodayBg;
+                border-width: 0;
+            }
+        }
+    }
+
+    &.md-calendar-date-today .md-calendar-date-selection-indicator {
+        border-color: $calendarHrColor;
+    }
+}
+
+.md-calendar-date-selection-indicator {
+    border-radius: 0;
+
+    &:hover {
+        background-color: $calendarHoverBg;
+        box-shadow: none;
+    }
+}
+
+// .md-default-theme .md-calendar-date.md-calendar-selected-date .md-calendar-date-selection-indicator, .md-calendar-date.md-calendar-selected-date .md-calendar-date-selection-indicator, .md-default-theme .md-calendar-date.md-focus.md-calendar-selected-date .md-calendar-date-selection-indicator, .md-calendar-date.md-focus.md-calendar-selected-date .md-calendar-date-selection-indicator

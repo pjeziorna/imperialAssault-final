@@ -42,10 +42,20 @@ Campaign.find({}).remove()
             },
             rebelion: [{
                 player: 'test',
+                login: 'test',
                 hero: 'Fenn Signis'
             }, {
                 player: 'test3',
+                login: 'test3',
                 hero: 'Gideon Argus'
+            }, {
+                player: 'test4',
+                login: 'test4',
+                hero: 'Diana Passil'
+            }, {
+                player: 'test5',
+                login: 'test5',
+                hero: 'Biv Bodrik'
             }],
             missions: [{
                 title: 'Homecoming',

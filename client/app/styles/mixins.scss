@@ -1,5 +1,16 @@
+@mixin clearfix() {
+    &:before,
+    &:after {
+        content: "";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
 @mixin linearGradient($topColor, $bottomColor) {
-    background: #292b2c;
+    background: $topColor;
     background: -moz-linear-gradient(top,  $topColor 0%, $bottomColor 100%);
     background: -webkit-linear-gradient(top,  $topColor 0%, $bottomColor 100%);
     background: linear-gradient(to bottom,  $topColor 0%, $bottomColor 100%);

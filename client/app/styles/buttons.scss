@@ -8,6 +8,7 @@
 
     color: $textColor;
     padding: 8px 20px;
+    display: inline-block;
 
     + .btn {
         margin-left: 6px;
@@ -28,4 +29,22 @@
             border-top-color: $btnBorderColorWarnFocused;
         }
     }
+
+    &.btn-lg {
+        padding: 12px 28px;
+        font-size: 1.2em;
+    }
+}
+
+.btn-right {
+    float: right;
+}
+
+.btn-block {
+    display: block;
+    text-align: center;
+}
+
+.btn-container {
+    @include clearfix;
 }

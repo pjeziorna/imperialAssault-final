@@ -1,6 +1,18 @@
-ul
-    li(ng-repeat='campaign in $ctrl.campaigns')
-        a(ui-sref='campaign({ id: campaign._id, campaign: campaign })', ng-bind='campaign.name')    
-    li
-        a(ui-sref='add-campaign') Add new campaign
-    
+.container
+    h2 My campaigns
+    ul.custom-list
+        li(ng-repeat='campaign in $ctrl.campaigns')
+            a(ui-sref='campaign({ id: campaign._id, campaign: campaign })', layout='row')
+                span(ng-bind='campaign.name', flex='25')
+                span(flex='25', layout='row')
+                    span.glyphicon.glyphicon-calendar(flex='15')
+                    span(ng-bind='campaign.startDate | date:"dd.MM.yyyy"', flex)
+                span(flex='25', layout='row')
+                    span.glyphicon.glyphicon-user(flex='15')
+                    span(ng-bind='campaign.owner', flex)
+                span(ng-if='campaign.active', flex='25') in progress
+                span(ng-if='!campaign.active', flex='25') ended
+
+    div.btn-container
+        a.btn.btn-right.btn-block(ui-sref='add-campaign') Add new campaign
+        

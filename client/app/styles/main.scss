@@ -1,11 +1,17 @@
 body {
     background-color: $siteBgColor;
+    height: auto;
 }
 
 .container {
     margin: 0 auto;
     padding-left: 20px;
     padding-right: 20px;
+}
+
+hr {
+    border: none;
+    border-bottom: 1px solid $hrColor;
 }
 
 /* Responsive: Portrait tablets and up */
@@ -20,3 +26,5 @@ body {
 @import 'typography';
 @import 'forms';
 @import 'buttons';
+@import 'lists';
+@import 'panels';

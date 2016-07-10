@@ -19,11 +19,13 @@ $textSize: 14px;
  * Main variables
  **/
 $siteBgColor: #171b1e;
+$hrColor: #384349;
 
 /**
  * Forms
  **/
  $inputBorderColor: #416a8c;
+ $inputInvalidColor: #dd2c00;
 
 /**
  * Buttons
@@ -40,3 +42,31 @@ $btnBorderColorWarn: #803d3e;
 $btnBgTopWarnFocused: #4b2324;
 $btnBgBottomWarnFocused: #482021;
 $btnBorderColorWarnFocused: #d21d1e;
+
+/**
+ * Lists
+ **/
+$listBgTopColor: #2b2e2f;
+$listBgBottomColor: #232526;
+$listBgTopColorFocused: #373a3b;
+$listBgBottomColorFocused: #303233;
+$listBgTopColorHeader: #454748;
+$listBgBottomColorHeader: #3e4040;
+$listHeight: 45px;
+
+/**
+ * Panels
+ **/
+$panelBg: #1b2023;
+
+/**
+ * Calendar
+ **/
+$calendarDayHeaderBg: #4a7ca6;
+$calendarDayHeaderColor: #d1dbe0;
+$calendarDayHeaderShadowColor: #3e688b;
+$calendarBg: #4a7ca6;
+$calendarDayDisabledColor: #83a0b8;
+$calendarHoverBg: #5584ab;
+$calendarTodayBg: #3b6f9b;
+$calendarHrColor: #7899b4;

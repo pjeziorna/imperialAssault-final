@@ -1,59 +1,79 @@
-header
-    h4 Campaign basic info
-    section(layout='row')
-        span.label(flex='25') Name:
-        span.value(ng-bind='$ctrl.campaign.name', flex)
-    section(layout='row')
-        span.label(flex='25') Creator of campaign:
-        span.value(ng-bind='$ctrl.campaign.owner', flex)
-    section(layout='row')
-        span.label(flex='25') Start date:
-        span.value(ng-bind='$ctrl.campaign.startDate | date', flex)
-    section(layout='row')
-        span.label(flex='25') Status of camapign:
-        span.value(ng-if='$ctrl.campaign.active', flex) in progress 
-        span.value(ng-if='!$ctrl.campaign.active', flex) Ended
-    section(layout='row')
-        span.label(flex='25') Missions played:
-        span.value(ng-bind='$ctrl.campaign.missions.length | number', flex)
-    
-    h4 Empire
-    section(layout='row')
-        span.label(flex='25') Player:
-        span.value(ng-bind='$ctrl.campaign.empire.player', flex)
-    section(layout='row')
-        span.label(flex='25') Login:
-        span.value(ng-bind='$ctrl.campaign.empire.login', flex)
-    section(layout='row')
-        span.label(flex='25') Chosen class set:
-        span.value(ng-bind='$ctrl.campaign.empire.classSet', flex)
-    section(layout='row')
-        span.label(flex='25') Chosen agenda sets:
-        span.value(ng-repeat='agenda in $ctrl.campaign.empire.agendaSets', ng-bind='agenda', flex)
-    
-    h4 Rebelion
-    section(layout='row')
-        section(layout='row', ng-repeat='rebel in $ctrl.campaign.rebelion', flex='50')
-            span.label(flex='25') Player:
-            span.value(ng-bind='rebel.player', flex)
-            span.label(flex='25') Hero:
-            span.value(ng-bind='rebel.hero', flex)
-                
-h4 Missions
-md-list(ng-cloak)
-    md-list-item(ng-repeat='mission in $ctrl.campaign.missions', ui-sref='mission({ id: mission._id, mission: mission })', aria-label='Mission {{mission.title}}') 
-        span(ng-bind='mission.title')
-        ng-md-icon.md-secondary(icon='create', size='32', ng-click='$ctrl.editMission()', aria-label='edit mission')
-        ng-md-icon.md-secondary(icon='delete_forever', size='32', ng-click='$ctrl.deleteMission()', aria-label='delete mission')
-    
-    md-list-item(layout='row')
-        md-button(flex, ui-sref='add-mission({ id: $ctrl.campaign._id, campaign: $ctrl.campaign })') Add mission
-    
-section(layout='row', layout-align='center center')
-    span.label(ng-if='$ctrl.campaign.active', flex='25') End campaign:
-    md-button.value.md-raised.md-primary(ng-if='$ctrl.campaign.active', ng-click='$ctrl.endCampaign()', flex) End
+.container
+    header
+        h2(ng-bind='$ctrl.campaign.name')
+        a(href='', ng-click='$ctrl.editCampaign()')
+            span.glyphicon.glyphicon-pencil
+        a(href='', ng-click='$ctrl.deleteCampaign()')
+            span.glyphicon.glyphicon-trash
+    .panel.campaign-info
+        section
+            h4 Campaign basic info
+            section.campaign-row(layout='row')
+                span.label(flex='15') Name:
+                span.value(ng-bind='$ctrl.campaign.name', flex='35')
+                span.label(flex='15') Creator of campaign:
+                span.value(ng-bind='$ctrl.campaign.owner', flex='35')
+            section.campaign-row(layout='row')
+                span.label(flex='15') Start date:
+                span.value(ng-bind='$ctrl.campaign.startDate | date:"dd.MM.yyyy"', flex='35')
+                span.label(flex='15') Status of camapign:
+                span.value(ng-if='$ctrl.campaign.active', flex='35') in progress 
+                span.value(ng-if='!$ctrl.campaign.active', flex='35') Ended
+            section.campaign-row(layout='row')
+                span.label(flex='15') Missions played:
+                span.value(ng-bind='$ctrl.campaign.missions.length | number', flex='35')
+        hr
+        section
+            h4 Empire
+            section.campaign-row(layout='row')
+                span.label(flex='15') Player:
+                span.value(ng-bind='$ctrl.campaign.empire.player', flex='35')
+                span.label(flex='15') Login:
+                span.value(ng-bind='$ctrl.campaign.empire.login | emptyField', flex='35')
+            section.campaign-row(layout='row')
+                span.label(flex='15') Chosen class set:
+                span.value(ng-bind='$ctrl.campaign.empire.classSet', flex='35')
+                span.label(flex='15') Chosen agenda sets:
+                ul.bullets-list(flex='35')
+                    li.value(ng-repeat='agenda in $ctrl.campaign.empire.agendaSets', ng-bind='agenda')
+        hr
+        section
+            h4 Rebelion
+            md-grid-list(md-cols-gt-sm='2', md-cols='1', md-gutter='20px', md-row-height='120px')
+                md-grid-tile(ng-repeat='rebel in $ctrl.campaign.rebelion')
+                    section.player-tile(flex)
+                        div.campaign-row(layout='row')
+                            span.label(flex='35') Player:
+                            span.value(ng-bind='rebel.player', flex='65')
+                        div.campaign-row(layout='row')
+                            span.label(flex='35') Login:
+                            span.value(ng-bind='rebel.login | emptyField', flex='65')
+                        div.campaign-row(layout='row')
+                            span.label(flex='35') Hero:
+                            span.value(ng-bind='rebel.hero', flex='65')
+                        
+        hr 
+        section.missions-section
+            h4.list-header Missions
+            ul.custom-list.missions-list
+                li.list-item(ng-repeat='mission in $ctrl.campaign.missions', aria-label='Mission {{mission.title}}') 
+                    a(ui-sref='mission({ id: mission._id, mission: mission })', ng-bind='mission.title')
+                    a.icon(href='', ng-click='$ctrl.editMission()', aria-label='edit mission')
+                        span.glyphicon.glyphicon-pencil
+                    a.icon(href='', ng-click='$ctrl.deleteMission()', aria-label='delete mission')
+                        span.glyphicon.glyphicon-trash
+        section.btn-container(ng-if='$ctrl.campaign.active')
+            a.btn.btn-right(ui-sref='add-mission({ id: $ctrl.campaign._id, campaign: $ctrl.campaign })') Add mission
+        
+        hr(ng-if='$ctrl.campaign.active')
+        
+        section.btn-container
+            a.btn.btn-lg.btn-warn.btn-block(href='', ng-if='$ctrl.campaign.active', ng-click='$ctrl.endCampaign()') End campaign
+        //- section(layout='row', layout-align='center center')
+        //-     span.label(ng-if='$ctrl.campaign.active', flex='25') End campaign:
+        //-     md-button.value.md-raised.md-primary(ng-if='$ctrl.campaign.active', ng-click='$ctrl.endCampaign()', flex) End
 
-section(layout='row', layout-align='center center')
-    span.label(flex='25') Delete campaign:
-    md-button.value.md-raised.md-warn(ng-click='$ctrl.deleteCampaign()', flex) Remove
-    
+        //- section(layout='row', layout-align='center center')
+        //-     span.label(flex='25') Delete campaign:
+        //-     md-button.value.md-raised.md-warn(ng-click='$ctrl.deleteCampaign()', flex) Remove
+        

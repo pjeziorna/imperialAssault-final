@@ -1,0 +1,41 @@
+.custom-list {
+    margin: 0 0 30px 0;
+    padding: 0;
+
+    li, .list-item {
+        @include linearGradient($listBgTopColor, $listBgBottomColor);
+        list-style: none;
+        display: block;
+        padding: 0 12px;
+
+        a {
+            line-height: $listHeight;
+        }
+
+        + li, + .list-item {
+            margin-top: 1px;
+        }
+
+        &:hover {
+            @include linearGradient($listBgTopColorFocused, $listBgBottomColorFocused);
+        }
+    }
+}
+
+.list-header {
+    @include linearGradient($listBgTopColorHeader, $listBgBottomColorHeader);
+    line-height: $listHeight;
+    padding: 0 12px;
+    margin: 0;
+}
+
+.bullets-list {
+    margin: 0;
+    padding: 0;
+
+    li {
+        + li {
+            margin-top: 5px;
+        }
+    }
+}

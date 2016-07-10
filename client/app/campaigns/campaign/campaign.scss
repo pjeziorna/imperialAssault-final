@@ -1,0 +1,96 @@
+header {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: stretch;
+    align-content: stretch;
+
+    h2 {
+        flex-basis: 100%;
+    }
+    a {
+        flex-basis: 36px;
+        align-self: center;
+        margin-left: 15px;
+    }
+}
+
+.panel {
+    .missions-section {
+        padding: 0;
+
+        + .btn-container {
+            padding-top: 0;
+        }
+    }
+}
+
+.campaign-info {
+    .campaign-row {
+        + .campaign-row:not(.input-row) {
+            margin-top: 20px;
+        }
+
+        &:not(.input-row) + .campaign-row.input-row {
+            margin-top: 20px;
+        }
+    }
+
+    .player-tile {
+        height: 100%;
+        padding: 15px;
+    }
+
+    md-grid-tile {
+        &:nth-child(2n+1) {
+            .player-tile {
+                padding-left: 0;
+            }
+        }
+        &:nth-child(2n) {
+            .player-tile {
+                position: relative;
+                padding-right: 0;
+
+                &:before {
+                    content: '';
+                    display: block;
+                    width: 1px;
+                    height: calc(100% - 10px);
+                    background-color: $hrColor;
+                    position: absolute;
+                    top: 10;
+                    left: -10px;
+                }
+            }
+        }
+        &:nth-child(n+3) {
+            .player-tile {
+                border-top: 1px solid $hrColor;
+            }
+        }
+    }
+}
+
+
+.custom-list.missions-list {
+    .list-item {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        align-items: stretch;
+        align-content: stretch;
+
+        a {
+            flex-basis: 100%;
+            align-self: center;
+        }
+
+        .icon {
+            flex-grow: 0;
+            flex-shrink: 0;
+            flex-basis: 36px;
+            margin-left: 15px;
+        }
+    }
+}
