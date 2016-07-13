@@ -9,6 +9,9 @@
             this.message = messagesNotify.getMessage();
             this.empireClassCards = [];
             this.empireAgendaCards = [];
+            this.users = [];
+            this.empireSearchText = null;
+            this.heroes = [];
         }
 
         $onInit() {
@@ -20,6 +23,15 @@
             this.$http.get('/api/agenda-cards')
                 .then(response => {
                     this.empireAgendaCards = response.data;
+                });
+
+            this.$http.get('/api/users/all')
+                .then(response => {
+                    this.users = response.data;
+                });
+            this.$http.get('/api/hero-cards')
+                .then(response => {
+                    this.heroes = response.data;
                 });
         }
 

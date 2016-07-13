@@ -32,6 +32,17 @@ export function index(req, res) {
 }
 
 /**
+ * Get list of users' logins and names
+ */
+export function indexUsers(req, res) {
+  return User.find({}, {email: 1, name: 1}).exec()
+    .then(users => {
+      res.status(200).json(users);
+    })
+    .catch(handleError(res));
+}
+
+/**
  * Creates a new user
  */
 export function create(req, res, next) {

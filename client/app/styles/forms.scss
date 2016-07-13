@@ -68,6 +68,10 @@ md-input-container , md-input-container.md-default-theme{
         color: $textColor;
     }
 
+    .md-input {
+        color: $textColor
+    }
+
     label {
         color: $inputPlaceholderColor;
 
