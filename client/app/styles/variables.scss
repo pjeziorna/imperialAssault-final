@@ -31,7 +31,6 @@ $hrColor: #35332d;
 $inputVerticalPadding: 12px;
 $inputHorizontalPadding: 10px;
 $inputBgColor: transparentize(#323232, 0.65);
-// $inputBgColor: transparent;
 $inputBorderColor: #343025;
 $inputFocusBorderColor: #796f53;
 $inputPlaceholderColor: #615941;
@@ -90,15 +89,16 @@ $panelBorderColor: #494331;
 $panelVerticalPadding: 33px;
 $panelHorizontalPadding: 47px;
 
-// /**
-//  * Calendar
-//  **/
-// $calendarDayHeaderBg: #4a7ca6;
-// $calendarDayHeaderColor: #d1dbe0;
+/**
+ * Calendar
+ **/
+$calendarBg: #333026;
+$calendarHoverBg: #ffd248;
+$calendarTextHoverColor: #070504;
+$calendarDisabledColor: #615941;
+$calendarHeaderBg: #262218;
+$calendarDayHeaderColor: #b5ad95;
 // $calendarDayHeaderShadowColor: #3e688b;
-// $calendarBg: #4a7ca6;
-// $calendarDayDisabledColor: #83a0b8;
-// $calendarHoverBg: #5584ab;
 // $calendarTodayBg: #3b6f9b;
 // $calendarHrColor: #7899b4;
 

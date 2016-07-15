@@ -125,3 +125,48 @@ md-datepicker {
 .md-button.md-icon-button {
     height: 36px;
 }
+
+/**
+ * Datepicker
+ **/
+.md-datepicker-calendar-pane {
+    border-width: 0;
+}
+
+.md-datepicker-calendar {
+    background-color: $calendarBg;
+}
+
+#{$themeName} {
+    .md-calendar-date {
+        &.md-calendar-selected-date {
+            &, &.md-focus {
+                .md-calendar-date-selection-indicator {
+                    color: $calendarTextHoverColor;
+                }
+            }
+        }
+    }
+
+    .md-calendar-date-selection-indicator {
+        border-radius: 0;
+
+        &:hover {
+            background-color: $calendarHoverBg;
+            color: $calendarTextHoverColor;
+        }
+    }
+
+    .md-calendar-date-disabled, .md-calendar-month-label-disabled {
+        color: $calendarDisabledColor;
+    }
+
+    .md-calendar-day-header {
+        background-color: $calendarHeaderBg;
+        color: $calendarDayHeaderColor;
+    }
+}
+
+.md-calendar tr:last-child td {
+    border-color: $calendarDisabledColor;
+}

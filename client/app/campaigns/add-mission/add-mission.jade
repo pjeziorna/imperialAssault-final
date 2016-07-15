@@ -115,15 +115,11 @@
                             md-select(name='missionRebelItemsSold', ng-model='$ctrl.mission.rebelion.itemsSold', ng-model-option='{trackBy: "$value._id"}', multiple)
                                 md-option(ng-repeat='item in $ctrl.itemCards | blockItemsSold:$ctrl.campaign.missions', ng-bind='item.title', value='{{item._id}}', disabled='{{item.sold}}')
             section.campaign-info 
-                md-grid-list(md-cols-xs='1', md-cols-gt-xs='2', md-gutter='20px', md-row-height='345px')
+                md-grid-list(md-cols-xs='1', md-cols-gt-xs='2', md-gutter='2px', md-row-height='248px')
                     md-grid-tile(ng-repeat='rebel in $ctrl.mission.rebelion.players')
                         section.player-tile(flex)
                             div.campaign-row(layout='row')
-                                span.label(flex='35') player name
-                                span.value(ng-bind='rebel.player', flex='65')
-                            div.campaign-row(layout='row')
-                                span.label(flex='35') player`s hero
-                                span.value(ng-bind='rebel.hero', flex='65')
+                                span.hero-name {{rebel.hero}} ({{rebel.player}})
                             div.campaign-row.input-row(layout='row')
                                 md-input-container.value.md-block(flex='100')
                                     label Hero`s expirience after upgrade stage
@@ -145,6 +141,6 @@
                                         md-option(ng-repeat='card in hero.classCards', ng-bind='card.name', value='{{card.name}}', ng-if='card.xpCost === 0')
             hr
             section.btn-container
-                a.btn.btn-block(href='', type='submit') Add mission
+                a.btn.btn-block.btn-primary.btn-add(href='', type='submit') Add mission
             
-    
+        a.btn(href='', back-button) Go back
