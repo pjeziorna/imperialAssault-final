@@ -1,7 +1,9 @@
-body {
-    background-color: $siteBgColor;
-    height: auto;
-}
+@import 'angular-material';
+@import 'buttons';
+@import 'forms';
+@import 'lists';
+@import 'typography';
+@import 'panels';
 
 .container {
     margin: 0 auto;
@@ -9,22 +11,28 @@ body {
     padding-right: 20px;
 }
 
+@media screen and (min-width: 1200px) {
+    .container {
+        max-width: 1150px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+// .container {
+//     margin: 0 auto;
+//     padding-left: 20px;
+//     padding-right: 20px;
+// }
+
 hr {
     border: none;
     border-bottom: 1px solid $hrColor;
 }
 
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 1200px) {
-  .container {
-    max-width: 1150px;
-  }
-}
-
-@import 'mixins';
-@import 'glyphicons';
-@import 'typography';
-@import 'forms';
-@import 'buttons';
-@import 'lists';
-@import 'panels';
+// /* Responsive: Portrait tablets and up */
+// @media screen and (min-width: 1200px) {
+//   .container {
+//     max-width: 1150px;
+//   }
+// }

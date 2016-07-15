@@ -1,72 +1,111 @@
 /**
  * Fonts
  **/
-$newCuprumFont: 'Cuprum', sans-serif;
-$newArchivoFont: 'Archivo Narrow', sans-serif;
-$newExoFont: 'Exo', sans-serif;
-$newCycleFont: 'News Cycle', sans-serif;
+$textFont: 'Cuprum', sans-serif; // 400, 700
+$headingsFont: 'Oswald', sans-serif; // 300, 400, 700
 
-$textColor: #b2babe;
-$linkColor: #57a1de;
-$linkHoverColor: #62b8ff;
-$headingsColor: #d1dbe0;
-$inputColor: #d1dbe0;
-$inputPlaceholderColor: #416a8c; //#787d80;
+$textColor: #b5ad95;
+$linkColor: #ffc000;
+$linkHoverColor: #ffd248;
+$linkLightColor: #b5ad95;
+$linkLightHoverColor: #d5ccaf;
+$headingsColor: #ffcd35;
+$h1Size: 40px;
+$h2Size: 30px;
+$h3Size: 24px;
+$h4Size: 20px;
+$h5Size: 18px;
+$h6Size: 16px;
 
-$textSize: 14px;
+$textSize: 16px;
 
 /**
  * Main variables
  **/
-$siteBgColor: #171b1e;
-$hrColor: #384349;
+$siteBgColor: #0f1010;
+$hrColor: #35332d;
 
 /**
  * Forms
  **/
- $inputBorderColor: #416a8c;
- $inputInvalidColor: #dd2c00;
+$inputVerticalPadding: 12px;
+$inputHorizontalPadding: 10px;
+$inputBgColor: transparentize(#323232, 0.65);
+// $inputBgColor: transparent;
+$inputBorderColor: #343025;
+$inputFocusBorderColor: #796f53;
+$inputPlaceholderColor: #615941;
+$inputTextColor: #b5ad95;
+// $inputInvalidColor: #dd2c00;
+
+// $selectDropdownBgColor: #ffc000;
+// $selectDropdownHoverBgColor: #ffcd35;
+// $selectDropdownTextColor: #070504;
+$selectDropdownBgColor: #333026;
+$selectDropdownHoverBgColor: transparentize(#494331, 0.5);
+$selectDropdownTextColor: #bbb299;
 
 /**
  * Buttons
  **/
-$btnBgTop: #292b2c;
-$btnBgBottom: #262829;
-$btnBorderColor: #404d53;
-$btnBgTopFocused: #212938;
-$btnBgBottomFocused: #1e2635;
-$btnBorderColorFocused: #3a7998;
-$btnBgTopWarn: #392324;
-$btnBgBottomWarn: #372021;
-$btnBorderColorWarn: #803d3e;
-$btnBgTopWarnFocused: #4b2324;
-$btnBgBottomWarnFocused: #482021;
-$btnBorderColorWarnFocused: #d21d1e;
+$btnVerticalPadding: 12px;
+$btnHorizontalPadding: 37px;
+$btnLgVerticalPadding: 20px;
+$btnLgHorizontalPadding: 57px;
+$bgLgTextSize: 18px;
+$btnSpacingBetween: 16px;
+$btnDefaultColor: #211e16;
+$btnDefaultHoverColor: #2a261c;
+$btnDefaultTextColor: #b5ad95;
+$btnPrimaryColor: #ffc000;
+$btnPrimaryHoverColor: #ffd248;
+$btnPrimaryTextColor: #101111;
+$btnWarnColor: #2f0707;
+$btnWarnHoverColor: #3c0f0f;
+$btnWarnTextColor: #b5ad95;
+$btnInfoColor: #0f1417;
+$btnInfoHoverColor: #141b1f;
+$btnInfoTextColor: #b5ad95;
+$btnLinkColor: transparent;
+$btnLinkHoverColor: transparentize(#fff, 0.95);
+$btnLinkTextColor: #ffc000;
+$btnLinkTextHoverColor: #ffd248;
 
 /**
  * Lists
  **/
-$listBgTopColor: #2b2e2f;
-$listBgBottomColor: #232526;
-$listBgTopColorFocused: #373a3b;
-$listBgBottomColorFocused: #303233;
-$listBgTopColorHeader: #454748;
-$listBgBottomColorHeader: #3e4040;
-$listHeight: 45px;
+$listRowColor: #322e22;
+$listRowHoverColor: #494331;
+$listBorderColor: #544f40;
+$listBorderHoverColor: #807864;
+$listShadowColor: transparentize(#000, 0.25);
+$listTableHeight: 56px;
+$listTableHorizontalPadding: 21px;
 
 /**
  * Panels
  **/
-$panelBg: #1b2023;
+$panelBg: transparentize(#000, 0.5);
+$panelBorderColor: #494331;
+$panelVerticalPadding: 33px;
+$panelHorizontalPadding: 47px;
+
+// /**
+//  * Calendar
+//  **/
+// $calendarDayHeaderBg: #4a7ca6;
+// $calendarDayHeaderColor: #d1dbe0;
+// $calendarDayHeaderShadowColor: #3e688b;
+// $calendarBg: #4a7ca6;
+// $calendarDayDisabledColor: #83a0b8;
+// $calendarHoverBg: #5584ab;
+// $calendarTodayBg: #3b6f9b;
+// $calendarHrColor: #7899b4;
+
 
 /**
- * Calendar
+ * Campaign details
  **/
-$calendarDayHeaderBg: #4a7ca6;
-$calendarDayHeaderColor: #d1dbe0;
-$calendarDayHeaderShadowColor: #3e688b;
-$calendarBg: #4a7ca6;
-$calendarDayDisabledColor: #83a0b8;
-$calendarHoverBg: #5584ab;
-$calendarTodayBg: #3b6f9b;
-$calendarHrColor: #7899b4;
+$campaignWinnerColor: #5a5445;
+$campaignWinnerHoverColor: #746e5c;
+$campaignWinnerTextSize: 24px;

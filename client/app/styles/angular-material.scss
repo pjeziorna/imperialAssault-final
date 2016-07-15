@@ -1,0 +1,127 @@
+$themeName: '.md-imperial-theme';
+
+md-input-container {
+    &#{$themeName} {
+        .md-input {
+            border-color: $inputBorderColor;
+            background-color: $inputBgColor;
+        }
+
+        label {
+            color: $inputPlaceholderColor;
+
+            &:not(.md-no-float):not(._md-container-ignore) {
+                padding-left: 10px;
+            }
+        }
+    }
+
+    ._md-placeholder {
+        padding-left: 10px;
+    }
+
+    &.md-block {
+        width: 100%;
+    }
+}
+
+input::-webkit-textfield-decoration-container {
+    padding-left: 10px;
+}
+
+md-select {
+    &#{$themeName} {
+        ._md-select-value {
+            padding-left: 10px;
+            background-color: $inputBgColor;
+
+            &._md-select-placeholder {
+                color: $inputPlaceholderColor;
+            }
+        }
+
+    }
+}
+
+md-select-menu {
+    &#{$themeName} {
+        md-content {
+            background-color: $selectDropdownBgColor;
+
+            md-option {
+                color: $selectDropdownTextColor;
+
+                &:not([disabled]) {
+                    &:focus, &:hover {
+                        background-color: $selectDropdownHoverBgColor;
+                    }
+                }
+            }
+        }
+    }
+}
+
+md-datepicker {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    &.ng-empty {
+        .md-datepicker-triangle-button .md-datepicker-expand-triangle {
+            border-top-color: $inputPlaceholderColor;
+        }
+        md-icon {
+            &#{$themeName} {
+                color: $inputPlaceholderColor;
+            }
+        }
+    }
+
+    &:not(.ng-empty) {
+        .md-datepicker-triangle-button .md-datepicker-expand-triangle {
+            border-top-color: $inputTextColor;
+        }
+        md-icon {
+            &#{$themeName} {
+                color: $inputTextColor;
+            }
+        }
+    }
+
+    .md-datepicker-triangle-button.md-button.md-icon-button {
+        top: auto;
+    }
+}
+
+#{$themeName} {
+    .md-datepicker-button {
+        flex-basis: 40px;
+    }
+
+    .md-datepicker-input-container {
+        flex-basis: 100%;
+        padding-left: 10px;
+        padding-top: 8px;
+        background-color: $inputBgColor;
+    }
+
+    &.ng-untouched {
+        .md-datepicker-input-container.md-datepicker-invalid {
+            border-color: $inputBorderColor;
+        }
+    }
+
+    .md-datepicker-input {
+        padding: 0;
+        font-size: $textSize;
+        color: $inputTextColor;
+
+        &::-webkit-input-placeholder {
+            color: $inputPlaceholderColor;
+        }
+    }
+}
+
+.md-button.md-icon-button {
+    height: 36px;
+}

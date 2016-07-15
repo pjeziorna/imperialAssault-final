@@ -4,9 +4,9 @@
         p Application was created as substitution of paper log for this game, which can be found at the back of each campaign instruction rule book.
 
     #not-logged(ng-if='!$ctrl.isLoggedIn()')
-        a.btn(ui-sref='login') Login
-        a.btn(ui-sref='signup') Sing up
+        a.btn.btn-primary(ui-sref='login') Login
+        a.btn.btn-default(ui-sref='signup') Sing up
         
     #logged(ng-if='$ctrl.isLoggedIn()')
-        a.btn(ui-sref='my-campaigns') My campaigns
-        a.btn(ui-sref='add-campaign') Add new campaign
+        a.btn.btn-primary.btn-list(ui-sref='my-campaigns') My campaigns
+        a.btn.btn-default.btn-add(ui-sref='add-campaign') Add new campaign

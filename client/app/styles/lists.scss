@@ -1,32 +1,29 @@
-.custom-list {
-    margin: 0 0 30px 0;
+.table-list {
+    margin: 0 0 30px;
     padding: 0;
 
-    li, .list-item {
-        @include linearGradient($listBgTopColor, $listBgBottomColor);
+    > li {
         list-style: none;
-        display: block;
-        padding: 0 12px;
-
-        a {
-            line-height: $listHeight;
-        }
-
-        + li, + .list-item {
-            margin-top: 1px;
-        }
+        background-color: $listRowColor;
+        border-top: 1px solid $listBorderColor;
+        box-shadow: 0 4px 5px $listShadowColor;
+        padding-left: $listTableHorizontalPadding;
+        padding-right: $listTableHorizontalPadding;
 
         &:hover {
-            @include linearGradient($listBgTopColorFocused, $listBgBottomColorFocused);
+            background-color: $listRowHoverColor;
+            border-top-color: $listBorderHoverColor;
+        }
+
+        + li {
+            margin-top: 8px;
+        }
+
+        > a {
+            @include linkType($linkLightColor, $linkLightHoverColor);
+            line-height: $listTableHeight;
         }
     }
-}
-
-.list-header {
-    @include linearGradient($listBgTopColorHeader, $listBgBottomColorHeader);
-    line-height: $listHeight;
-    padding: 0 12px;
-    margin: 0;
 }
 
 .bullets-list {
@@ -34,6 +31,16 @@
     padding: 0;
 
     li {
+        list-style: none;
+        padding-left: 8px;
+
+        &:before {
+            @extend .fa;
+            @extend .fa-caret-right;
+            position: relative;
+            left: -8px;
+        }
+
         + li {
             margin-top: 5px;
         }

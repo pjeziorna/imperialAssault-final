@@ -1,48 +1,113 @@
 .btn {
-    @include linearGradient($btnBgTop, $btnBgBottom);
-
-    border-top: 1px solid $btnBorderColor;
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
-
-    color: $textColor;
-    padding: 8px 20px;
+    padding: $btnVerticalPadding $btnHorizontalPadding;
+    text-decoration: none;
     display: inline-block;
+    border: none;
 
     + .btn {
-        margin-left: 6px;
+        margin-left: $btnSpacingBetween;
     }
+}
 
-    &:hover, &:focus {
-        @include linearGradient($btnBgTopFocused, $btnBgBottomFocused);
-        border-top-color: $btnBorderColorFocused;
-        color: $textColor;
-    }
+.btn-icon {
+    padding: 0 5px;
+}
 
-    &.btn-warn {
-        @include linearGradient($btnBgTopWarn, $btnBgBottomWarn);
-        border-top-color: $btnBorderColorWarn;
-
-        &:hover, &:focus {
-            @include linearGradient($btnBgTopWarnFocused, $btnBgBottomWarnFocused);
-            border-top-color: $btnBorderColorWarnFocused;
-        }
-    }
-
-    &.btn-lg {
-        padding: 12px 28px;
-        font-size: 1.2em;
-    }
+.btn-lg {
+    padding: $btnLgVerticalPadding $btnLgHorizontalPadding;
+    font-size: $bgLgTextSize;
 }
 
 .btn-right {
     float: right;
+
+    + .btn-right {
+        margin-left: 0;
+        margin-right: $btnSpacingBetween;
+    }
 }
 
 .btn-block {
     display: block;
     text-align: center;
+}
+
+.btn-default {
+    @include btn($btnDefaultColor, $btnDefaultHoverColor, $btnDefaultTextColor);
+}
+
+.btn-primary {
+    @include btn($btnPrimaryColor, $btnPrimaryHoverColor, $btnPrimaryTextColor);
+}
+
+.btn-warn {
+    @include btn($btnWarnColor, $btnWarnHoverColor, $btnWarnTextColor);
+}
+
+.btn-info {
+    @include btn($btnInfoColor, $btnInfoHoverColor, $btnInfoTextColor);
+}
+
+.btn-link {
+    @include btn($btnLinkColor, $btnLinkHoverColor, $btnLinkTextColor, $btnLinkTextHoverColor);
+}
+
+%btn-icon {
+    @extend .btn;
+    position: relative;
+
+    &:before {
+        @extend .fa;
+        position: relative;
+
+    }
+}
+
+[back-button] {
+    @extend %btn-icon;
+    padding-left: 30px;
+    padding-right: 0;
+
+    &:before {
+        @extend .fa-angle-left;
+        left: -13px;
+    }
+}
+
+.btn-add {
+    @extend %btn-icon;
+
+    &:before {
+        @extend .fa-plus;
+        left: -8px;
+    }
+}
+
+.btn-list {
+    @extend %btn-icon;
+
+    &:before {
+        @extend .fa-list-ul;
+        left: -8px;
+    }
+}
+
+.btn-reset {
+    @extend %btn-icon;
+
+    &:before {
+        @extend .fa-refresh;
+        left: -8px;
+    }
+}
+
+.btn-end {
+    @extend %btn-icon;
+
+    &:before {
+        @extend .fa-check;
+        left: -8px;
+    }
 }
 
 .btn-container {

@@ -32,6 +32,7 @@ const paths = {
         ],
         styles: [`${clientPath}/{app,components}/**/*.scss`],
         mainStyle: `${clientPath}/app/app.scss`,
+        excludedStyle: `${clientPath}/app/styles/**/*.scss`,
         views: `${clientPath}/{app,components}/**/*.jade`,
         mainView: `${clientPath}/index.html`,
         test: [`${clientPath}/{app,components}/**/*.{spec,mock}.js`],
@@ -233,7 +234,7 @@ gulp.task('inject:css', () => {
 gulp.task('inject:scss', () => {
     return gulp.src(paths.client.mainStyle)
         .pipe(plugins.inject(
-            gulp.src(_.union(paths.client.styles, ['!' + paths.client.mainStyle]), {read: false})
+            gulp.src(_.union(paths.client.styles, ['!' + paths.client.mainStyle, '!' + paths.client.excludedStyle]), {read: false})
                 .pipe(plugins.sort()),
             {
                 transform: (filepath) => {

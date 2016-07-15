@@ -38,7 +38,7 @@ Campaign.find({}).remove()
                 player: 'admin',
                 login: 'admin@example.com',
                 classSet: 'Technological Superiority',
-                agendaSets: ['For the Right Price', 'Agents of the Empire']
+                agendaSets: ['For the Right Price', 'Agents of the Empire', 'Lord Vader\'s Command', 'Retaliation', 'Imperial Discipline', 'The General\'s Scheme']
             },
             rebelion: [{
                 player: 'test',
@@ -65,7 +65,8 @@ Campaign.find({}).remove()
                 },
                 empire: {
                     classCards: ["Technical Support"]
-                }
+                },
+                winner: 'rebelion'
             }, {
                 title: 'Armed and Operation',
                 _id: 'ARMED_OPERATION',
@@ -92,7 +93,8 @@ Campaign.find({}).remove()
                 },
                 empire: {
                     classCards: ["Technical Support","Jetpacks"]
-                }
+                },
+                winner: 'empire'
             }]
         }, {
             name: 'Campaign 2',
@@ -104,7 +106,7 @@ Campaign.find({}).remove()
                 player: 'test2',
                 login: 'test2@example.com',
                 classSet: 'Subversive Tactics',
-                agendaSets: ['For the Right Price', 'Agents of the Empire']
+                agendaSets: ['For the Right Price', 'Agents of the Empire', 'Agenda test']
             },
             rebelion: [{
                 player: 'test',

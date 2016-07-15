@@ -1,11 +1,5 @@
 .panel {
     background-color: $panelBg;
-
-    > section {
-        padding: 20px 25px;
-
-        > h4 {
-            margin-top: 0;
-        }
-    }
+    border: 1px solid $panelBorderColor;
+    padding: $panelVerticalPadding $panelHorizontalPadding;
 }

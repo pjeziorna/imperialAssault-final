@@ -1,24 +1,22 @@
 $fa-font-path: "../bower_components/font-awesome/fonts";
 @import '../bower_components/font-awesome/scss/font-awesome';
-@import url(https://fonts.googleapis.com/css?family=Cuprum|Archivo+Narrow|Exo|News+Cycle&subset=latin,latin-ext);
+@import url(https://fonts.googleapis.com/css?family=Cuprum:400,700|Oswald:300,400,700&subset=latin-ext);
+
+@import 'styles/variables';
+@import 'styles/mixins';
+@import 'styles/main';
 
 /**
  * App-wide Styles
  */
+ body {
+     background-color: $siteBgColor;
+     height: auto;
+ }
 
  *, *:after, *:before {
      box-sizing: border-box;
  }
-
-.browserupgrade {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
-}
-
-@import 'styles/variables';
-@import 'styles/main';
 
 // Component styles are injected through grunt
 /* inject:scss */
@@ -29,15 +27,6 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
 @import 'campaigns/mission/mission';
 @import 'campaigns/my-campaigns/my-campaigns';
 @import 'main/main';
-@import 'styles/buttons';
-@import 'styles/forms';
-@import 'styles/glyphicons';
-@import 'styles/lists';
-@import 'styles/main';
-@import 'styles/mixins';
-@import 'styles/panels';
-@import 'styles/typography';
-@import 'styles/variables';
 @import '../components/footer/footer';
 @import '../components/navbar/navbar';
 /* endinject */

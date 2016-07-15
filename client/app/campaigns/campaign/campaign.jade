@@ -55,19 +55,23 @@
         hr 
         section.missions-section
             h4.list-header Missions
-            ul.custom-list.missions-list
+            ul.table-list.missions-list
                 li.list-item(ng-repeat='mission in $ctrl.campaign.missions', aria-label='Mission {{mission.title}}') 
+                    span.winner
+                        i.fa.fa-empire(ng-if='mission.winner === "empire"')
+                        i.fa.fa-rebel(ng-if='mission.winner === "rebelion"')
                     a(ui-sref='mission({ id: mission._id, mission: mission })', ng-bind='mission.title')
-                    a.icon(href='', ng-click='$ctrl.editMission()', aria-label='edit mission', ng-if='$ctrl.isCampaignOwner()')
-                        span.glyphicon.glyphicon-pencil
-                    a.icon(href='', ng-click='$ctrl.deleteMission()', aria-label='delete mission', ng-if='$ctrl.isCampaignOwner()')
-                        span.glyphicon.glyphicon-trash
+                    
+                    a.btn.btn-icon.btn-right(href='', ng-click='$ctrl.deleteMission()', ng-if='$ctrl.campaign.active && $ctrl.isCampaignOwner()')
+                        i.fa.fa-trash
+                    a.btn.btn-icon.btn-right(href='', ng-click='$ctrl.editMission()', ng-if='$ctrl.campaign.active && $ctrl.isCampaignOwner()')
+                        i.fa.fa-pencil
         section.btn-container(ng-if='$ctrl.campaign.active && $ctrl.isCampaignOwner()')
-            a.btn.btn-right(ui-sref='add-mission({ id: $ctrl.campaign._id, campaign: $ctrl.campaign })') Add mission
+            a.btn.btn-right.btn-primary.btn-add(ui-sref='add-mission({ id: $ctrl.campaign._id, campaign: $ctrl.campaign })') Add mission
         
         hr(ng-if='$ctrl.campaign.active && $ctrl.isCampaignOwner()')
         
         section.btn-container(ng-if='$ctrl.isCampaignOwner()')
-            a.btn.btn-lg.btn-warn.btn-block(href='', ng-if='$ctrl.campaign.active', ng-click='$ctrl.endCampaign()') End campaign
+            a.btn.btn-lg.btn-warn.btn-block.btn-end(href='', ng-if='$ctrl.campaign.active', ng-click='$ctrl.endCampaign()') End campaign
 
     a.btn(href='', back-button) Go back

@@ -7,7 +7,7 @@
         .form-group(ng-class='{ "has-success": form.name.$valid && vm.submitted,\
         "has-error": form.name.$invalid && vm.submitted }')
           label Name
-          input.form-control(type='text', name='name', ng-model='vm.user.name', required='')
+          input.form-control(type='text', name='name', ng-model='vm.user.name', required='', placeholder='user name')
           p.help-block(ng-show='form.name.$error.required && vm.submitted')
             | A name is required
 

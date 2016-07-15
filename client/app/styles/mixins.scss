@@ -9,10 +9,28 @@
     }
 }
 
-@mixin linearGradient($topColor, $bottomColor) {
-    background: $topColor;
-    background: -moz-linear-gradient(top,  $topColor 0%, $bottomColor 100%);
-    background: -webkit-linear-gradient(top,  $topColor 0%, $bottomColor 100%);
-    background: linear-gradient(to bottom,  $topColor 0%, $bottomColor 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$topColor', endColorstr='$bottomColor',GradientType=0 );
+@mixin btn($background, $hover, $text, $textHover: $text) {
+    background-color: $background;
+    color: $text;
+
+    &:hover, &:focus {
+        background-color: $hover;
+        color: $textHover;
+    }
 }
+
+@mixin linkType($color: $linkColor, $hover: $linkHoverColor) {
+    color: $color;
+
+    &:hover, &:focus {
+        color: $hover;
+    }
+}
+
+// @mixin linearGradient($topColor, $bottomColor) {
+//     background: $topColor;
+//     background: -moz-linear-gradient(top,  $topColor 0%, $bottomColor 100%);
+//     background: -webkit-linear-gradient(top,  $topColor 0%, $bottomColor 100%);
+//     background: linear-gradient(to bottom,  $topColor 0%, $bottomColor 100%);
+//     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$topColor', endColorstr='$bottomColor',GradientType=0 );
+// }
