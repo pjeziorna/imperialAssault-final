@@ -50,7 +50,11 @@
             this.campaign = this._getEmptyCampaignModel();
         }
 
-        submitCampaign() {
+        submitCampaign(scope) {
+            if(!scope.addCampaignForm.$valid) {
+                this.messagesNotify.showMessageWithTimeout('Form filled with errors.', 5);
+                return;
+            }
             this.$http.post('/api/campaigns/', this.campaign)
                 .then(response => {
                     this.messagesNotify.showMessageWithTimeout('New campaign has been added.', 5);

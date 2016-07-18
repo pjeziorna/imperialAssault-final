@@ -2,10 +2,8 @@
     background-color: $panelBg;
     border: 1px solid $panelBorderColor;
     padding: $panelVerticalPadding ($panelHorizontalPadding/2);
-}
 
-@media screen and (min-width: 600px) {
-    .panel {
+    @include respond-to('gt-xs') {
         padding-left: $panelHorizontalPadding;
         padding-right: $panelHorizontalPadding;
     }

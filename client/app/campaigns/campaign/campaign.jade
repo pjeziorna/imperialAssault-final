@@ -8,66 +8,81 @@
     .panel.campaign-info
         section
             h4 Campaign basic info
-            section.campaign-row(layout='row')
-                span.label(flex='15') Name:
-                span.value(ng-bind='$ctrl.campaign.name', flex='35')
-                span.label(flex='15') Creator of campaign:
-                span.value(ng-bind='$ctrl.campaign.owner', flex='35')
-            section.campaign-row(layout='row')
-                span.label(flex='15') Start date:
-                span.value(ng-bind='$ctrl.campaign.startDate | date:"dd.MM.yyyy"', flex='35')
-                span.label(flex='15') Status of camapign:
-                span.value(ng-if='$ctrl.campaign.active', flex='35') in progress 
-                span.value(ng-if='!$ctrl.campaign.active', flex='35') Ended
-            section.campaign-row(layout='row')
-                span.label(flex='15') Missions played:
-                span.value(ng-bind='$ctrl.campaign.missions.length | number', flex='35')
+            
+            .row
+                .col-gt-sm-6.col-xs-12.col-sm-12
+                    section(layout='column', flex='100')
+                        section.campaign-row(layout='row')
+                            span.label(flex='50', flex-gt-xs='30') Name:
+                            span.value(ng-bind='$ctrl.campaign.name', flex='50', flex-gt-xs='70')
+                        section.campaign-row(layout='row')
+                            span.label(flex='50', flex-gt-xs='30') Creator of campaign:
+                            span.value(ng-bind='$ctrl.campaign.owner', flex='50', flex-gt-xs='70')
+                        section.campaign-row(layout='row')
+                            span.label(flex='50', flex-gt-xs='30') Missions played:
+                            span.value(ng-bind='$ctrl.campaign.missions.length | number', flex='50', flex-gt-xs='70')
+                .col-gt-sm-6.col-xs-12.col-sm-12
+                    section(layout='column', flex='100')
+                        section.campaign-row(layout='row')
+                            span.label(flex='50', flex-gt-xs='30') Start date:
+                            span.value(ng-bind='$ctrl.campaign.startDate | date:"dd.MM.yyyy"', flex='50', flex-gt-xs='70')
+                        section.campaign-row(layout='row')
+                            span.label(flex='50', flex-gt-xs='30') Status of camapign:
+                            span.value(ng-if='$ctrl.campaign.active', flex='50', flex-gt-xs='70') in progress 
+                            span.value(ng-if='!$ctrl.campaign.active', flex='50', flex-gt-xs='70') Ended
         hr
         section
             h4 Empire
-            section.campaign-row(layout='row')
-                span.label(flex='15') Player:
-                span.value(ng-bind='$ctrl.campaign.empire.player', flex='35')
-                span.label(flex='15') Login:
-                span.value(ng-bind='$ctrl.campaign.empire.login | emptyField', flex='35')
-            section.campaign-row(layout='row')
-                span.label(flex='15') Chosen class set:
-                span.value(ng-bind='$ctrl.campaign.empire.classSet', flex='35')
-                span.label(flex='15') Chosen agenda sets:
-                ul.bullets-list(flex='35')
-                    li.value(ng-repeat='agenda in $ctrl.campaign.empire.agendaSets', ng-bind='agenda')
+            .row
+                .col-gt-sm-6.col-xs-12.col-sm-12
+                    section(layout='column', flex='100')
+                        section.campaign-row(layout='row')
+                            span.label(flex-gt-sm='30', flex='50') Player:
+                            span.value(ng-bind='$ctrl.campaign.empire.player', flex-gt-sm='70', flex='50')
+                        section.campaign-row(layout='row')
+                            span.label(flex-gt-sm='30', flex='50') Login:
+                            span.value(ng-bind='$ctrl.campaign.empire.login | emptyField', flex-gt-sm='70', flex='50')
+                        section.campaign-row(layout='row')
+                            span.label(flex-gt-sm='30', flex='50') Chosen class set:
+                            span.value(ng-bind='$ctrl.campaign.empire.classSet', flex-gt-sm='70', flex='50')
+                .col-gt-sm-6.col-xs-12.col-sm-12
+                    section(layout='column', flex='100')
+                        section.campaign-row(layout='row')
+                            span.label(flex-gt-sm='30', flex='50') Chosen agenda sets:
+                            ul.bullets-list(flex-gt-sm='70', flex='50')
+                                li.value(ng-repeat='agenda in $ctrl.campaign.empire.agendaSets', ng-bind='agenda')
         hr
         section
             h4 Rebelion
             md-grid-list(md-cols-gt-sm='2', md-cols='1', md-gutter='20px', md-row-height='120px')
-                md-grid-tile(ng-repeat='rebel in $ctrl.campaign.rebelion')
+                md-grid-tile.campaing-rebelions(ng-repeat='rebel in $ctrl.campaign.rebelion')
                     section.player-tile(flex)
                         div.campaign-row(layout='row')
-                            span.label(flex='35') Player:
+                            span.label(flex='70') Player:
                             span.value(ng-bind='rebel.player', flex='65')
                         div.campaign-row(layout='row')
-                            span.label(flex='35') Login:
+                            span.label(flex='70') Login:
                             span.value(ng-bind='rebel.login | emptyField', flex='65')
                         div.campaign-row(layout='row')
-                            span.label(flex='35') Hero:
+                            span.label(flex='70') Hero:
                             span.value(ng-bind='rebel.hero', flex='65')
                         
         hr 
         section.missions-section
             h4.list-header Missions
             ul.table-list.missions-list
-                li.list-item(ng-repeat='mission in $ctrl.campaign.missions', aria-label='Mission {{mission.title}}') 
+                li.list-item.mission(ng-repeat='mission in $ctrl.campaign.missions', aria-label='Mission {{mission.title}}') 
                     span.winner
                         i.fa.fa-empire(ng-if='mission.winner === "empire"')
                         i.fa.fa-rebel(ng-if='mission.winner === "rebelion"')
-                    a(ui-sref='mission({ id: mission._id, mission: mission })', ng-bind='mission.title')
+                    a.mission-title(ui-sref='mission({ id: mission._id, mission: mission })', ng-bind='mission.title')
                     
-                    a.btn.btn-icon.btn-right(href='', ng-click='$ctrl.deleteMission()', ng-if='$ctrl.campaign.active && $ctrl.isCampaignOwner()')
-                        i.fa.fa-trash
-                    a.btn.btn-icon.btn-right(href='', ng-click='$ctrl.editMission()', ng-if='$ctrl.campaign.active && $ctrl.isCampaignOwner()')
+                    a.btn.btn-icon.action-btn(href='', ng-click='$ctrl.editMission()', ng-if='$ctrl.campaign.active && $ctrl.isCampaignOwner()')
                         i.fa.fa-pencil
-        section.btn-container(ng-if='$ctrl.campaign.active && $ctrl.isCampaignOwner()')
-            a.btn.btn-right.btn-primary.btn-add(ui-sref='add-mission({ id: $ctrl.campaign._id, campaign: $ctrl.campaign })') Add mission
+                    a.btn.btn-icon.action-btn(href='', ng-click='$ctrl.deleteMission()', ng-if='$ctrl.campaign.active && $ctrl.isCampaignOwner()')
+                        i.fa.fa-trash
+            section.btn-container(ng-if='$ctrl.campaign.active && $ctrl.isCampaignOwner()')
+                a.btn.btn-right.btn-primary.btn-add(ui-sref='add-mission({ id: $ctrl.campaign._id, campaign: $ctrl.campaign })') Add mission
         
         hr(ng-if='$ctrl.campaign.active && $ctrl.isCampaignOwner()')
         

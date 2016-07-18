@@ -56,17 +56,21 @@
     @extend .btn;
     position: relative;
 
+    &:hover:before {
+        -webkit-animation: slide 0.7s 1 ease-in-out;
+        animation: slide 0.7s 1 ease-in-out;
+    }
+
     &:before {
         @extend .fa;
         position: relative;
-
     }
 }
 
 [back-button] {
     @extend %btn-icon;
     padding-left: 30px;
-    padding-right: 0;
+    padding-right: $btnHorizontalPadding;
 
     &:before {
         @extend .fa-angle-left;
@@ -101,6 +105,15 @@
     }
 }
 
+.btn-remove {
+    @extend %btn-icon;
+
+    &:before {
+        @extend .fa-times;
+        left: -8px;
+    }
+}
+
 .btn-end {
     @extend %btn-icon;
 
@@ -112,4 +125,15 @@
 
 .btn-container {
     @include clearfix;
+}
+
+@-webkit-keyframes slide {
+    0% {transform: scale(1); -webkit-transform: scale(1);}
+    50% {transform: scale(1.2); -webkit-transform: scale(1.2);}
+    100% {transform: scale(1); -webkit-transform: scale(1);}
+}
+@keyframes slide {
+    0% {transform: scale(1); -webkit-transform: scale(1);}
+    50% {transform: scale(1.2); -webkit-transform: scale(1.2);}
+    100% {transform: scale(1); -webkit-transform: scale(1);}
 }

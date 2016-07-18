@@ -1,3 +1,15 @@
+$sizes: (
+    'xs' (-1 599),
+    'gt-xs' (600 -1),
+    'sm' (600 959),
+    'gt-sm' (960 -1),
+    'md' (960 1279),
+    'gt-md' (1280 -1),
+    'lg' (1280 1919),
+    'gt-lg' (1920 -1),
+    'xl' (1920 -1)
+);
+
 @mixin clearfix() {
     &:before,
     &:after {
@@ -12,6 +24,8 @@
 @mixin btn($background, $hover, $text, $textHover: $text) {
     background-color: $background;
     color: $text;
+    -webkit-transition: background 0.4s, color 0.4s;
+    transition: background 0.4s, color 0.4s;
 
     &:hover, &:focus {
         background-color: $hover;
@@ -27,10 +41,48 @@
     }
 }
 
-// @mixin linearGradient($topColor, $bottomColor) {
-//     background: $topColor;
-//     background: -moz-linear-gradient(top,  $topColor 0%, $bottomColor 100%);
-//     background: -webkit-linear-gradient(top,  $topColor 0%, $bottomColor 100%);
-//     background: linear-gradient(to bottom,  $topColor 0%, $bottomColor 100%);
-//     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$topColor', endColorstr='$bottomColor',GradientType=0 );
-// }
+@mixin respond-to($size) {
+
+    @each $s in $sizes {
+        @if nth($s, 1) == $size {
+            $resolutions: nth($s, 2);
+            $minRes: nth($resolutions, 1);
+            $maxRes: nth($resolutions, 2);
+
+            @if ($minRes > -1) {
+                @if ($maxRes > -1) {
+                    @debug 'min and max';
+                    @media only screen and (min-width: #{$minRes}px) and (max-width: #{$maxRes}px) {
+                        @content;
+                    }
+                } @else {
+                    @debug 'min only';
+                    @media only screen and (min-width: #{$minRes}px) {
+                        @content;
+                    }
+                }
+            } @else {
+                @debug 'max only';
+                @media only screen and (max-width: #{$maxRes}px) {
+                    @content;
+                }
+            }
+        }
+    }
+}
+
+@mixin generate-grid() {
+    .row { @include outer-container; }
+
+    @for $col from 1 through $grid-columns {
+        .col-#{$col} { @include span-columns($col); }
+
+        @each $size in $sizes {
+            .col-#{nth($size, 1)}-#{$col} {
+                @include respond-to(#{nth($size, 1)}) {
+                    @include span-columns($col);
+                };
+            }
+        }
+    }
+}

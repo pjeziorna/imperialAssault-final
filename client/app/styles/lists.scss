@@ -9,6 +9,8 @@
         box-shadow: 0 4px 5px $listShadowColor;
         padding-left: $listTableHorizontalPadding;
         padding-right: $listTableHorizontalPadding;
+        -webkit-transition: background 0.4s, border 0.4s, color 0.4s;
+        transition: background 0.4s, border 0.4s, color 0.4s;
 
         &:hover {
             background-color: $listRowHoverColor;

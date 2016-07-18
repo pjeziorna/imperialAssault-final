@@ -61,10 +61,8 @@
         }
 
         submitMission(scope) {
-            this.mission = this._fillMissionFieldsFromMissionCardModel();
-            console.log('this.mission', this.mission);
-            return;
             if(!scope.addMissionForm.$valid) {
+                this.messagesNotify.showMessageWithTimeout('Form filled with errors.', 5);
                 return;
             }
             this.mission = this._fillMissionFieldsFromMissionCardModel();

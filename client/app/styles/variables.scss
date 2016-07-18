@@ -35,7 +35,7 @@ $inputBorderColor: #343025;
 $inputFocusBorderColor: #796f53;
 $inputPlaceholderColor: #615941;
 $inputTextColor: #b5ad95;
-// $inputInvalidColor: #dd2c00;
+$inputInvalidColor: #dd2c00;
 
 // $selectDropdownBgColor: #ffc000;
 // $selectDropdownHoverBgColor: #ffcd35;
@@ -43,6 +43,8 @@ $inputTextColor: #b5ad95;
 $selectDropdownBgColor: #333026;
 $selectDropdownHoverBgColor: transparentize(#494331, 0.5);
 $selectDropdownTextColor: #bbb299;
+
+$outlineColor: #ff5400;
 
 /**
  * Buttons

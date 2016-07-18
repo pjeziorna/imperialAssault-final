@@ -1,52 +1,78 @@
 .container
+    header
+        h2 Add new campaign
+        
     div(ng-messages='$ctrl.message.show', ng-bind='$ctrl.message.text')
-    form(ng-submit='$ctrl.submitCampaign()')
+    form(ng-submit='$ctrl.submitCampaign(this)', name='addCampaignForm', novalidate)
         .panel
             section
-                h4 Campaign name
-                md-input-container
-                    input(type='text', placeholder='Campaign name', ng-model='$ctrl.campaign.name', required)
+                md-input-container.md-block
+                    label Campaign name
+                    input(name='campaignName', type='text', ng-model='$ctrl.campaign.name', required)
+                    div.errors(ng-messages="addCampaignForm.campaignName.$error")
+                        div(ng-message='required') Name is required
             
             hr
             section
                 h4 Empire
-                md-autocomplete(md-input-name='empireLogin', md-selected-item='$ctrl.campaign.empire.login', md-search-text='$ctrl.empireSearchText', md-items='user in $ctrl.users', md-item-text='user.email', md-floating-label='login')
-                    md-item-template
-                        span(md-highlight-text='$ctrl.empireSearchText') {{user.email}}
-                //- input(type='text', placeholder='player login', ng-model='$ctrl.campaign.empire.login')
-                md-input-container
-                    label Player's name
-                    input(type='text', ng-model='$ctrl.campaign.empire.player', required)
-                md-input-container
-                    label Chosen imperial class set
-                    md-select(ng-model='$ctrl.campaign.empire.classSet')
-                        md-option(ng-repeat='empireCard in $ctrl.empireClassCards | empireClassSetName', ng-bind='empireCard.classSet', value='{{empireCard.classSet}}')
-                md-input-container
-                    label Chosen agenda sets
-                    md-select(ng-model='$ctrl.campaign.empire.agendaSets', multiple)
-                        md-option(ng-repeat='empireCard in $ctrl.empireAgendaCards | empireAgendaSetName', ng-bind='empireCard.agendaSet', value='{{empireCard.agendaSet}}')
-            
+                md-grid-list(md-cols-xs='1', md-cols-sm='2', md-cols-gt-sm='4', md-row-height='62px')
+                    md-grid-tile
+                        md-input-container.md-block
+                            md-autocomplete(md-input-name='empireLogin', md-selected-item='$ctrl.campaign.empire.login', md-search-text='$ctrl.empireSearchText', md-items='user in $ctrl.users', md-item-text='user.email', md-floating-label='login')
+                                md-item-template
+                                    span(md-highlight-text='$ctrl.empireSearchText') {{user.email}}
+                    md-grid-tile
+                        md-input-container.md-block
+                            label Player's name
+                            input(name='empireName', type='text', ng-model='$ctrl.campaign.empire.player', required)
+                            div.errors(ng-messages="addCampaignForm.empireName.$error")
+                                div(ng-message='required') Name is required
+                    md-grid-tile
+                        md-input-container.md-block
+                            label Chosen imperial class set
+                            md-select(name='empireClassSet', ng-model='$ctrl.campaign.empire.classSet', required)
+                                md-option(ng-repeat='empireCard in $ctrl.empireClassCards | empireClassSetName', ng-bind='empireCard.classSet', value='{{empireCard.classSet}}')
+                            div.errors(ng-messages="addCampaignForm.empireClassSet.$error", ng-if='addCampaignForm.$submitted')
+                                div(ng-message='required') Class set is required
+                    md-grid-tile
+                        md-input-container.md-block
+                            label Chosen agenda sets
+                            md-select(name='empireAgendaSets', ng-model='$ctrl.campaign.empire.agendaSets', multiple, required)
+                                md-option(ng-repeat='empireCard in $ctrl.empireAgendaCards | empireAgendaSetName', ng-bind='empireCard.agendaSet', value='{{empireCard.agendaSet}}')
+                            div.errors(ng-messages="addCampaignForm.empireAgendaSets.$error", ng-if='addCampaignForm.$submitted')
+                                div(ng-message='required') Agenda sets are required
             hr
             section
                 h4 Rebelion
-                p(ng-repeat='rebel in $ctrl.campaign.rebelion')
-                    md-autocomplete(md-input-name='rebelLogin{{$index}}', md-selected-item='rebel.login', md-search-text='rebel.searchText', md-items='users in $ctrl.users', md-item-text='user.email', md-floating-label='login')
-                    //- input(type='text', placeholder='player login', ng-model='rebel.login')
-                    md-input-container
-                        label Player's name
-                        input(type='text', ng-model='rebel.player', required)
-                    md-input-container
-                        label Player's hero name
-                        md-select(ng-model='rebel.hero', required)
-                            md-option(ng-repeat='hero in $ctrl.heroes', ng-bind='hero.name', value='{{hero.name}}')
+                div(ng-repeat='rebel in $ctrl.campaign.rebelion')
+                    h6 Player {{$index + 1}}
+                    md-grid-list(md-cols-xs='1', md-cols-sm='2', md-cols-gt-sm='3', md-row-height='62px')
+                        md-grid-tile
+                            md-input-container.md-block
+                                md-autocomplete(md-input-name='rebelLogin{{$index}}', md-selected-item='rebel.login', md-search-text='rebel.searchText', md-items='users in $ctrl.users', md-item-text='user.email', md-floating-label='login')
+                                    md-item-template
+                                        span {{rebel.email}}
+                        md-grid-tile
+                            md-input-container.md-block
+                                label Player's name
+                                input(name='rebelName{{$index}}', type='text', ng-model='rebel.player', required)
+                                div.errors(ng-messages="addCampaignForm['rebelName' + $index].$error")
+                                    div(ng-message='required') Name is required
+                        md-grid-tile
+                            md-input-container.md-block
+                                label Player's hero name
+                                md-select(name='rebelHeroName{{$index}}', ng-model='rebel.hero', required)
+                                    md-option(ng-repeat='hero in $ctrl.heroes', ng-bind='hero.name', value='{{hero.name}}')
+                                div.errors(ng-messages="addCampaignForm['rebelHeroName' + $index].$error", ng-if='addCampaignForm.$submitted')
+                                    div(ng-message='required') Hero is required
                 div.btn-container
-                    a.btn(href='', ng-click='$ctrl.addRebelPlayer()', ng-if='$ctrl.campaign.rebelion.length < 4') Add Rebel player
-                    a.btn.btn-warn(href='', ng-click='$ctrl.removeRebelPlayer()', ng-if='$ctrl.campaign.rebelion.length > 1') Remove Rebel player
+                    a.btn.btn-primary.btn-add(href='', ng-click='$ctrl.addRebelPlayer()', ng-if='$ctrl.campaign.rebelion.length < 4') Add rebel player
+                    a.btn.btn-warn.btn-remove.btn-right(href='', ng-click='$ctrl.removeRebelPlayer()', ng-if='$ctrl.campaign.rebelion.length > 1') Remove last rebel player
             
             hr
             section.btn-container
-                input.btn.btn-primary.btn-add(type='submit', value='Add campaign')
-                a.btn.btn-reset.btn-warn(href='', ng-click='$ctrl.clearForm()') Reset
+                button.btn.btn-primary.btn-add Add campaign
+                a.btn.btn-reset.btn-warn.btn-right(href='', ng-click='$ctrl.clearForm()') Reset
     a.btn(href='', back-button) Go back
             
         
