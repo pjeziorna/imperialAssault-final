@@ -71,16 +71,22 @@ $sizes: (
     }
 }
 
+@mixin columns($columns) {
+    float: left;
+    display: block;
+    width: calc(100%/(#{$grid-columns}/#{$columns}));
+}
+
 @mixin generate-grid() {
     .row { @include outer-container; }
 
     @for $col from 1 through $grid-columns {
-        .col-#{$col} { @include span-columns($col); }
+        .col-#{$col} { @include columns($col); }
 
         @each $size in $sizes {
             .col-#{nth($size, 1)}-#{$col} {
                 @include respond-to(#{nth($size, 1)}) {
-                    @include span-columns($col);
+                    @include columns(#{$col});
                 };
             }
         }
