@@ -1,23 +1,25 @@
+bg-img(img='main-bg.jpg')
 .container
     form.form(name='form', ng-submit='vm.login(form)', novalidate='')
-        div(layout='column', layout-gt-xs='row') 
-            md-input-container(flex-gt-xs='50')
-                label Email
-                input(name='loginName', type='text', ng-model='vm.user.email', required)
-                div(ng-messages='form.loginName.$error')
-                    div(ng-message='required') Email field is erquired
-            md-input-container(flex-gt-xs='50')
-                label Password
-                input(name='loginPasswd', type='password', ng-model='vm.user.password', required)
-                div(ng-messages='form.loginPasswd.$error')
-                    div(ng-message='required') Password field is erquired
-        div(layout='column', layout-gt-xs='row') 
-            div(flex-gt-xs='50')
-                button.btn.btn-inverse.btn-login(type='submit')
-                  | Login
-                = ' '
-                a.btn.btn-default.btn-register(ui-sref='signup')
-                  | Register
+        .row
+            .col-xs-12.col-gt-xs-6
+                md-input-container.md-block
+                    label Email
+                    input(name='loginName', type='text', ng-model='vm.user.email', required)
+                    div(ng-messages='form.loginName.$error')
+                        div(ng-message='required') Email field is erquired
+            .col-xs-12.col-gt-xs-6
+                md-input-container.md-block
+                    label Password
+                    input(name='loginPasswd', type='password', ng-model='vm.user.password', required)
+                    div(ng-messages='form.loginPasswd.$error')
+                        div(ng-message='required') Password field is erquired
+        div.btn-container
+            button.btn.btn-primary.btn-login(type='submit')
+              | Login
+            = ' '
+            a.btn.btn-default.btn-register(ui-sref='signup')
+              | Register
   //- .row
   //-   .col-sm-12
   //-     h1 Login

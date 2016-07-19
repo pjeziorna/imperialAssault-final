@@ -1,6 +1,8 @@
 $themeName: '.md-imperial-theme';
 
 md-input-container {
+    margin-bottom: 0;
+
     &#{$themeName} {
         .md-input {
             border-color: $inputBorderColor;
@@ -65,6 +67,8 @@ md-datepicker {
     display: flex;
     align-items: center;
     width: 100%;
+    margin: 18px 0;
+    padding-right: 0;
 
     &.ng-empty {
         .md-datepicker-triangle-button .md-datepicker-expand-triangle {
@@ -88,8 +92,12 @@ md-datepicker {
         }
     }
 
-    .md-datepicker-triangle-button.md-button.md-icon-button {
-        top: auto;
+    .md-datepicker-triangle-button {
+        right: 5px;
+
+        &.md-button.md-icon-button {
+            top: auto;
+        }
     }
 }
 

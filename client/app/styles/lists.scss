@@ -48,3 +48,28 @@
         }
     }
 }
+
+.menu-list {
+    margin: 0;
+    padding: 0;
+    transition: height 0.4s linear;
+    height: 0;
+    overflow: hidden;
+
+    &.nav-open {
+        height: 5 * 48px + 2px;
+    }
+
+    li {
+        list-style: none;
+        background-color: $navbarMenuBg;
+        border-left: 1px solid $navbarMenuDividerColor;
+        border-bottom: 1px solid $navbarMenuDividerColor;
+
+        > a {
+            padding: 15px 30px;
+            min-width: 200px;
+            display: inline-block;
+        }
+    }
+}

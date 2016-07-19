@@ -3,7 +3,9 @@ div.navbar(ng-controller='NavbarController')
         a.navbar-brand(href='/', title='imperial assault')
             img(src='assets/images/logo-sm.png', title='logo')
         
-        ul.nav.navbar-right
+        a.btn.btn-icon.btn-right.btn-mobile.icon(ng-click='nav.toggleMenu()')
+            i.fa.fa-bars
+        ul.nav-mobile.menu-list(ng-class='{"nav-open": nav.isMenuOpen}')
             li(ng-if='nav.isAdmin()', ui-sref-active='active')
                 a(ui-sref='admin') Admin
             li(ng-if='!nav.isLoggedIn()', ui-sref-active='active')
@@ -11,40 +13,20 @@ div.navbar(ng-controller='NavbarController')
             li(ng-if='!nav.isLoggedIn()', ui-sref-active='active')
                 a(ui-sref='login') Login
             li(ng-show='nav.isLoggedIn()', ui-sref-active='active')
-                a(ui-sref='settings', title='settings')
-                    span.glyphicon.glyphicon-lg.glyphicon-settings
+                a(ui-sref='settings') Settings
             li(ng-show='nav.isLoggedIn()')
+                a(ui-sref='logout') Logout
+        
+        ul.nav.navbar-right
+            li.admin(ng-if='nav.isAdmin()', ui-sref-active='active')
+                a(ui-sref='admin') Admin
+            li.sign-up(ng-if='!nav.isLoggedIn()', ui-sref-active='active')
+                a(ui-sref='signup') Sign up
+            li.login(ng-if='!nav.isLoggedIn()', ui-sref-active='active')
+                a(ui-sref='login') Login
+            li.settings.icon(ng-show='nav.isLoggedIn()', ui-sref-active='active')
+                a(ui-sref='settings', title='settings')
+                    i.fa.fa-cog
+            li.power-off.icon(ng-show='nav.isLoggedIn()')
                 a(ui-sref='logout', title='logout')
-                    span.glyphicon.glyphicon-lg.glyphicon-power
-    //- div.navbar-header
-    //-   button.navbar-toggle(type='button', ng-click='nav.isCollapsed = !nav.isCollapsed')
-    //-     span.sr-only Toggle navigation
-    //-     span.icon-bar
-    //-     span.icon-bar
-    //-     span.icon-bar
-    //-   a.navbar-brand(href='/') imperial-assault
-    //- 
-    //- div#navbar-main.navbar-collapse.collapse(uib-collapse='nav.isCollapsed')
-    //-   ul.nav.navbar-nav
-    //-     li(ng-repeat='item in nav.menu', ui-sref-active='active')
-    //-       a(ui-sref='{{item.state}}') {{item.title}}
-    //- 
-    //-     li(ng-show='nav.isAdmin()', ui-sref-active='active')
-    //-       a(ui-sref='admin') Admin
-    //- 
-    //-   ul.nav.navbar-nav.navbar-right
-    //-     li(ng-hide='nav.isLoggedIn()', ui-sref-active='active')
-    //-       a(ui-sref='signup') Sign up
-    //- 
-    //-     li(ng-hide='nav.isLoggedIn()', ui-sref-active='active')
-    //-       a(ui-sref='login') Login
-    //- 
-    //-     li(ng-show='nav.isLoggedIn()')
-    //-       p.navbar-text Hello {{ nav.getCurrentUser().name }}
-    //- 
-    //-     li(ng-show='nav.isLoggedIn()', ui-sref-active='active')
-    //-       a(ui-sref='settings')
-    //-         span.glyphicon.glyphicon-cog
-    //- 
-    //-     li(ng-show='nav.isLoggedIn()')
-    //-       a(ui-sref='logout') Logout
+                    i.fa.fa-power-off
