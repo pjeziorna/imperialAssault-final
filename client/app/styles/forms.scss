@@ -57,6 +57,12 @@ md-select {
                 vertical-align: top;
             }
         }
-
     }
+}
+
+div.ng-hide.errors {
+    width: 1px;
+    height: 19px;
+    display: block !important;
+    opacity: 0;
 }

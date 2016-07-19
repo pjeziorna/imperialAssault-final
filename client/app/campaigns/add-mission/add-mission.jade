@@ -13,7 +13,7 @@ bg-img(img='main-bg.jpg')
                             label Mission`s name
                             md-select(name='missionTitle' ng-model='$ctrl.mission._id', required)
                                 md-option(ng-repeat='mission in $ctrl.missionCards | missionsAvailable:$ctrl.campaign.missions', ng-bind='mission.title', value='{{mission._id}}')
-                            div.errors(ng-messages='addMissionForm.missionTitle.$error', ng-if='addMissionForm.$submitted')
+                            div.errors(ng-messages='addMissionForm.missionTitle.$error', ng-show='addMissionForm.$submitted')
                                 div(ng-message='required') Mission name is required
                     .col-xs-12.col-sm-6.col-gt-sm-4
                         md-datepicker.md-block(name='missionDateOfPlay', md-placeholder='Date of play', ng-model='$ctrl.mission.playDate', md-open-on-focus, md-max-date='$ctrl.maxDatePlay' required)
@@ -31,7 +31,7 @@ bg-img(img='main-bg.jpg')
                             label Next story mission
                             md-select(name='missionNextStoryMission', ng-model='$ctrl.mission.nextStoryMission', required)
                                 md-option(ng-repeat='mission in $ctrl.missionCards | missionsAvailable:$ctrl.campaign.missions | storyMissions', ng-bind='mission.title', value='{{mission._id}}')
-                            div.errors(ng-messages='addMissionForm.missionNextStoryMission.$error', ng-if='addMissionForm.$submitted')
+                            div.errors(ng-messages='addMissionForm.missionNextStoryMission.$error', ng-show='addMissionForm.$submitted')
                                 div(ng-message='required') Next story mission field is required
                             
                     .col-12  
@@ -40,7 +40,7 @@ bg-img(img='main-bg.jpg')
                             md-select(name='missionWinner', ng-model='$ctrl.mission.winner', required)
                                 md-option(value='empire') Empire
                                 md-option(value='rebelion') Rebelion
-                            div.errors(ng-messages='addMissionForm.missionWinner.$error', ng-if='addMissionForm.$submitted')
+                            div.errors(ng-messages='addMissionForm.missionWinner.$error', ng-show='addMissionForm.$submitted')
                                 div(ng-message='required') Winner field is required
             hr
             section
@@ -76,7 +76,7 @@ bg-img(img='main-bg.jpg')
                             label Class cards possessed
                             md-select(name='missionEmpireClassCards', ng-model='$ctrl.mission.empire.classCards', multiple, required)
                                 md-option(ng-repeat='card in $ctrl.empireClassCards | empireClassSet:$ctrl.campaign.empire.classSet', ng-bind='card.name')
-                            div.errors(ng-messages='addMissionForm.missionEmpireClassCards.$error', ng-if='addMissionForm.$submitted')
+                            div.errors(ng-messages='addMissionForm.missionEmpireClassCards.$error', ng-show='addMissionForm.$submitted')
                                 div(ng-message='required') Class cards field is required
                     .col-xs-12.col-sm-6.col-gt-sm-6 
                         md-input-container.md-block
@@ -132,7 +132,7 @@ bg-img(img='main-bg.jpg')
                                     label Hero`s class cards possessed after upgrade stage
                                     md-select(name='missionRebelHeroClassCardsPossessed{{$parent.$index}}', ng-repeat='hero in $ctrl.heroCards | heroClassCards:rebel.hero', ng-model='rebel.heroClassCards.possessed', multiple, required)
                                         md-option(ng-repeat='card in hero.classCards', ng-bind='card.name', value='{{card.name}}')
-                                    div.errors(ng-messages="addMissionForm['missionRebelHeroClassCardsPossessed' + $index].$error", ng-if='addMissionForm.$submitted')
+                                    div.errors(ng-messages="addMissionForm['missionRebelHeroClassCardsPossessed' + $index].$error", ng-show='addMissionForm.$submitted')
                                         div(ng-message='required') Hero's class cards field is required
                             div.campaign-row.input-row(layout='row')
                                 md-input-container.value.md-block(flex='100')

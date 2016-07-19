@@ -28,18 +28,18 @@ bg-img(img='main-bg.jpg')
                             div.errors(ng-messages="addCampaignForm.empireName.$error")
                                 div(ng-message='required') Name is required
                     .col-xs-12.col-sm-6.col-gt-sm-3
-                        md-input-container.md-block
+                        md-input-container.md-select-container.md-block
                             label Chosen imperial class set
                             md-select(name='empireClassSet', ng-model='$ctrl.campaign.empire.classSet', required)
                                 md-option(ng-repeat='empireCard in $ctrl.empireClassCards | empireClassSetName', ng-bind='empireCard.classSet', value='{{empireCard.classSet}}')
-                            div.errors(ng-messages="addCampaignForm.empireClassSet.$error", ng-if='addCampaignForm.$submitted')
+                            div.errors(ng-messages="addCampaignForm.empireClassSet.$error", ng-show='addCampaignForm.$submitted')
                                 div(ng-message='required') Class set is required
                     .col-xs-12.col-sm-6.col-gt-sm-3
-                        md-input-container.md-block
+                        md-input-container.md-select-container.md-block
                             label Chosen agenda sets
                             md-select(name='empireAgendaSets', ng-model='$ctrl.campaign.empire.agendaSets', multiple, required)
                                 md-option(ng-repeat='empireCard in $ctrl.empireAgendaCards | empireAgendaSetName', ng-bind='empireCard.agendaSet', value='{{empireCard.agendaSet}}')
-                            div.errors(ng-messages="addCampaignForm.empireAgendaSets.$error", ng-if='addCampaignForm.$submitted')
+                            div.errors(ng-messages="addCampaignForm.empireAgendaSets.$error", ng-show='addCampaignForm.$submitted')
                                 div(ng-message='required') Agenda sets are required
             hr
             section
@@ -58,11 +58,11 @@ bg-img(img='main-bg.jpg')
                                 div.errors(ng-messages="addCampaignForm['rebelName' + $index].$error")
                                     div(ng-message='required') Name is required
                         .col-xs-12.col-sm-6.col-gt-sm-4
-                            md-input-container.md-block
+                            md-input-container.md-select-container.md-block
                                 label Player's hero name
                                 md-select(name='rebelHeroName{{$index}}', ng-model='rebel.hero', required)
                                     md-option(ng-repeat='hero in $ctrl.heroes', ng-bind='hero.name', value='{{hero.name}}')
-                                div.errors(ng-messages="addCampaignForm['rebelHeroName' + $index].$error", ng-if='addCampaignForm.$submitted')
+                                div.errors(ng-messages="addCampaignForm['rebelHeroName' + $index].$error", ng-show='addCampaignForm.$submitted')
                                     div(ng-message='required') Hero is required
                 div.btn-container
                     a.btn.btn-primary.btn-add(href='', ng-click='$ctrl.addRebelPlayer()', ng-if='$ctrl.campaign.rebelion.length < 4') Add rebel player
