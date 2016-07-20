@@ -2,8 +2,21 @@
 (function(){
 
 class MissionComponent {
-  constructor() {
-    this.message = 'Hello';
+  constructor($http, $stateParams, Auth) {
+      this.$http = $http;
+      this.missionId = $stateParams.id;
+      this.mission = $stateParams.mission;
+      this.campaignId = $stateParams.campaignId;
+      this.currentUser = Auth.getCurrentUser();
+
+      if(!this.mission) {
+          this.$http.get(`/api/campaigns/${this.currentUser.email}/${this.campaignId}`)
+            .then(response => {
+                this.mission = _.filter(response.data.missions, (mission) => {
+                    return mission._id === this.missionId;
+                })[0];
+            });
+      }
   }
 }
 

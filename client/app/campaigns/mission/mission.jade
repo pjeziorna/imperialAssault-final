@@ -1,4 +1,22 @@
 bg-img(img='main-bg.jpg')
 .container
-    div This is the mission view.
+    h1 Mission: {{$ctrl.mission.title}}
+    .panel
+        section
+            h4 Rebelion
+            .row
+                .col-xs-12.col-gt-xs-6(ng-repeat='item in $ctrl.mission.rebelion.itemsPossessed')
+                    div(layout='row')
+                        span(flex='30') item:
+                        span(flex='70', ng-bind='item')
+    
+        hr
+        section
+            h4 Empire
+            .row
+                .col-xs-12.col-gt-xs-6(ng-repeat='card in $ctrl.mission.empire.classCards')
+                    div(layout='row')
+                        span(flex='30') card:
+                        span(flex='70', ng-bind='card')
+            
     a.btn(href='', back-button) Go back

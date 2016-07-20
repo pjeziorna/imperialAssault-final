@@ -1,3 +1,4 @@
+
 bg-img(img='main-bg.jpg')
 .container
     header
@@ -76,7 +77,7 @@ bg-img(img='main-bg.jpg')
                     span.winner
                         i.fa.fa-empire(ng-if='mission.winner === "empire"')
                         i.fa.fa-rebel(ng-if='mission.winner === "rebelion"')
-                    a.mission-title(ui-sref='mission({ id: mission._id, mission: mission })', ng-bind='mission.title')
+                    a.mission-title(ui-sref='mission({ id: mission._id, campaignId: $ctrl.campaignId, mission: mission })', ng-bind='mission.title')
                     
                     a.btn.btn-icon.action-btn(href='', ng-click='$ctrl.editMission()', ng-if='$ctrl.campaign.active && $ctrl.isCampaignOwner()')
                         i.fa.fa-pencil
