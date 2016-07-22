@@ -30,6 +30,9 @@
 .btn-block {
     display: block;
     text-align: center;
+    + .btn-block {
+        margin: 15px 0;
+    }
 }
 
 .btn-default {

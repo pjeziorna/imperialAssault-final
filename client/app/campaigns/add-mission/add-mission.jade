@@ -24,13 +24,13 @@ bg-img(img='main-bg.jpg')
                         md-input-container.md-block
                             label Available side missions
                             md-select(name='missionAvailableSideMissions', ng-model='$ctrl.mission.availableSideMissions', multiple)
-                                md-option(ng-repeat='mission in $ctrl.missionCards | missionsAvailable:$ctrl.campaign.missions | sideMissions', ng-bind='mission.title', value='{{mission._id}}')
+                                md-option(ng-repeat='mission in $ctrl.missionCards | missionsAvailable:$ctrl.campaign.missions | sideMissions', ng-bind='mission.title', value='{{mission.title}}')
                     
                     .col-xs-12.col-gt-xs-6
                         md-input-container.md-block
                             label Next story mission
                             md-select(name='missionNextStoryMission', ng-model='$ctrl.mission.nextStoryMission', required)
-                                md-option(ng-repeat='mission in $ctrl.missionCards | missionsAvailable:$ctrl.campaign.missions | storyMissions', ng-bind='mission.title', value='{{mission._id}}')
+                                md-option(ng-repeat='mission in $ctrl.missionCards | missionsAvailable:$ctrl.campaign.missions | storyMissions', ng-bind='mission.title', value='{{mission.title}}')
                             div.errors(ng-messages='addMissionForm.missionNextStoryMission.$error', ng-show='addMissionForm.$submitted')
                                 div(ng-message='required') Next story mission field is required
                             
@@ -75,14 +75,14 @@ bg-img(img='main-bg.jpg')
                         md-input-container.md-block
                             label Class cards possessed
                             md-select(name='missionEmpireClassCards', ng-model='$ctrl.mission.empire.classCards', multiple, required)
-                                md-option(ng-repeat='card in $ctrl.empireClassCards | empireClassSet:$ctrl.campaign.empire.classSet', ng-bind='card.name')
+                                md-option(ng-repeat='card in $ctrl.empireClassCards | empireClassSet:$ctrl.campaign.empire.classSet', ng-bind='card.name', value='{{card.name}}')
                             div.errors(ng-messages='addMissionForm.missionEmpireClassCards.$error', ng-show='addMissionForm.$submitted')
                                 div(ng-message='required') Class cards field is required
                     .col-xs-12.col-sm-6.col-gt-sm-6 
                         md-input-container.md-block
                             label Agenda cards possessed
                             md-select(name='missionAgendaCards', ng-model='$ctrl.mission.empire.agendaCards', multiple)
-                                md-option(ng-repeat='card in $ctrl.agendaCards | agendaSet:$ctrl.campaign.empire.agendaSets', ng-bind='card.name')
+                                md-option(ng-repeat='card in $ctrl.agendaCards | agendaSet:$ctrl.campaign.empire.agendaSets', ng-bind='card.name', value='{{card.name}}')
             hr
             section
                 h4 Rebelion
@@ -109,12 +109,12 @@ bg-img(img='main-bg.jpg')
                         md-input-container.md-block
                             label Items possessed
                             md-select(name='missionRebelItemsPossessed', ng-model='$ctrl.mission.rebelion.itemsPossessed', ng-model-option='{trackBy: "$value._id"}', multiple)
-                                md-option(ng-repeat='item in $ctrl.itemCards | itemsPossessed:$ctrl.mission.rebelion.itemsSold', ng-bind='item.title', value='{{item._id}}')
+                                md-option(ng-repeat='item in $ctrl.itemCards | itemsPossessed:$ctrl.mission.rebelion.itemsSold', ng-bind='item.title', value='{{item.title}}')
                     .col-xs-12.col-sm-6.col-gt-sm-6
                         md-input-container.md-block
                             label Items sold
                             md-select(name='missionRebelItemsSold', ng-model='$ctrl.mission.rebelion.itemsSold', ng-model-option='{trackBy: "$value._id"}', multiple)
-                                md-option(ng-repeat='item in $ctrl.itemCards | blockItemsSold:$ctrl.campaign.missions', ng-bind='item.title', value='{{item._id}}', disabled='{{item.sold}}')
+                                md-option(ng-repeat='item in $ctrl.itemCards | blockItemsSold:$ctrl.campaign.missions', ng-bind='item.title', value='{{item.title}}', disabled='{{item.sold}}')
             section.campaign-info 
                 .row
                     .col-xs-12.col-gt-xs-6.player-tile-wrapper(ng-repeat='rebel in $ctrl.mission.rebelion.players')

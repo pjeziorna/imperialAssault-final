@@ -2,6 +2,7 @@
     background-color: $panelBg;
     border: 1px solid $panelBorderColor;
     padding: $panelVerticalPadding ($panelHorizontalPadding/2);
+    margin: 20px 0;
 
     @include respond-to('gt-xs') {
         padding-left: $panelHorizontalPadding;

@@ -13,49 +13,6 @@ campaign {
         margin-bottom: 15px;
     }
 
-    .campaing-rebelions {
-        &:nth-child(2n) {
-            figure {
-                @include respond-to('gt-sm') {
-                    padding-left: 30px;
-                }
-                &:before {
-                    @include respond-to('gt-sm') {
-                        content: '';
-                        display: block;
-                        position: relative;
-                        left: -40px;
-                        width: 1px;
-                        height: 100%;
-                        background-color: $hrColor;
-                    }
-                }
-            }
-        }
-
-        + .campaing-rebelions {
-            &:before {
-                content: '';
-                display: block;
-                position: relative;
-                left: 0;
-                top: -10px;
-                width: 100%;
-                height: 1px;
-                background-color: $hrColor;
-
-            }
-
-            &:nth-child(2) {
-                &:before {
-                    @include respond-to('gt-sm') {
-                        height: 0;
-                    }
-                }
-            }
-        }
-    }
-
     .winner {
         font-size: $campaignWinnerTextSize;
         color: $campaignWinnerColor;
@@ -96,6 +53,49 @@ campaign {
             overflow: hidden;
             display: inline-block;
             flex: 1 1 100%;
+        }
+    }
+}
+
+.campaing-rebelions {
+    &:nth-child(2n) {
+        figure {
+            @include respond-to('gt-sm') {
+                padding-left: 30px;
+            }
+            &:before {
+                @include respond-to('gt-sm') {
+                    content: '';
+                    display: block;
+                    position: relative;
+                    left: -40px;
+                    width: 1px;
+                    height: 100%;
+                    background-color: $hrColor;
+                }
+            }
+        }
+    }
+
+    + .campaing-rebelions {
+        &:before {
+            content: '';
+            display: block;
+            position: relative;
+            left: 0;
+            top: -10px;
+            width: 100%;
+            height: 1px;
+            background-color: $hrColor;
+
+        }
+
+        &:nth-child(2) {
+            &:before {
+                @include respond-to('gt-sm') {
+                    height: 0;
+                }
+            }
         }
     }
 }
