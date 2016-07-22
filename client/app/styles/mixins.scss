@@ -51,18 +51,15 @@ $sizes: (
 
             @if ($minRes > -1) {
                 @if ($maxRes > -1) {
-                    @debug 'min and max';
                     @media only screen and (min-width: #{$minRes}px) and (max-width: #{$maxRes}px) {
                         @content;
                     }
                 } @else {
-                    @debug 'min only';
                     @media only screen and (min-width: #{$minRes}px) {
                         @content;
                     }
                 }
             } @else {
-                @debug 'max only';
                 @media only screen and (max-width: #{$maxRes}px) {
                     @content;
                 }

@@ -40,10 +40,10 @@ bg-img(img='main-bg.jpg')
                     section(layout='column', flex='100')
                         section.campaign-row(layout='row')
                             span.label(flex-gt-sm='30', flex='50') Player:
-                            span.value(ng-bind='$ctrl.campaign.empire.player', flex-gt-sm='70', flex='50')
+                            span.value(ng-bind='$ctrl.campaign.empire.player.name', flex-gt-sm='70', flex='50')
                         section.campaign-row(layout='row')
                             span.label(flex-gt-sm='30', flex='50') Login:
-                            span.value(ng-bind='$ctrl.campaign.empire.login | emptyField', flex-gt-sm='70', flex='50')
+                            span.value(ng-bind='$ctrl.campaign.empire.player.email | emptyField', flex-gt-sm='70', flex='50')
                         section.campaign-row(layout='row')
                             span.label(flex-gt-sm='30', flex='50') Chosen class set:
                             span.value(ng-bind='$ctrl.campaign.empire.classSet', flex-gt-sm='70', flex='50')
@@ -61,10 +61,10 @@ bg-img(img='main-bg.jpg')
                     section.player-tile(flex)
                         div.campaign-row(layout='row')
                             span.label(flex='70') Player:
-                            span.value(ng-bind='rebel.player', flex='65')
+                            span.value(ng-bind='rebel.player.name', flex='65')
                         div.campaign-row(layout='row')
                             span.label(flex='70') Login:
-                            span.value(ng-bind='rebel.login | emptyField', flex='65')
+                            span.value(ng-bind='rebel.player.email | emptyField', flex='65')
                         div.campaign-row(layout='row')
                             span.label(flex='70') Hero:
                             span.value(ng-bind='rebel.hero', flex='65')

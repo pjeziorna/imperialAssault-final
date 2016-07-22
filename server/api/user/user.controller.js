@@ -43,6 +43,18 @@ export function indexUsers(req, res) {
 }
 
 /**
+ * Get list of users' logins and names by query
+ */
+export function indexQueryUsers(req, res) {
+    console.log('query', req.params.query);
+  return User.find({email: { $regex: req.params.query }}, {email: 1, name: 1}).exec()
+    .then(users => {
+      res.status(200).json(users);
+    })
+    .catch(handleError(res));
+}
+
+/**
  * Creates a new user
  */
 export function create(req, res, next) {

@@ -9,8 +9,10 @@ var CampaignSchema = new mongoose.Schema({
   active: Boolean,
   startDate: { type: Date, default: new Date() },
   empire: {
-      login: String,
-      player: String,
+      player: {
+          email: String,
+          name: String
+      },
       classSet: String,
       agendaSets: Array
   },

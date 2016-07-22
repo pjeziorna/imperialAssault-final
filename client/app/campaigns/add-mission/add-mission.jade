@@ -117,10 +117,11 @@ bg-img(img='main-bg.jpg')
                                 md-option(ng-repeat='item in $ctrl.itemCards | blockItemsSold:$ctrl.campaign.missions', ng-bind='item.title', value='{{item._id}}', disabled='{{item.sold}}')
             section.campaign-info 
                 .row
-                    .col-xs-12.col-gt-xs-6(ng-repeat='rebel in $ctrl.mission.rebelion.players')
+                    .col-xs-12.col-gt-xs-6.player-tile-wrapper(ng-repeat='rebel in $ctrl.mission.rebelion.players')
                         section.player-tile(flex)
+                            h6 Player {{$index + 1}}
                             div.campaign-row(layout='row')
-                                span.hero-name {{rebel.hero}} ({{rebel.player}})
+                                span.hero-name {{rebel.hero}} ({{rebel.player.name}})
                             div.campaign-row.input-row(layout='row')
                                 md-input-container.value.md-block(flex='100')
                                     label Hero`s expirience after upgrade stage

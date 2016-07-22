@@ -17,26 +17,32 @@ h6, .h6 {
 
 h1, .h1 {
     font-size: $h1Size;
+    margin: 25px 0;
 }
 
 h2, .h2 {
     font-size: $h2Size;
+    margin: 20px 0;
 }
 
 h3, .h3 {
     font-size: $h3Size;
+    margin: 16px 0;
 }
 
 h4, .h4 {
     font-size: $h4Size;
+    margin: 12px 0;
 }
 
 h5, .h5 {
     font-size: $h5Size;
+    margin: 8px 0;
 }
 
 h6, .h6 {
     font-size: $h6Size;
+    margin: 5px 0;
 }
 
 a {

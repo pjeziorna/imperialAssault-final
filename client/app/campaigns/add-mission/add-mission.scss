@@ -6,4 +6,18 @@ add-mission {
             line-height: 62px;
         }
     }
+
+    .player-tile-wrapper {
+        .player-tile {
+            margin-top: 25px;
+        }
+
+        &:nth-child(n+1) {
+            .player-tile {
+                @include respond-to('xs') {
+                    border-top: 1px solid $hrColor;
+                }
+            }
+        }
+    }
 }

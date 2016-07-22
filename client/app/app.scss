@@ -19,6 +19,10 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
      box-sizing: border-box;
  }
 
+ .label {
+     padding-right: 10px;
+ }
+
 // Component styles are injected through grunt
 /* inject:scss */
 @import 'admin/admin';

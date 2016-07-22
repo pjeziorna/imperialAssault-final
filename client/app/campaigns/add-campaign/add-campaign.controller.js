@@ -2,8 +2,10 @@
 (function(){
 
     class AddCampaignComponent {
-        constructor($http, messagesNotify) {
+        constructor($http, $q, messagesNotify, Auth) {
             this.$http = $http;
+            this.$q = $q;
+            this.currentUser = Auth.getCurrentUser();
             this.campaign = this._getEmptyCampaignModel();
             this.messagesNotify = messagesNotify;
             this.message = messagesNotify.getMessage();
@@ -11,6 +13,7 @@
             this.empireAgendaCards = [];
             this.users = [];
             this.empireSearchText = null;
+            this.rebelSearchText = null;
             this.heroes = [];
         }
 
@@ -50,6 +53,7 @@
             this.campaign = this._getEmptyCampaignModel();
         }
 
+
         submitCampaign(scope) {
             if(!scope.addCampaignForm.$valid) {
                 this.messagesNotify.showMessageWithTimeout('Form filled with errors.', 5);
@@ -62,10 +66,30 @@
                 });
         }
 
+        filterUsers(query) {
+            return query ? this._getUsersFiltered(query) : this.users;
+        }
+
+        _getUsersFiltered(query) {
+            let deffered = this.$q.defer();
+            this.$http.get(`/api/users/query/${query}`)
+                .then(response => {
+                    deffered.resolve(response.data);
+                });
+            return deffered.promise;
+        }
+
+        _createFilterFor(query) {
+            let lowerQuery = angular.lowercase(query);
+            return function filterFn(user) {
+                return (user.email.indexOf(lowerQuery) > -1);
+            }
+        }
+
         _getEmptyCampaignModel() {
             return {
                 name: '',
-                owner: '',
+                owner: this.currentUser.email,
                 active: true,
                 empire: {
                     player: ''
