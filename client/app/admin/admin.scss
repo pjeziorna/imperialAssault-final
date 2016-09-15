@@ -1,20 +1,18 @@
-.trash { color:rgb(209, 91, 71); }
-
-.user-list {
-	li {
+#admin {
+	ul li {
 		display: flex;
-		border: none;
-		border-bottom: 1px lightgray solid;
-		margin-bottom: 0;
-		&:last-child { border-bottom: none; }
+		align-items: center;
 
-		.user-info {
-			flex-grow: 1;
+		span {
+			flex: 1 1 30%;
+
+			+ span {
+				flex: 1 1 70%;
+			}
 		}
-		.trash {
-			display: flex;
-			align-items: center;
-			text-decoration: none;
+
+		.btn-icon {
+			flex: 0 0 24px;
 		}
 	}
 }

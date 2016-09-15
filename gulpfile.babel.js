@@ -571,7 +571,7 @@ gulp.task('copy:extras', () => {
 
 gulp.task('copy:fonts', () => {
     return gulp.src(`${clientPath}/bower_components/font-awesome/fonts/**/*`, { dot: true })
-        .pipe(gulp.dest(`${paths.dist}/${clientPath}/bower_components`));
+        .pipe(gulp.dest(`${paths.dist}/${clientPath}/bower_components/font-awesome/fonts`));
 });
 
 gulp.task('copy:assets', () => {

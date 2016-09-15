@@ -1,35 +1,67 @@
 .container
-  .row
-    .col-sm-12
-      h1 Change Password
-    .col-sm-12
-      form.form(name='form', ng-submit='vm.changePassword(form)', novalidate='')
-        .form-group
-          label Current Password
-          input.form-control(type='password'
-            name='password'
-            ng-model='vm.user.oldPassword'
-            mongoose-error='')
-          p.help-block(ng-show='form.password.$error.mongoose')
-            | {{ vm.errors.other }}
-        .form-group
-          label New Password
-          input.form-control(type='password'
-            name='newPassword'
-            ng-model='vm.user.newPassword'
-            ng-minlength='3', required='')
-          p.help-block(ng-show='(form.newPassword.$error.minlength || form.newPassword.$error.required) && (form.newPassword.$dirty || vm.submitted)')
-            | Password must be at least 3 characters.
-        .form-group
-          label Confirm New Password
-          input.form-control(type='password'
-            name='confirmPassword'
-            ng-model='vm.user.confirmPassword'
-            match="vm.user.newPassword"
-            ng-minlength='3', required='')
-          p.help-block(ng-show='fvm.orm.confirmPassword.$error.match && vm.submitted')
-            | Passwords must match.
-
-        p.help-block  {{ vm.message }}
-
-        button.btn.btn-lg.btn-primary(type='submit') Save changes
+    .row
+        .col-xs-12.col-gt-xs-12
+            h1 Change password
+        .col-xs-12.col-gt-xs-12
+            form(name='form', ng-submit='vm.changePassword(form)', novalidate='')
+                .row
+                    .col-xs-12.col-gt-xs-4
+                        md-input-container.md-block
+                            label Current password
+                            input(type='password', name='password', ng-model='vm.user.oldPassword', mongoose-error='', required)
+                            div.errors(ng-messages='form.password.$error', ng-show='form.$submitted')
+                                div(ng-message='required') Field is required
+                    .col-xs-12.col-gt-xs-4
+                        md-input-container.md-block
+                            label New password
+                            input(type='password', name='newPassword', ng-model='vm.user.newPassword', minlength='3', mongoose-error='', required)
+                            div.errors(ng-messages='form.newPassword.$error', ng-show='form.$submitted')
+                                div(ng-message='required') Field is required
+                                div(ng-message='minlength') Password must be at least 3 characters
+                    .col-xs-12.col-gt-xs-4
+                        md-input-container.md-block
+                            label Confirm new password
+                            input(type='password', name='confirmPassword', ng-model='vm.user.confirmPassword', match='vm.user.newPassword' minlength='3', mongoose-error='', required)
+                            div.errors(ng-messages='form.confirmPassword.$error', ng-show='form.$submitted')
+                                div(ng-message='required') Field is required
+                                div(ng-message='minlength') Password must be at least 3 characters
+                                div(ng-message='match') Password must be at least 3 characters
+                .btn-container
+                    button.btn.btn.btn-primary.btn-right(type='submit') Save changes
+                
+            
+//- .container
+//-   .row
+//-     .col-sm-12
+//-       h1 Change Password
+//-     .col-sm-12
+//-       form.form(name='form', ng-submit='vm.changePassword(form)', novalidate='')
+//-         .form-group
+//-           label Current Password
+//-           input.form-control(type='password'
+//-             name='password'
+//-             ng-model='vm.user.oldPassword'
+//-             mongoose-error='')
+//-           p.help-block(ng-show='form.password.$error.mongoose')
+//-             | {{ vm.errors.other }}
+//-         .form-group
+//-           label New Password
+//-           input.form-control(type='password'
+//-             name='newPassword'
+//-             ng-model='vm.user.newPassword'
+//-             ng-minlength='3', required='')
+//-           p.help-block(ng-show='(form.newPassword.$error.minlength || form.newPassword.$error.required) && (form.newPassword.$dirty || vm.submitted)')
+//-             | Password must be at least 3 characters.
+//-         .form-group
+//-           label Confirm New Password
+//-           input.form-control(type='password'
+//-             name='confirmPassword'
+//-             ng-model='vm.user.confirmPassword'
+//-             match="vm.user.newPassword"
+//-             ng-minlength='3', required='')
+//-           p.help-block(ng-show='fvm.orm.confirmPassword.$error.match && vm.submitted')
+//-             | Passwords must match.
+//- 
+//-         p.help-block  {{ vm.message }}
+//- 
+//-         button.btn.btn-lg.btn-primary(type='submit') Save changes

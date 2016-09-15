@@ -66,9 +66,9 @@ export function index(req, res) {
       $or: [{
           owner: req.params.userName
       }, {
-          'empire.login': req.params.userName
+          'empire.player.email': req.params.userName
       }, {
-          rebelion: { $elemMatch: {login: req.params.userName }}
+          rebelion: { $elemMatch: { 'player.email': req.params.userName }}
       }]
   }).exec()
     .then(respondWithResult(res))

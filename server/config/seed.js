@@ -35,26 +35,35 @@ Campaign.find({}).remove()
             startDate: 1466101831972,
             endDate: -1,
             empire: {
-                player: 'admin',
-                login: 'admin@example.com',
+                player: {
+                    name: 'admin',
+                    email: 'admin@example.com'
+                },
                 classSet: 'Technological Superiority',
                 agendaSets: ['For the Right Price', 'Agents of the Empire', 'Lord Vader\'s Command', 'Retaliation', 'Imperial Discipline', 'The General\'s Scheme']
             },
             rebelion: [{
-                player: 'test',
-                login: 'test@example.com',
+                player: {
+                    name: 'test',
+                    email: 'test@example.com'
+                },
                 hero: 'Fenn Signis'
             }, {
-                player: 'test3',
-                login: 'test3@example.com',
+                player: {
+                    name: 'test3',
+                    email: 'test3@example.com'
+                },
                 hero: 'Gideon Argus'
             }, {
-                player: 'test4',
-                login: 'test4@example.com',
+                player: {
+                    name: 'test4',
+                    email: 'test4@example.com'
+                },
                 hero: 'Diana Passil'
             }, {
-                player: 'test5',
-                login: 'test5@example.com',
+                player: {
+                    name: 'test5'
+                },
                 hero: 'Biv Bodrik'
             }],
             missions: [{
@@ -103,18 +112,30 @@ Campaign.find({}).remove()
             startDate: 1466101915866,
             endDate: -1,
             empire: {
-                player: 'test2',
-                login: 'test2@example.com',
+                player: {
+                    name: 'test2',
+                    email: 'test2@example.com'
+                },
                 classSet: 'Subversive Tactics',
                 agendaSets: ['For the Right Price', 'Agents of the Empire', 'Agenda test']
             },
             rebelion: [{
-                player: 'test',
-                login: 'test@example.com',
+                player: {
+                    name: 'test',
+                    email: 'test@example.com'
+                },
                 hero: 'Fenn Signis'
             }, {
-                player: 'test2',
+                player: {
+                    name: 'test2'
+                },
                 hero: 'Gaarkhan'
+            }, {
+                player: {
+                    name: 'admin',
+                    email: 'admin@example.com'
+                },
+                hero: 'Diana Passil'
             }],
             missions: [{
                 title: 'Homecoming',

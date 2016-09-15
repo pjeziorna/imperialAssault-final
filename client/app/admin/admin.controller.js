@@ -12,6 +12,10 @@
       user.$remove();
       this.users.splice(this.users.indexOf(user), 1);
     }
+
+    range(n) {
+        return new Array(n);
+    }
   }
 
   angular.module('imperialAssaultApp.admin')

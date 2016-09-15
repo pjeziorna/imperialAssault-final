@@ -1,10 +1,75 @@
 .container
-  p
-    | The delete user and user index api routes are restricted to users with the 'admin' role.
-  ul.list-group
-    li.list-group-item(ng-repeat='user in admin.users')
-      strong {{user.name}}
-      br
-      span.text-muted {{user.email}}
-      a.trash(ng-click='admin.delete(user)')
-        span.glyphicon.glyphicon-trash.pull-right
+    #admin
+        h2 Manage users
+        .panel
+            p
+                | The delete user and user index api routes are restricted to users with the 'admin' role.
+            ul.table-list
+                li.list-item(ng-repeat='user in admin.users')
+                    span {{user.name}}
+                    span.text-muted {{user.email}}
+                    a.btn.btn-icon(ng-click='admin.delete(user)')
+                        i.fa.fa-trash
+        h2 Add cards
+        .panel
+            p You can add cards from some new game set
+            form(name='addForm')
+                section
+                    h4 Rebelion 
+                    md-input-container.md-block
+                        label Hero name
+                        input(name='hero')
+                    .row(ng-repeat='card in admin.range(9) track by $index')
+                        .col-xs-12.col-gt-xs-6
+                            md-input-container.md-block
+                                label Hero class card {{$index + 1}}
+                                input(name='heroClassCard{{$index}}')
+                        .col-xs-12.col-gt-xs-6
+                            md-input-container.md-block
+                                label XP cost
+                                input(name='heroClassCardCost{{$index}}')
+                    
+                hr
+                h4 Empire
+                h6 Agenda
+                md-input-container.md-block
+                    label Agenda set name
+                    input(name='agendaSetName')
+                .row(ng-repeat='card in admin.range(3) track by $index')
+                    .col-xs-12.col-gt-xs-6
+                        md-input-container.md-block
+                            label Agenda card {{$index + 1}}
+                            input(name='agenda{{$index}}')
+                    .col-xs-12.col-gt-xs-6
+                        md-input-container.md-block
+                            label Influence cost
+                            input(name='agendaInfCost{{$index}}')
+                h6 Class set    
+                md-input-container.md-block
+                    label Empire set cards name
+                    input(name='empireSetName')
+                .row(ng-repeat='card in admin.range(9) track by $index')
+                    .col-xs-12.col-gt-xs-6
+                        md-input-container.md-block
+                            label Empire class card {{$index + 1}}
+                            input(name='empireClassCard{{$index}}')
+                    .col-xs-12.col-gt-xs-6
+                        md-input-container.md-block
+                            label Empire class card cost
+                            input(name='empireClassCardCost{{$index}}')
+                    
+                hr
+                h4 Items
+                md-input-container.md-block
+                    label Item card
+                    input(name='item')
+                hr
+                h4 Missions
+                md-input-container.md-block
+                    label Mission
+                    input(name='mission')
+                
+        h3 Remove cards
+        .panel 
+            form(name='removeForm')
+                p You can remove some cards, which were added by mistake

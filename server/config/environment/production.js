@@ -6,7 +6,7 @@ module.exports = {
   // Server IP
   ip:     process.env.OPENSHIFT_NODEJS_IP ||
           process.env.IP ||
-          undefined,
+          'imperial-assault.pjeziorn.usermd.net',
 
   // Server port
   port:   process.env.OPENSHIFT_NODEJS_PORT ||
@@ -19,6 +19,9 @@ module.exports = {
           process.env.MONGOHQ_URL ||
           process.env.OPENSHIFT_MONGODB_DB_URL +
           process.env.OPENSHIFT_APP_NAME ||
-          'mongodb://localhost/imperialassault'
-  }
+          'mongodb://mo1234_imperial:2b3d00Paulina@31.186.84.229:27017/mo1234_imperial'
+  },
+
+  // Seed database on startup
+  seedDB: true
 };
