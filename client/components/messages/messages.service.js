@@ -47,11 +47,13 @@ angular.module('imperialAssaultApp.messages')
         function _showMessage(_message) {
             message.text = _message;
             message.show = true;
+            _scrollToMessage();
         }
 
         function _showHardMessage(_message) {
             message.text = _message;
             message.show = true;
+            _scrollToMessage()
         }
 
         function _hideMessage() {
@@ -62,5 +64,11 @@ angular.module('imperialAssaultApp.messages')
         function _hideHardMessage() {
             showHard = false;
             _hideMessage();
+        }
+
+        function _scrollToMessage() {
+            let element = angular.element(document.querySelectorAll("[ng-messages]"))[0];
+            console.log(element.offsetTop - 100);
+            window.scrollTo(0, element.offsetTop - 100);
         }
     });
