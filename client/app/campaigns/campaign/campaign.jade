@@ -89,6 +89,7 @@ bg-img(img='bg/main-bg.jpg')
         hr(ng-if='$ctrl.campaign.active && $ctrl.isCampaignOwner()')
         
         section.btn-container(ng-if='$ctrl.isCampaignOwner()')
-            a.btn.btn-lg.btn-warn.btn-block.btn-end(href='', ng-if='$ctrl.campaign.active', ng-click='$ctrl.endCampaign()') End campaign
+            a.btn.btn-lg.btn-info.btn-block.btn-end(href='', ng-if='$ctrl.campaign.active', ng-click='$ctrl.endCampaign()') End campaign
+            a.btn.btn-lg.btn-warn.btn-block.btn-remove(href='', ng-click='$ctrl.deleteCampaign()') Delete campaign
 
     a.btn(href='', back-button) Go back

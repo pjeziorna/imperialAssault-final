@@ -33,6 +33,8 @@
 
         endCampaign() {
             // TODO here should be used some confirmation component
+            var remove = confirm('Are you sure you want to end this campaign?')
+            if (!remove) return;
             this.campaign.active = false;
             this.$http.patch('/api/campaigns/' + this.campaignId, this.campaign)
                 .then(response => {
