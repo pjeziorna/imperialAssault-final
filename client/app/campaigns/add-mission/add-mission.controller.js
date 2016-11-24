@@ -68,9 +68,6 @@
         }
 
         submitMission(scope) {
-            this.messagesNotify.showMessageWithTimeout('New mission has been added.', 5);
-            return;
-            
             if(!scope.addMissionForm.$valid) {
                 this.messagesNotify.showMessageWithTimeout('Form filled with errors.', 5);
                 return;

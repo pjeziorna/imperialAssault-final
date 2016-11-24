@@ -1,0 +1,5 @@
+.container > [ng-messages] {
+    border: 1px solid $messageBorder;
+    background-color: $messageBg;
+    padding: 10px 12px;
+}

@@ -3,7 +3,7 @@ bg-img(img='bg/main-bg.jpg')
     header
         h2 Add new mission
     
-    div(ng-messages='$ctrl.message.show', ng-bind='$ctrl.message.text')
+    div(ng-messages='$ctrl.message.show', ng-bind='$ctrl.message.text', ng-show='$ctrl.message.show')
     form(ng-submit='$ctrl.submitMission(this)', name='addMissionForm', novalidate)
         .panel
             section

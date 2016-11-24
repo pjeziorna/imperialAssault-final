@@ -54,6 +54,12 @@ $selectDropdownTextColor: #bbb299;
 $outlineColor: #ff5400;
 
 /**
+ * Messages
+ **/
+$messageBg: transparentize(#56f442, 0.75);
+$messageBorder: transparentize(#38ff1e, 0.5);
+
+/**
  * Buttons
  **/
 $btnVerticalPadding: 12px;
