@@ -11,11 +11,13 @@
             this.campaignId = this.$stateParams.id;
             this.message = messagesNotify.getMessage();
             this.maxDatePlay = new Date();
+            this.missionCard = null;
             this.missionCards = [];
             this.itemCards = [];
             this.heroCards = [];
             this.empireClassCards = [];
             this.agendaCards = [];
+            this.allyCards = [];
 
             if (this.$stateParams.campaign === null) {
                 this.$http.get('/api/campaigns/' + this.currentUser.email + '/' + this.campaignId)
@@ -23,13 +25,13 @@
                     this.campaign = response.data;
                     this.mission = this._getEmptyMissionModel();
                     this._subscribeWatchers($scope);
-                    console.log('campaign', this.campaign);
+                    console.log('mission', this.mission);
                 });
             } else {
                 this.campaign = this.$stateParams.campaign;
                 this.mission = this._getEmptyMissionModel();
                 this._subscribeWatchers($scope);
-                console.log('campaign', this.campaign);
+                console.log('mission', this.mission);
             }
         }
 
@@ -58,6 +60,11 @@
             .then(response => {
                 this.agendaCards = response.data;
             });
+
+            this.$http.get('/api/ally-cards')
+            .then(response => {
+                this.allyCards = response.data;
+            });
         }
 
         submitMission(scope) {
@@ -71,7 +78,7 @@
             this.$http.put('/api/campaigns/' + this.campaign._id, this.campaign)
                 .then(response => {
                     this.messagesNotify.showMessageWithTimeout('New mission has been added.', 5);
-                    this._clearForm();
+                    this._clearForm(scope);
                 });
         }
 
@@ -81,6 +88,40 @@
             }, (newVal, oldVal) => {
                 this.mission.rebelion.itemsPossessed = _.difference(this.mission.rebelion.itemsPossessed, newVal);
             });
+
+            $scope.$watch(() => {
+                return this.mission._id;
+            }, (newVal, oldVal) => {
+                this.missionCard = _.filter(this.missionCards, {'_id': newVal})[0] || null;
+                if (this.mission.winner) {
+                    this._updateInMissionValues();
+                }
+            });
+
+            $scope.$watch(() => {
+                return this.mission.winner;
+            }, (newVal, oldVal) => {
+                if (this.mission._id) {
+                    this._updateInMissionValues();
+                }
+            });
+        }
+
+        _updateInMissionValues() {
+            switch (this.mission.winner) {
+                case 'rebelion':
+                    this.mission.rebelion.expInMission = this.missionCard.rebelVictoryBonus.exp + this.missionCard.additionalRewards.exp;
+                    this.mission.rebelion.creditsInMission = (this.missionCard.rebelVictoryBonus.credits + this.missionCard.additionalRewards.credits) * this.mission.rebelion.players.length;
+                    this.mission.empire.expInMission = this.missionCard.additionalRewards.exp;
+                    this.mission.empire.influenceInMission = this.missionCard.additionalRewards.influence;
+                    break;
+                case 'empire':
+                    this.mission.rebelion.expInMission = this.missionCard.additionalRewards.exp;
+                    this.mission.rebelion.creditsInMission = this.missionCard.additionalRewards.credits * this.mission.rebelion.players.length;
+                    this.mission.empire.expInMission = this.missionCard.empireVictoryBonus.exp + this.missionCard.additionalRewards.exp;
+                    this.mission.empire.influenceInMission = this.missionCard.empireVictoryBonus.influence + this.missionCard.additionalRewards.influence;
+                    break;
+            }
         }
 
         _fillMissionFieldsFromMissionCardModel() {
@@ -108,10 +149,10 @@
                 missionType: null,
                 campaign_id: this.campaignId,
                 empire: {
-                    influence: null,
+                    influence: this._getEmpireInfluenceFromLastMission(),
                     influenceInMission: null,
                     expInMission: null,
-                    exp: null,
+                    exp: this._getEmpireExpFromLastMission(),
                     classCards: this._getEmpireClassCardsPossessed()
                 },
                 rebelion: {
@@ -166,8 +207,24 @@
             return this.campaign.missions[this.campaign.missions.length - 1].rebelion.itemsSold;
         }
 
-        _clearForm() {
-            this.mission = {};
+        _getEmpireExpFromLastMission() {
+            if(!this.campaign.missions.length) {
+                return [];
+            }
+            return this.campaign.missions[this.campaign.missions.length - 1].empire.exp;
+        }
+
+        _getEmpireInfluenceFromLastMission() {
+            if(!this.campaign.missions.length) {
+                return [];
+            }
+            return this.campaign.missions[this.campaign.missions.length - 1].empire.influence;
+        }
+
+        _clearForm(scope) {
+            this.mission = this._getEmptyMissionModel();
+            scope.addMissionForm.$setPristine();
+            scope.addMissionForm.$setUntouched();
         }
     }
 

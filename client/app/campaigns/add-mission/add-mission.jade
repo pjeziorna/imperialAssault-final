@@ -46,25 +46,23 @@ bg-img(img='bg/main-bg.jpg')
             section
                 h4 Empire
                 .row
-                    .col-xs-12.col-sm-6.col-gt-sm-3
+                    .col-xs-12.col-sm-6.col-gt-sm-6
                         md-input-container.md-block
-                            label Exp gained in this mission
-                            input(name='missionEmpireMissionExp', type='number', ng-model='$ctrl.mission.empire.expInMission', value=0, min=0, max=4, required)
-                            div(ng-messages='addMissionForm.missionEmpireMissionExp.$error')
-                                div(ng-message='required') Exp gained field is required
-                    .col-xs-12.col-sm-6.col-gt-sm-3
+                            section.mission-row(layout='row')
+                                span.label(flex='50', flex-gt-sm='30') Exp gained in this mission
+                                span.value(flex='50', flex-gt-sm='70', ng-bind='$ctrl.mission.empire.expInMission | emptyField')
+                    .col-xs-12.col-sm-6.col-gt-sm-6
                         md-input-container.md-block
                             label Expirience after upgrade stage
                             input(name='missionEmpireExp', type='number', ng-model='$ctrl.mission.empire.exp', value=0, min=0, max=8, required)
                             div(ng-messages='addMissionForm.missionEmpireExp.$error')
                                 div(ng-message='required') Expirience field is required
-                    .col-xs-12.col-sm-6.col-gt-sm-3
+                    .col-xs-12.col-sm-6.col-gt-sm-6
                         md-input-container.md-block
-                            label Influence gained in this mission
-                            input(name='missionEmpireMissionInfluence', type='number', ng-model='$ctrl.mission.empire.influenceInMission', value=0, min=0, max=4, required)
-                            div(ng-messages='addMissionForm.missionEmpireMissionInfluence.$error')
-                                div(ng-message='required') Influence gained field is required
-                    .col-xs-12.col-sm-6.col-gt-sm-3
+                            section.mission-row(layout='row')
+                                span.label(flex='50', flex-gt-sm='30') Influence gained in this mission
+                                span.value(flex='50', flex-gt-sm='70', ng-bind='$ctrl.mission.empire.influenceInMission | emptyField')
+                    .col-xs-12.col-sm-6.col-gt-sm-6
                         md-input-container.md-block
                             label Influence after upgrade stage
                             input(name='missionEmpireInfluence', type='number', ng-model='$ctrl.mission.empire.influence', value=0, min=0, max=8, required)
@@ -89,39 +87,43 @@ bg-img(img='bg/main-bg.jpg')
                 .row
                     .col-xs-12.col-sm-6.col-gt-sm-4
                         md-input-container.md-block
-                            label Exp gained in this mission
-                            input(name='missionRebelMissionExp', type='number', ng-model='$ctrl.mission.rebelion.expInMission', value=0, min=0, max=4, required)
-                            div.errors(ng-messages='addMissionForm.missionRebelMissionExp.$error')
-                                div(ng-message='required') Exp gained field is required
+                            section.mission-row(layout='row')
+                                span.label(flex='50', flex-gt-sm='30') Exp gained in this mission
+                                span.value(flex='50', flex-gt-sm='70', ng-bind='$ctrl.mission.rebelion.expInMission | emptyField')
                     .col-xs-12.col-sm-6.col-gt-sm-4  
                         md-input-container.md-block
-                            label Credits gained in this mission
-                            input(name='missionRebelMissionCredits', type='number', ng-model='$ctrl.mission.rebelion.creditsInMission', value=0, min=0, max=1000, step=50, required)
-                            div.errors(ng-messages='addMissionForm.missionRebelMissionCredits.$error')
-                                div(ng-message='required') Credits gained field is required
+                            section.mission-row(layout='row')
+                                span.label(flex='50', flex-gt-sm='30') Credits gained in this mission (without crates)
+                                span.value(flex='50', flex-gt-sm='70', ng-bind='$ctrl.mission.rebelion.creditsInMission | emptyField')
                     .col-xs-12.col-sm-12.col-gt-sm-4 
                         md-input-container.md-block
                             label Rebels credits after upgrade stage
                             input(name='missionRebelCredits', type='number', ng-model='$ctrl.mission.rebelion.credits', min=0, max=3000, step=50, required)
                             div.errors(ng-messages='addMissionForm.missionRebelCredits.$error')
                                 div(ng-message='required') Rebel credits field is required
+                    .col-xs-12.col-sm-12.col-gt-sm-12
+                        md-input-container.md-block
+                            label Rebel allys
+                            md-select(name='missionRebelAllys', ng-model='$ctrl.mission.rebelion.allys')
+                                md-option(ng-repeat='ally in $ctrl.allyCards', ng-bind='ally.name', value='{{ally.name}}')
                     .col-xs-12.col-sm-6.col-gt-sm-6
                         md-input-container.md-block
                             label Items possessed
                             md-select(name='missionRebelItemsPossessed', ng-model='$ctrl.mission.rebelion.itemsPossessed', ng-model-option='{trackBy: "$value._id"}', multiple)
-                                md-option(ng-repeat='item in $ctrl.itemCards | itemsPossessed:$ctrl.mission.rebelion.itemsSold', ng-bind='item.title', value='{{item.title}}')
+                                md-option(ng-repeat='item in $ctrl.itemCards | itemsPossessed:$ctrl.mission.rebelion.itemsSold', ng-bind='item.title', value='{{item._id}}')
                     .col-xs-12.col-sm-6.col-gt-sm-6
                         md-input-container.md-block
                             label Items sold
                             md-select(name='missionRebelItemsSold', ng-model='$ctrl.mission.rebelion.itemsSold', ng-model-option='{trackBy: "$value._id"}', multiple)
-                                md-option(ng-repeat='item in $ctrl.itemCards | blockItemsSold:$ctrl.campaign.missions', ng-bind='item.title', value='{{item.title}}', disabled='{{item.sold}}')
+                                md-option(ng-repeat='item in $ctrl.itemCards | blockItemsSold:$ctrl.campaign.missions', ng-bind='item.title', value='{{item._id}}', disabled='{{item.sold}}')
             section.campaign-info 
                 .row
                     .col-xs-12.col-gt-xs-6.player-tile-wrapper(ng-repeat='rebel in $ctrl.mission.rebelion.players')
                         section.player-tile(flex)
                             h6 Player {{$index + 1}}
                             div.campaign-row(layout='row')
-                                span.hero-name {{rebel.hero}} ({{rebel.player.name}})
+                                span.hero-name {{rebel.hero}} 
+                                    span(ng-if='rebel.player.name') ({{rebel.player.name}})
                             div.campaign-row.input-row(layout='row')
                                 md-input-container.value.md-block(flex='100')
                                     label Hero`s expirience after upgrade stage
@@ -143,6 +145,6 @@ bg-img(img='bg/main-bg.jpg')
                                         md-option(ng-repeat='card in hero.classCards', ng-bind='card.name', value='{{card.name}}', ng-if='card.xpCost === 0')
             hr
             section.btn-container
-                button.btn.btn-block.btn-primary.btn-add.btn-right Add mission
+                button.btn.btn-block.btn-primary.btn-add.btn-right(type='submit') Add mission
             
         a.btn(href='', back-button) Go back

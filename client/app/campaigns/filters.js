@@ -6,7 +6,7 @@ angular.module('imperialAssaultApp')
      */
     .filter('emptyField', function() {
         return function(item) {
-            if(_.isUndefined(item) || !item.length) {
+            if(_.isUndefined(item) || _.isNull(item) || (!_.isNumber(item) && !item.length)) {
                 return '-';
             }
             return item;
