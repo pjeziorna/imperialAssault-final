@@ -100,4 +100,34 @@ angular.module('imperialAssaultApp')
             });
             return filtered;
         }
+    })
+
+    /**
+     * Filter chooses those ally cards for rebelion
+     */
+    .filter('rebelionAllys', function() {
+        return function(items) {
+            let filtered = [];
+            _.forEach(items, (item) => {
+                if(item.fraction.indexOf('rebelion') != -1) {
+                    filtered.push(item);
+                }
+            });
+            return filtered;
+        }
+    })
+
+    /**
+     * Filter chooses those ally cards for empire
+     */
+    .filter('empireAllys', function() {
+        return function(items) {
+            let filtered = [];
+            _.forEach(items, (item) => {
+                if(item.fraction.indexOf('empire') != -1) {
+                    filtered.push(item);
+                }
+            });
+            return filtered;
+        }
     });

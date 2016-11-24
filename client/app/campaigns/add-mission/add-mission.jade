@@ -68,7 +68,11 @@ bg-img(img='bg/main-bg.jpg')
                             input(name='missionEmpireInfluence', type='number', ng-model='$ctrl.mission.empire.influence', value=0, min=0, max=8, required)
                             div(ng-messages='addMissionForm.missionEmpireInfluence.$error')
                                 div(ng-message='required') Influence field is required
-                            
+                    .col-xs-12.col-sm-12.col-gt-sm-12
+                        md-input-container.md-block
+                            label Empire allys
+                            md-select(name='missionEmpireAllys', ng-model='$ctrl.mission.empire.allys', multiple)
+                                md-option(ng-repeat='ally in $ctrl.allyCards | empireAllys', ng-bind='ally.name', value='{{ally.name}}')
                     .col-xs-12.col-sm-6.col-gt-sm-6 
                         md-input-container.md-block
                             label Class cards possessed
@@ -105,7 +109,7 @@ bg-img(img='bg/main-bg.jpg')
                         md-input-container.md-block
                             label Rebel allys
                             md-select(name='missionRebelAllys', ng-model='$ctrl.mission.rebelion.allys')
-                                md-option(ng-repeat='ally in $ctrl.allyCards', ng-bind='ally.name', value='{{ally.name}}')
+                                md-option(ng-repeat='ally in $ctrl.allyCards | rebelionAllys', ng-bind='ally.name', value='{{ally.name}}')
                     .col-xs-12.col-sm-6.col-gt-sm-6
                         md-input-container.md-block
                             label Items possessed

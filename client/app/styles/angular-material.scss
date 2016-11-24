@@ -1,6 +1,8 @@
 $themeName: '.md-imperial-theme';
 
 md-input-container {
+    min-height: 53px;
+
     &:not(.md-select-container) {
         margin-bottom: 0;
     }

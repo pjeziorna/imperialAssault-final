@@ -24,7 +24,8 @@ if (config.seedDB) {
     require('./config/seedItemCards');
     require('./config/seedHeroCards');
     require('./config/seedAgendaCards');
-    require('./config/seedEmpireClassCards'); 
+    require('./config/seedEmpireClassCards');
+    require('./config/seedAllyCards');
 }
 
 // Setup server
