@@ -10,5 +10,5 @@ angular.module('imperialAssaultApp')
                 return '-';
             }
             return item;
-        }
-    })
+        };
+    });

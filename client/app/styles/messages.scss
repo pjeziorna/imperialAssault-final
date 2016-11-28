@@ -1,5 +1,19 @@
-.container > [ng-messages] {
-    border: 1px solid $messageBorder;
-    background-color: $messageBg;
+.message-notify {
     padding: 10px 12px;
+
+    + .message-notify {
+        margin-top: 15px;
+    }
+
+    &.success {
+        @include messageType($messageSuccessBg, $messageSuccessBorder);
+    }
+
+    &.warning {
+        @include messageType($messageWarnBg, $messageWarnBorder);
+    }
+
+    &.error {
+        @include messageType($messageErrorBg, $messageErrorBorder);
+    }
 }

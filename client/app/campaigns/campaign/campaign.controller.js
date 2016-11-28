@@ -21,10 +21,12 @@
 
         deleteCampaign() {
             // TODO here should be used some confirmation component
-            var remove = confirm('Are you sure you want to delete this campaign?')
-            if (!remove) return;
+            var remove = confirm('Are you sure you want to delete this campaign?');
+            if (!remove) {
+                return false;
+            }
             this.$http.delete('/api/campaigns/' + this.campaignId)
-            .then(response => {
+            .then(() => {
                 // TODO here should be message component injected and used.
                 console.log('Campaign deleted', this.campaignId);
                 this.$state.go('my-campaigns');
@@ -33,8 +35,10 @@
 
         endCampaign() {
             // TODO here should be used some confirmation component
-            var remove = confirm('Are you sure you want to end this campaign?')
-            if (!remove) return;
+            var remove = confirm('Are you sure you want to end this campaign?');
+            if (!remove) {
+                return;
+            }
             this.campaign.active = false;
             this.$http.patch('/api/campaigns/' + this.campaignId, this.campaign)
                 .then(response => {

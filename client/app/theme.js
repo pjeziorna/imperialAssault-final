@@ -27,8 +27,8 @@ angular.module('imperialAssaultApp')
             .primaryPalette('imperialAssaultPalette')
             .dark();
         $mdThemingProvider.setDefaultTheme('imperial');
-        
+
         $mdDateLocaleProvider.formatDate = (date) => {
             return date ? moment(date).format('DD.MM.YYYY') : '';
-        }
+        };
     });

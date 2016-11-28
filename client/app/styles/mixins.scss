@@ -33,6 +33,11 @@ $sizes: (
     }
 }
 
+@mixin messageType($bg, $borderColor) {
+    border: 1px solid $borderColor;
+    background-color: $bg;
+}
+
 @mixin linkType($color: $linkColor, $hover: $linkHoverColor) {
     color: $color;
 

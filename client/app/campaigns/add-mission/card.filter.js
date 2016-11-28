@@ -7,7 +7,7 @@ angular.module('imperialAssaultApp')
     .filter('missionsAvailable', function() {
         return function(items, missionsInCampaign) {
             return _.differenceBy(items, missionsInCampaign, '_id');
-        }
+        };
     })
 
     /**
@@ -20,7 +20,7 @@ angular.module('imperialAssaultApp')
                 filtered.push({'_id':item});
             });
             return _.differenceBy(items, filtered, '_id');
-        }
+        };
     })
 
     /**
@@ -38,7 +38,7 @@ angular.module('imperialAssaultApp')
                 }
             });
             return items;
-        }
+        };
     })
 
     /**
@@ -53,7 +53,7 @@ angular.module('imperialAssaultApp')
                 }
             });
             return filtered;
-        }
+        };
     })
 
     /**
@@ -63,12 +63,12 @@ angular.module('imperialAssaultApp')
         return function(items) {
             let filtered = [];
             angular.forEach(items, function(item) {
-                if(item.missionType.indexOf('Story') != -1 || item.missionType.indexOf('Finale') != -1) {
+                if(item.missionType.indexOf('Story') !== -1 || item.missionType.indexOf('Finale') !== -1) {
                     filtered.push(item);
                 }
             });
             return filtered;
-        }
+        };
     })
 
     /**
@@ -78,13 +78,13 @@ angular.module('imperialAssaultApp')
         return function(items, heroName) {
             let filtered = [];
             angular.forEach(items, function(item) {
-                if(item.name.indexOf(heroName) != -1) {
+                if(item.name.indexOf(heroName) !== -1) {
                     filtered.push(item);
                     return filtered;
                 }
             });
             return filtered;
-        }
+        };
     })
 
     /**
@@ -94,12 +94,12 @@ angular.module('imperialAssaultApp')
         return function(items, empireClassSetName) {
             let filtered = [];
             angular.forEach(items, function(item) {
-                if(item.classSet.indexOf(empireClassSetName) != -1) {
+                if(item.classSet.indexOf(empireClassSetName) !== -1) {
                     filtered.push(item);
                 }
             });
             return filtered;
-        }
+        };
     })
 
     /**
@@ -109,12 +109,12 @@ angular.module('imperialAssaultApp')
         return function(items) {
             let filtered = [];
             _.forEach(items, (item) => {
-                if(item.fraction.indexOf('rebelion') != -1) {
+                if(item.fraction.indexOf('rebelion') !== -1) {
                     filtered.push(item);
                 }
             });
             return filtered;
-        }
+        };
     })
 
     /**
@@ -124,10 +124,10 @@ angular.module('imperialAssaultApp')
         return function(items) {
             let filtered = [];
             _.forEach(items, (item) => {
-                if(item.fraction.indexOf('empire') != -1) {
+                if(item.fraction.indexOf('empire') !== -1) {
                     filtered.push(item);
                 }
             });
             return filtered;
-        }
+        };
     });

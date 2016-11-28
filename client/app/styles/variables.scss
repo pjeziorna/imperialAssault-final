@@ -56,8 +56,12 @@ $outlineColor: #ff5400;
 /**
  * Messages
  **/
-$messageBg: transparentize(#56f442, 0.75);
-$messageBorder: transparentize(#38ff1e, 0.5);
+$messageSuccessBg: transparentize(#56f442, 0.75);
+$messageSuccessBorder: transparentize(#38ff1e, 0.5);
+$messageWarnBg: transparentize(#CCB731, 0.75);
+$messageWarnBorder: transparentize(#E8CF2C, 0.5);
+$messageErrorBg: transparentize(#910C1B, 0.75);
+$messageErrorBorder: transparentize(#CF1329, 0.5);
 
 /**
  * Buttons

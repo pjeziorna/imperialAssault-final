@@ -2,14 +2,13 @@
 (function(){
 
     class AddMissionComponent {
-        constructor($stateParams, $http, $scope, messagesNotify, Auth) {
+        constructor($stateParams, $http, $scope, MessagesService, Auth) {
             this.$stateParams = $stateParams;
             this.$http = $http;
-            this.messagesNotify = messagesNotify;
+            this.messagesService = MessagesService;
             this.currentUser = Auth.getCurrentUser();
 
             this.campaignId = this.$stateParams.id;
-            this.message = messagesNotify.getMessage();
             this.maxDatePlay = new Date();
             this.missionCard = null;
             this.missionCards = [];
@@ -25,13 +24,11 @@
                     this.campaign = response.data;
                     this.mission = this._getEmptyMissionModel();
                     this._subscribeWatchers($scope);
-                    console.log('mission', this.mission);
                 });
             } else {
                 this.campaign = this.$stateParams.campaign;
                 this.mission = this._getEmptyMissionModel();
                 this._subscribeWatchers($scope);
-                console.log('mission', this.mission);
             }
         }
 
@@ -68,16 +65,18 @@
         }
 
         submitMission(scope) {
+            // this.messagesService.addMessage('Form filled with errors.', 'error');
+            // return;
             if(!scope.addMissionForm.$valid) {
-                this.messagesNotify.showMessageWithTimeout('Form filled with errors.', 5);
+                this.messagesService.addMessage('Form filled with errors.', 'error');
                 return;
             }
             this.mission = this._fillMissionFieldsFromMissionCardModel();
             this.campaign.missions.push(this.mission);
 
             this.$http.put('/api/campaigns/' + this.campaign._id, this.campaign)
-                .then(response => {
-                    this.messagesNotify.showMessageWithTimeout('New mission has been added.', 5);
+                .then(() => {
+                    this.messagesService.addMessage('New mission has been added.', 'success');
                     this._clearForm(scope);
                 });
         }
@@ -85,13 +84,13 @@
         _subscribeWatchers($scope) {
             $scope.$watch(() => {
                 return this.mission.rebelion.itemsSold;
-            }, (newVal, oldVal) => {
+            }, (newVal) => {
                 this.mission.rebelion.itemsPossessed = _.difference(this.mission.rebelion.itemsPossessed, newVal);
             });
 
             $scope.$watch(() => {
                 return this.mission._id;
-            }, (newVal, oldVal) => {
+            }, (newVal) => {
                 this.missionCard = _.filter(this.missionCards, {'_id': newVal})[0] || null;
                 if (this.mission.winner) {
                     this._updateInMissionValues();
@@ -100,7 +99,7 @@
 
             $scope.$watch(() => {
                 return this.mission.winner;
-            }, (newVal, oldVal) => {
+            }, () => {
                 if (this.mission._id) {
                     this._updateInMissionValues();
                 }

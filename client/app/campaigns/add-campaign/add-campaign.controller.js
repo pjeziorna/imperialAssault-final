@@ -2,13 +2,12 @@
 (function(){
 
     class AddCampaignComponent {
-        constructor($http, $q, messagesNotify, Auth) {
+        constructor($http, $q, MessagesService, Auth) {
             this.$http = $http;
             this.$q = $q;
             this.currentUser = Auth.getCurrentUser();
             this.campaign = this._getEmptyCampaignModel();
-            this.messagesNotify = messagesNotify;
-            this.message = messagesNotify.getMessage();
+            this.messagesService = MessagesService;
             this.empireClassCards = [];
             this.empireAgendaCards = [];
             this.users = [];
@@ -56,12 +55,12 @@
 
         submitCampaign(scope) {
             if(!scope.addCampaignForm.$valid) {
-                this.messagesNotify.showMessageWithTimeout('Form filled with errors.', 5);
+                this.messagesService.addMessage('Form filled with errors.', 'error');
                 return;
             }
             this.$http.post('/api/campaigns/', this.campaign)
-                .then(response => {
-                    this.messagesNotify.showMessageWithTimeout('New campaign has been added.', 5);
+                .then(() => {
+                    this.messagesService.addMessage('New campaign has been added.', 'success');
                     this.clearForm();
                 });
         }
@@ -83,7 +82,7 @@
             let lowerQuery = angular.lowercase(query);
             return function filterFn(user) {
                 return (user.email.indexOf(lowerQuery) > -1);
-            }
+            };
         }
 
         _getEmptyCampaignModel() {
