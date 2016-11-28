@@ -1,6 +1,4 @@
 Co poprawy:
-- my campaigns
--- add header to table of content
 
 - add campaign
 -- remove/fix autocomplete while entering only player's name without login

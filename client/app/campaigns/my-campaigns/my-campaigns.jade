@@ -2,17 +2,26 @@ bg-img(img='bg/main-bg.jpg')
 .container
     h2 My campaigns
     ul.table-list
+        li.header(layout='row')
+            span(flex='25') Name
+            span(flex='25') Start date
+            span(flex='25') Creator of log
+            span(flex='25') Status od campaign
         li(ng-repeat='campaign in $ctrl.campaigns')
             a(ui-sref='campaign({ id: campaign._id, campaign: campaign })', layout='row')
                 span(ng-bind='campaign.name', flex='25')
                 span(flex='25', layout='row')
-                    span.glyphicon.glyphicon-calendar(flex='15')
+                    span.fa.fa-calendar(flex='15')
                     span(ng-bind='campaign.startDate | date:"dd.MM.yyyy"', flex)
                 span(flex='25', layout='row')
-                    span.glyphicon.glyphicon-user(flex='15')
+                    span.fa.fa-user(flex='15')
                     span(ng-bind='campaign.owner', flex)
-                span(ng-if='campaign.active', flex='25') in progress
-                span(ng-if='!campaign.active', flex='25') ended
+                span(ng-if='campaign.active', flex='25', layout='row')
+                    span.fa.fa-clock-o(flex='15')
+                    span(flex='25') in progress
+                span(ng-if='!campaign.active', flex='25', layout='row')
+                    span.fa.fa-times-circle(flex='15')
+                    span(flex='25') ended
 
     div.btn-container
         a.btn(href='', back-button) Go back

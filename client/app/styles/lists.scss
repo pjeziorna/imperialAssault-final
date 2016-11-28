@@ -25,6 +25,19 @@
             @include linkType($linkLightColor, $linkLightHoverColor);
             line-height: $listTableHeight;
         }
+
+        .fa {
+            line-height: $listTableHeight;
+        }
+    }
+
+    .header, .header:hover {
+        background-color: $listHeaderColor;
+        border-color: $listHeaderBorderColor;
+
+        > * {
+            line-height: $listTableHeaderHeight;
+        }
     }
 }
 
