@@ -18,65 +18,7 @@ bg-img(img='bg/main-bg.jpg')
                     span.label(flex='50', flex-gt-sm='30') Available side missions:
                     ul.bullets-list(flex='50', flex-gt-sm='70')
                         li.value(ng-repeat='mission in $ctrl.mission.availableSideMissions') {{mission}}
-        hr
-        section
-            h4 Rebelion
-            
-            .row
-                .col-xs-12.col-gt-xs-6
-                    section.mission-row(layout='row')
-                        span.label(flex='50', flex-gt-sm='30') Credits possessed:
-                        span.value(flex='50', flex-gt-sm='70', ng-bind='$ctrl.mission.rebelion.credits')
-                .col-xs-12.col-gt-xs-6
-                    section.mission-row(layout='row')
-                        span.label(flex='50', flex-gt-sm='30') Credits gained in mission:
-                        span.value(flex='50', flex-gt-sm='70', ng-bind='$ctrl.mission.rebelion.creditsInMission')
-                .col-xs-12.col-gt-xs-6
-                    section.mission-row(layout='row')
-                        span.label(flex='50', flex-gt-sm='30') Exp gained in mission:
-                        span.value(flex='50', flex-gt-sm='70', ng-bind='$ctrl.mission.rebelion.expInMission')
-                .col-xs-12.col-gt-xs-6
-                    section.mission-row(layout='row', ng-if='$ctrl.mission.rebelion.allys.length')
-                        span.label(flex='50', flex-gt-sm='30') Allys:
-                        ul.bullets-list(flex='50', flex-gt-sm='70')
-                            li.value(ng-repeat='ally in $ctrl.mission.rebelion.allys') {{ally}}
-                .col-xs-12.col-gt-xs-6(ng-if='$ctrl.mission.rebelion.itemsPossessed.length')
-                    section.mission-row(layout='row')
-                        span.label(flex='50', flex-gt-sm='30') Items possessed:
-                        ul.bullets-list(flex='50', flex-gt-sm='30')
-                            li.value(ng-repeat='item in $ctrl.mission.rebelion.itemsPossessed') {{item}}
-                .col-xs-12.col-gt-xs-6(ng-if='$ctrl.mission.rebelion.itemsSold.length')
-                    section.mission-row(layout='row')
-                        span.label(flex='50', flex-gt-sm='30') Items sold:
-                        ul.bullets-list(flex='50', flex-gt-sm='70')
-                            li.value(ng-repeat='item in $ctrl.mission.rebelion.itemsSold') {{item}}
-            
-            hr
-            md-grid-list(md-cols-gt-sm='2', md-cols='1', md-gutter='20px', md-row-height='120px')
-                md-grid-tile.campaing-rebelions(ng-repeat='player in $ctrl.mission.rebelion.players')
-                    section.player-tile(flex)
-                        section.mission-row(layout='row')
-                            span.label(flex='50', flex-gt-xs='30') Player:
-                            span.value(ng-bind='player.player.name', flex='50', flex-gt-xs='70')
-                        section.mission-row(layout='row')
-                            span.label(flex='50', flex-gt-xs='30') Hero:
-                            span.value(ng-bind='player.hero', flex='50', flex-gt-xs='70')
-                        section.mission-row(layout='row')
-                            span.label(flex='50', flex-gt-xs='30') Exp possessed:
-                            span.value(ng-bind='player.exp', flex='50', flex-gt-xs='70')
-                        
-                .col-xs-12.col-gt-xs-6(ng-if='player.heroClassCards.sold.length')
-                    section.mission-row(layout='row')
-                        span.label(flex='50', flex-gt-xs='30') Sold cards:
-                        ul.bullets-list(flex='50', flex-gt-xs='70')
-                            li.value(ng-repeat='card in player.heroClassCards.sold') {{card}}
-                
-                .col-xs-12.col-gt-xs-6(ng-if='player.heroClassCards.possessed.length')
-                    section.mission-row(layout='row')
-                        span.label(flex='50', flex-gt-xs='30') Possessed cards:
-                        ul.bullets-list(flex='50', flex-gt-xs='70')
-                            li.value(ng-repeat='card in player.heroClassCards.possessed') {{card}}
-            
+        
             
         hr
         section
@@ -108,5 +50,69 @@ bg-img(img='bg/main-bg.jpg')
                         span.label(flex='50', flex-gt-sm='30') Agenda cards:
                         ul.bullets-list(flex='50', flex-gt-sm='70')
                             li.value(ng-repeat='card in $ctrl.mission.empire.agendaCards') {{card}}
+                .col-xs-12.col-sm-12.col-gt-sm-6(ng-if='$ctrl.mission.empire.allies.length')
+                    section.mission-row(layout='row')
+                        span.label(flex='50', flex-gt-sm='30') Allies:
+                        ul.bullets-list(flex='50', flex-gt-sm='70')
+                            li.value(ng-repeat='card in $ctrl.mission.empire.allies') {{card}}
+            
+            
+        hr
+        section
+            h4 Rebelion
+            .row
+                .col-xs-12.col-gt-xs-6
+                    section.mission-row(layout='row')
+                        span.label(flex='50', flex-gt-sm='30') Credits possessed:
+                        span.value(flex='50', flex-gt-sm='70', ng-bind='$ctrl.mission.rebelion.credits')
+                .col-xs-12.col-gt-xs-6
+                    section.mission-row(layout='row')
+                        span.label(flex='50', flex-gt-sm='30') Credits gained in mission:
+                        span.value(flex='50', flex-gt-sm='70', ng-bind='$ctrl.mission.rebelion.creditsInMission')
+                .col-xs-12.col-gt-xs-6
+                    section.mission-row(layout='row')
+                        span.label(flex='50', flex-gt-sm='30') Exp gained in mission:
+                        span.value(flex='50', flex-gt-sm='70', ng-bind='$ctrl.mission.rebelion.expInMission')
+                .col-xs-12.col-gt-xs-6
+                    section.mission-row(layout='row', ng-if='$ctrl.mission.rebelion.allies.length')
+                        span.label(flex='50', flex-gt-sm='30') Allies:
+                        ul.bullets-list(flex='50', flex-gt-sm='70')
+                            li.value(ng-repeat='ally in $ctrl.mission.rebelion.allies') {{ally}}
+                .col-xs-12.col-gt-xs-6(ng-if='$ctrl.mission.rebelion.itemsPossessed.length')
+                    section.mission-row(layout='row')
+                        span.label(flex='50', flex-gt-sm='30') Items possessed:
+                        ul.bullets-list(flex='50', flex-gt-sm='30')
+                            li.value(ng-repeat='item in $ctrl.mission.rebelion.itemsPossessed') {{item}}
+                .col-xs-12.col-gt-xs-6(ng-if='$ctrl.mission.rebelion.itemsSold.length')
+                    section.mission-row(layout='row')
+                        span.label(flex='50', flex-gt-sm='30') Items sold:
+                        ul.bullets-list(flex='50', flex-gt-sm='70')
+                            li.value(ng-repeat='item in $ctrl.mission.rebelion.itemsSold') {{item}}
+            
+            h6 Players details
+            md-grid-list(md-cols-gt-sm='2', md-cols='1', md-gutter='20px', md-row-height='120px')
+                md-grid-tile.campaing-rebelions(ng-repeat='player in $ctrl.mission.rebelion.players')
+                    section.player-tile(flex)
+                        section.mission-row(layout='row')
+                            span.label(flex='50', flex-gt-xs='30') Player:
+                            span.value(ng-bind='player.player.name', flex='50', flex-gt-xs='70')
+                        section.mission-row(layout='row')
+                            span.label(flex='50', flex-gt-xs='30') Hero:
+                            span.value(ng-bind='player.hero', flex='50', flex-gt-xs='70')
+                        section.mission-row(layout='row')
+                            span.label(flex='50', flex-gt-xs='30') Exp possessed:
+                            span.value(ng-bind='player.exp', flex='50', flex-gt-xs='70')
+                        
+                .col-xs-12.col-gt-xs-6(ng-if='player.heroClassCards.sold.length')
+                    section.mission-row(layout='row')
+                        span.label(flex='50', flex-gt-xs='30') Sold cards:
+                        ul.bullets-list(flex='50', flex-gt-xs='70')
+                            li.value(ng-repeat='card in player.heroClassCards.sold') {{card}}
+                
+                .col-xs-12.col-gt-xs-6(ng-if='player.heroClassCards.possessed.length')
+                    section.mission-row(layout='row')
+                        span.label(flex='50', flex-gt-xs='30') Possessed cards:
+                        ul.bullets-list(flex='50', flex-gt-xs='70')
+                            li.value(ng-repeat='card in player.heroClassCards.possessed') {{card}}
             
     a.btn(href='', back-button) Go back

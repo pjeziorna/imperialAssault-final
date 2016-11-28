@@ -22,7 +22,7 @@ var MissionSchema = new mongoose.Schema({
         creditsInMission: Number,
         credits: Number,
         expInMission: Number,
-        allys: Array,
+        allies: Array,
         players: Array,
         itemsSold: Array,
         itemsPossessed: Array

@@ -138,12 +138,232 @@ Campaign.find({}).remove()
                 hero: 'Diana Passil'
             }],
             missions: [{
-                title: 'Homecoming',
-                _id: 'HOMECOMING'
+                "additionalRewards" : {
+                    "exp" : 1,
+                    "credits" : 100,
+                    "influence" : 1,
+                    "other" : "100¢ OR 1 inf."
+                },
+                "rebelVictoryBonus" : {
+                    "credits" : 0,
+                    "exp" : 1,
+                    "other" : ""
+                },
+                "empireVictoryBonus" : {
+                    "influence" : 0,
+                    "exp" : 1,
+                    "other" : ""
+                },
+                "_id" : "NEW_THREAT",
+                "playDate" : "2016-11-27T23:00:00.000Z",
+                "winner" : "empire",
+                "nextStoryMission" : "Imperial Hospitality",
+                "availableSideMissions" : [
+                    "Target of Opportunity",
+                    "Sorry About the Mess"
+                ],
+                "rebelion" : {
+                    "itemsPossessed" : [
+                        "DH-17"
+                    ],
+                    "itemsSold" : [
+                        "DL-44"
+                    ],
+                    "players" : [
+                        {
+                            "exp" : 1,
+                            "heroClassCards" : {
+                                "sold" : [
+                                    "Infantry Rifle"
+                                ],
+                                "possessed" : [
+                                    "Take Cover"
+                                ]
+                            },
+                            "hero" : "Fenn Signis",
+                            "player" : "test"
+                        },
+                        {
+                            "exp" : 1,
+                            "heroClassCards" : {
+                                "sold" : [
+                                    "Holdout Blaster"
+                                ],
+                                "possessed" : [
+                                    "Mobile Tactician"
+                                ]
+                            },
+                            "hero" : "Gideon Argus",
+                            "player" : "test3"
+                        }
+                    ],
+                    "allies" : "Han Solo",
+                    "expInMission" : 1,
+                    "credits" : 400,
+                    "creditsInMission" : 200
+                },
+                "empire" : {
+                    "allies" : [
+                        "Lord Vader"
+                    ],
+                    "agendaCards" : [
+                        "Imperial Informants"
+                    ],
+                    "classCards" : [
+                        "Technical Support",
+                        "Jetpacks"
+                    ],
+                    "exp" : 3,
+                    "expInMission" : 2,
+                    "influenceInMission" : 1,
+                    "influence" : 4
+                },
+                "campaign_id" : "583c3aaf6829e1d41c04c7e1",
+                "missionType" : "Story1",
+                "deckType" : "hero",
+                "title" : "A New Threat"
             }, {
                 title: 'Armed and Operation',
                 _id: 'ARMED_OPERATION'
             }]
+        }, {
+            "name" : "test campaign",
+            "owner" : "test@example.com",
+            "active" : true,
+            "missions" : [{
+                "additionalRewards" : {
+                    "exp" : 1,
+                    "credits" : 100,
+                    "influence" : 1,
+                    "other" : ""
+                },
+                "rebelVictoryBonus" : {
+                    "credits" : 100,
+                    "exp" : 0,
+                    "other" : ""
+                },
+                "empireVictoryBonus" : {
+                    "influence" : 1,
+                    "exp" : 0,
+                    "other" : ""
+                },
+                "_id" : "AFTERMATH",
+                "playDate" : "2016-11-27T23:00:00.000Z",
+                "winner" : "empire",
+                "nextStoryMission" : "Imperial Hospitality",
+                "availableSideMissions" : [
+                    "Brace for Impact",
+                    "Sorry About the Mess"
+                ],
+                "rebelion" : {
+                    "itemsPossessed" : [],
+                    "itemsSold" : [],
+                    "players" : [
+                        {
+                            "exp" : 1,
+                            "heroClassCards" : {
+                                "sold" : [],
+                                "possessed" : [
+                                    "Vibro-Ax"
+                                ]
+                            },
+                            "player" : {
+                                "name" : "Pyza 1",
+                                "login": "admin@example.com"
+                            },
+                            "hero" : "Gaarkhan"
+                        },
+                        {
+                            "exp" : 1,
+                            "heroClassCards" : {
+                                "sold" : [],
+                                "possessed" : [
+                                    "Infantry Rifle"
+                                ]
+                            },
+                            "player" : {
+                                "name" : "Pyza 2"
+                            },
+                            "hero" : "Fenn Signis"
+                        },
+                        {
+                            "exp" : 1,
+                            "heroClassCards" : {
+                                "sold" : [],
+                                "possessed" : [
+                                    "Plasteel Staff"
+                                ]
+                            },
+                            "player" : {
+                                "name" : "Pyza 3"
+                            },
+                            "hero" : "Diala Passil"
+                        }
+                    ],
+                    "allies" : [],
+                    "expInMission" : 1,
+                    "credits" : 300,
+                    "creditsInMission" : 300
+                },
+                "empire" : {
+                    "agendaCards" : [
+                        "Dark Obsession",
+                        "A Dark Power",
+                        "As You Wish"
+                    ],
+                    "allies" : [
+                        "Darth Vader"
+                    ],
+                    "classCards" : [
+                        "Field Officer"
+                    ],
+                    "exp" : 1,
+                    "expInMission" : 1,
+                    "influenceInMission" : 2,
+                    "influence" : 2
+                },
+                "campaign_id" : "583c87676f8934041138e433",
+                "missionType" : "Introduction",
+                "deckType" : "hero",
+                "title" : "Aftermath"
+            }
+        ],
+            "rebelion" : [
+                {
+                    "hero" : "Gaarkhan",
+                    "player" : {
+                        "name" : "Pyza 1",
+                        "login" : "admin@example.com"
+                    }
+                },
+                {
+                    "hero" : "Fenn Signis",
+                    "player" : {
+                        "name" : "Pyza 2"
+                    }
+                },
+                {
+                    "hero" : "Diala Passil",
+                    "player" : {
+                        "name" : "Pyza 3"
+                    }
+                }
+            ],
+            "empire" : {
+                "classSet" : "Inspiring Leadership",
+                "agendaSets" : [
+                    "Lord Vader's Command",
+                    "Imperial Industry",
+                    "Retaliation",
+                    "For the Right Price",
+                    "Agents of the Empire",
+                    "Imperial Discipline"
+                ],
+                "player" : {
+                    "name" : "PJ"
+                }
+            },
+            "startDate" : 1480361799051
         })
         .then(() => {
             console.log('---finished populating campaigns---');

@@ -1,0 +1,19 @@
+Co poprawy:
+- my campaigns
+-- add header to table of content
+
+- add campaign
+-- remove/fix autocomplete while entering only player's name without login
+-- after submitting form - remove shown errors
+-- when submitting form - remove messages about errors
+
+- add new mission
+-- placehold allies if fraction possess ones
+
+- admin
+-- when deleting user there should be confirmation box
+-- make add-cards form working
+-- add graphic background
+
+- global
+-- add angular-cache

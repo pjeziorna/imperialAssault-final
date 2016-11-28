@@ -105,7 +105,7 @@ angular.module('imperialAssaultApp')
     /**
      * Filter chooses those ally cards for rebelion
      */
-    .filter('rebelionAllys', function() {
+    .filter('rebelionAllies', function() {
         return function(items) {
             let filtered = [];
             _.forEach(items, (item) => {
@@ -120,7 +120,7 @@ angular.module('imperialAssaultApp')
     /**
      * Filter chooses those ally cards for empire
      */
-    .filter('empireAllys', function() {
+    .filter('empireAllies', function() {
         return function(items) {
             let filtered = [];
             _.forEach(items, (item) => {

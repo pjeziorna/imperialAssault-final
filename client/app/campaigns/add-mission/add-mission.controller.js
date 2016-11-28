@@ -158,7 +158,7 @@
                     creditsInMission: null,
                     credits: null,
                     expInMission: null,
-                    allys: [],
+                    allies: [],
                     players: this._getPlayersFromCampaignObject(),
                     itemsSold: this._getRebelionItemsSoldFromLastMission(),
                     itemsPossessed: this._getRebelionItemsPossessedFromLastMission()
