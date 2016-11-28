@@ -46,6 +46,40 @@ form.ng-submitted {
             }
         }
     }
+
+    md-datepicker.ng-invalid {
+        margin-bottom: 0;
+
+        .md-datepicker-input-container {
+            border-color: $inputInvalidColor !important;
+
+            .md-datepicker-input {
+                &::-webkit-input-placeholder {
+                    color: $inputInvalidColor;
+                }
+            }
+        }
+
+        .md-datepicker-triangle-button .md-datepicker-expand-triangle {
+            border-top-color: $inputInvalidColor;
+        }
+
+        md-icon {
+            color: $inputInvalidColor;
+        }
+    }
+
+    .validation-messages {
+        color: $inputInvalidColor;
+        font-size: 12px;
+        line-height: 14px;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+        opacity: 1;
+        margin-top: 0;
+        padding-top: 5px;
+        padding-left: 60px;
+    }
 }
 
 md-select {

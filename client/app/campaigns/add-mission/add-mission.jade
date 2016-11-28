@@ -18,7 +18,7 @@ bg-img(img='bg/main-bg.jpg')
                                 div(ng-message='required') Mission name is required
                     .col-xs-12.col-sm-6.col-gt-sm-4
                         md-datepicker.md-block(name='missionDateOfPlay', md-placeholder='Date of play', ng-model='$ctrl.mission.playDate', md-open-on-focus, md-max-date='$ctrl.maxDatePlay' required)
-                        div.validation-messages(ng-messages='addMissionForm.missionDateOfPlay.$error', ng-if='addMissionForm.$submitted')
+                        div.validation-messages.errors(ng-messages='addMissionForm.missionDateOfPlay.$error', ng-if='addMissionForm.$submitted')
                             div(ng-message='required') Date of play is required
                 
                     .col-xs-12.col-gt-xs-6
