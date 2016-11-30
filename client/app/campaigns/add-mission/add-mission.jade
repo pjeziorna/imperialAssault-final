@@ -150,6 +150,7 @@ bg-img(img='bg/main-bg.jpg')
                                         md-option(ng-repeat='card in hero.classCards', ng-bind='card.name', value='{{card.name}}', ng-if='card.xpCost === 0')
             hr
             section.btn-container
+                a.btn.btn-reset.btn-warn(href='', ng-click='$ctrl.clearForm(this)') Reset
                 button.btn.btn-block.btn-primary.btn-add.btn-right(type='submit') Add mission
             
         a.btn(href='', back-button) Go back

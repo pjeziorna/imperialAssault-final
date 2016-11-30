@@ -25,7 +25,7 @@ class MessageController {
         this.timeout(() => {
             let messages = document.getElementsByClassName('message-notify');
             window.scrollTo(0, messages[data.index].offsetTop - 80);
-        }, 200);
+        }, 400);
     }
 }
 

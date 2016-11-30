@@ -24,11 +24,13 @@
                     this.campaign = response.data;
                     this.mission = this._getEmptyMissionModel();
                     this._subscribeWatchers($scope);
+                    console.log(this.campaign);
                 });
             } else {
                 this.campaign = this.$stateParams.campaign;
                 this.mission = this._getEmptyMissionModel();
                 this._subscribeWatchers($scope);
+                console.log(this.campaign);
             }
         }
 
@@ -78,8 +80,15 @@
             this.$http.put('/api/campaigns/' + this.campaign._id, this.campaign)
                 .then(() => {
                     this.messagesService.addMessage('New mission has been added.', 'success');
-                    this._clearForm(scope);
+                    this.clearForm(scope);
                 });
+        }
+
+        clearForm(scope) {
+            this.mission = this._getEmptyMissionModel();
+            this.messagesService.removeAllMessages();
+            scope.addMissionForm.$setPristine();
+            scope.addMissionForm.$setUntouched();
         }
 
         _subscribeWatchers($scope) {
@@ -153,13 +162,14 @@
                     influenceInMission: null,
                     expInMission: null,
                     exp: this._getEmpireExpFromLastMission(),
-                    classCards: this._getEmpireClassCardsPossessed()
+                    classCards: this._getEmpireClassCardsPossessed(),
+                    allies: this._getEmpireAlliesFromLastMission()
                 },
                 rebelion: {
                     creditsInMission: null,
-                    credits: null,
+                    credits: this._getRebelionCreditsFromLastMission(),
                     expInMission: null,
-                    allies: [],
+                    allies: this._getRebelionAlliesFromLastMission(),
                     players: this._getPlayersFromCampaignObject(),
                     itemsSold: this._getRebelionItemsSoldFromLastMission(),
                     itemsPossessed: this._getRebelionItemsPossessedFromLastMission()
@@ -207,25 +217,39 @@
             return this.campaign.missions[this.campaign.missions.length - 1].rebelion.itemsSold;
         }
 
-        _getEmpireExpFromLastMission() {
+        _getRebelionAlliesFromLastMission() {
             if(!this.campaign.missions.length) {
                 return [];
+            }
+            return this.campaign.missions[this.campaign.missions.length - 1].rebelion.allies;
+        }
+
+        _getRebelionCreditsFromLastMission() {
+            if(!this.campaign.missions.length) {
+                return null;
+            }
+            return this.campaign.missions[this.campaign.missions.length - 1].rebelion.credits;
+        }
+
+        _getEmpireExpFromLastMission() {
+            if(!this.campaign.missions.length) {
+                return null;
             }
             return this.campaign.missions[this.campaign.missions.length - 1].empire.exp;
         }
 
         _getEmpireInfluenceFromLastMission() {
             if(!this.campaign.missions.length) {
-                return [];
+                return null;
             }
             return this.campaign.missions[this.campaign.missions.length - 1].empire.influence;
         }
 
-        _clearForm(scope) {
-            this.mission = this._getEmptyMissionModel();
-            this.messagesService.removeAllMessages();
-            scope.addMissionForm.$setPristine();
-            scope.addMissionForm.$setUntouched();
+        _getEmpireAlliesFromLastMission() {
+            if(!this.campaign.missions.length) {
+                return [];
+            }
+            return this.campaign.missions[this.campaign.missions.length - 1].empire.allies;
         }
     }
 
