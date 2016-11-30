@@ -91,7 +91,7 @@ bg-img(img='bg/main-bg.jpg')
             
             h6 Players details
             md-grid-list(md-cols-gt-sm='2', md-cols='1', md-gutter='20px', md-row-height='120px')
-                md-grid-tile.campaing-rebelions(ng-repeat='player in $ctrl.mission.rebelion.players')
+                md-grid-tile.campaing-rebelions(ng-repeat='player in $ctrl.mission.rebelion.players', ng-class='{"bottom-line" : $ctrl.mission.rebelion.players.length === 3 && $index === 1, "right-line" : $ctrl.mission.rebelion.players.length === 3 && $index === 2}')
                     section.player-tile(flex)
                         section.mission-row(layout='row')
                             span.label(flex='50', flex-gt-xs='30') Player:

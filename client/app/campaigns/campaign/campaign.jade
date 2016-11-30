@@ -57,7 +57,7 @@ bg-img(img='bg/main-bg.jpg')
         section
             h4 Rebelion
             md-grid-list(md-cols-gt-sm='2', md-cols='1', md-gutter='20px', md-row-height='120px')
-                md-grid-tile.campaing-rebelions(ng-repeat='rebel in $ctrl.campaign.rebelion')
+                md-grid-tile.campaing-rebelions(ng-repeat='rebel in $ctrl.campaign.rebelion', ng-class='{"bottom-line" : $ctrl.campaign.rebelion.length === 3 && $index === 1, "right-line" : $ctrl.campaign.rebelion.length === 3 && $index === 2}')
                     section.player-tile(flex)
                         div.campaign-row(layout='row')
                             span.label(flex='70') Player:
