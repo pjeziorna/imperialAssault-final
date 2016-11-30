@@ -22,6 +22,10 @@ angular.module('imperialAssaultApp.messages')
             messages.splice(index, 1);
         };
 
+        this.removeAllMessages = () => {
+            messages = [];
+        };
+
         this.getMessages = () => {
             return messages;
         };

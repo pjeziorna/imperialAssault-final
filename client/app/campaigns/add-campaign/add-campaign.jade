@@ -19,7 +19,7 @@ bg-img(img='bg/main-bg.jpg')
                 h4 Empire
                 .row
                     .col-xs-12.col-sm-6.col-gt-sm-3
-                        md-autocomplete(md-input-name='empireLogin', md-selected-item='$ctrl.campaign.empire.player', md-search-text='$ctrl.empireSearchText', md-items='user in $ctrl.filterUsers($ctrl.empireSearchText)', md-item-text='user.email', md-floating-label='login')
+                        md-autocomplete(md-input-name='empireLogin', md-selected-item='$ctrl.campaign.empire.player.email', md-search-text='$ctrl.empireSearchText', md-items='user in $ctrl.filterUsers($ctrl.empireSearchText)', md-item-text='user.email', md-floating-label='login')
                             md-item-template
                                 span(md-highlight-text='$ctrl.empireSearchText') {{user.email}}
                     .col-xs-12.col-sm-6.col-gt-sm-3
@@ -49,7 +49,7 @@ bg-img(img='bg/main-bg.jpg')
                     h6 Player {{$index + 1}}
                     .row
                         .col-xs-12.col-sm-6.col-gt-sm-4
-                            md-autocomplete(md-input-name='rebelLogin{{$index}}', md-selected-item='rebel.player', md-search-text='rebel.searchText', md-items='user in $ctrl.filterUsers(rebel.searchText)', md-item-text='user.email', md-floating-label='login')
+                            md-autocomplete(md-input-name='rebelLogin{{$index}}', md-selected-item='rebel.player.email', md-search-text='rebel.searchText', md-items='user in $ctrl.filterUsers(rebel.searchText)', md-item-text='user.email', md-floating-label='login')
                                 md-item-template
                                     span(md-highlight-text='rebel.searchText') {{user.email}}
                         .col-xs-12.col-sm-6.col-gt-sm-4
@@ -71,7 +71,7 @@ bg-img(img='bg/main-bg.jpg')
             
             hr
             section.btn-container
-                a.btn.btn-reset.btn-warn(href='', ng-click='$ctrl.clearForm()') Reset
+                a.btn.btn-reset.btn-warn(href='', ng-click='$ctrl.clearForm(this)') Reset
                 button.btn.btn-primary.btn-add.btn-right(type='submit') Add campaign
     a.btn(href='', back-button) Go back
             

@@ -67,6 +67,7 @@
         submitMission(scope) {
             // this.messagesService.addMessage('Form filled with errors.', 'error');
             // return;
+            this.messagesService.removeAllMessages();
             if(!scope.addMissionForm.$valid) {
                 this.messagesService.addMessage('Form filled with errors.', 'error');
                 return;
@@ -222,6 +223,7 @@
 
         _clearForm(scope) {
             this.mission = this._getEmptyMissionModel();
+            this.messagesService.removeAllMessages();
             scope.addMissionForm.$setPristine();
             scope.addMissionForm.$setUntouched();
         }

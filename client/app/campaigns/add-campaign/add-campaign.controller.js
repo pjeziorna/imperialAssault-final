@@ -48,12 +48,16 @@
             this.campaign.rebelion.pop();
         }
 
-        clearForm() {
+        clearForm(scope) {
             this.campaign = this._getEmptyCampaignModel();
+            this.messagesService.removeAllMessages();
+            scope.addCampaignForm.$setPristine();
+            scope.addCampaignForm.$setUntouched();
         }
 
 
         submitCampaign(scope) {
+            this.messagesService.removeAllMessages();
             if(!scope.addCampaignForm.$valid) {
                 this.messagesService.addMessage('Form filled with errors.', 'error');
                 return;
@@ -61,7 +65,7 @@
             this.$http.post('/api/campaigns/', this.campaign)
                 .then(() => {
                     this.messagesService.addMessage('New campaign has been added.', 'success');
-                    this.clearForm();
+                    this.clearForm(scope);
                 });
         }
 
