@@ -17,6 +17,7 @@ function onConnect(socket) {
   });
 
   // Insert sockets below
+  require('../api/game-set/game-set.socket').register(socket);
   require('../api/ally-card/ally-card.socket').register(socket);
   require('../api/agenda-card/agenda-card.socket').register(socket);
   require('../api/empire-class-card/empire-class-card.socket').register(socket);

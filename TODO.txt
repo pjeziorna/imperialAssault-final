@@ -4,6 +4,17 @@ Co poprawy:
 -- when deleting user there should be confirmation box
 -- make add-cards form working
 -- add graphic background
+-- edit user's role
+
 
 - global
 -- add angular-cache
+-- add component for confirmation (popups)
+-- when entering some link, site should be at the top (scrollTo)
+
+- forms
+-- add animations to scrollTo when showing messages at the top
+
+- server
+-- api
+--- add method for adding and storing sets names (ex. twin shadows) for administrator only

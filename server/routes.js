@@ -9,6 +9,7 @@ import path from 'path';
 
 export default function(app) {
   // Insert routes below
+  app.use('/api/game-sets', require('./api/game-set'));
   app.use('/api/ally-cards', require('./api/ally-card'));
   app.use('/api/agenda-cards', require('./api/agenda-card'));
   app.use('/api/empire-class-cards', require('./api/empire-class-card'));

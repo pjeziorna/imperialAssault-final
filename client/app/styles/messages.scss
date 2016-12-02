@@ -1,16 +1,26 @@
+message-notification {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: $navbarZindex + 100;
+}
+
 .message-notify {
     padding: 10px 12px;
 
-    + .message-notify {
-        margin-top: 15px;
-    }
+    // + .message-notify {
+    //     margin-top: 15px;
+    // }
 
     &.success {
         @include messageType($messageSuccessBg, $messageSuccessBorder);
+        color: $messageSuccessColor;
     }
 
     &.warning {
         @include messageType($messageWarnBg, $messageWarnBorder);
+        color: $messageWarnColor;
     }
 
     &.error {

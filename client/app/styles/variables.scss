@@ -31,6 +31,7 @@ $hrColor: #35332d;
 $navbarBg: transparentize(#0f1010, 0.15);
 $navbarHeight: 70px;
 $navbarBorderColor: #35332d;
+$navbarZindex: 1000;
 
 /**
  * Forms
@@ -56,12 +57,14 @@ $outlineColor: #ff5400;
 /**
  * Messages
  **/
-$messageSuccessBg: transparentize(#56f442, 0.75);
-$messageSuccessBorder: transparentize(#38ff1e, 0.5);
-$messageWarnBg: transparentize(#CCB731, 0.75);
-$messageWarnBorder: transparentize(#E8CF2C, 0.5);
-$messageErrorBg: transparentize(#910C1B, 0.75);
-$messageErrorBorder: transparentize(#CF1329, 0.5);
+$messageSuccessBg: transparentize(#40B531, 0.05);
+$messageSuccessBorder: transparentize(#3BC928, 0.05);
+$messageSuccessColor: #f0f0f0;
+$messageWarnBg: transparentize(#CCB731, 0.05);
+$messageWarnBorder: transparentize(#E8CF2C, 0.05);
+$messageWarnColor: #343434;
+$messageErrorBg: transparentize(#910C1B, 0.05);
+$messageErrorBorder: transparentize(#CF1329, 0.05);
 
 /**
  * Buttons

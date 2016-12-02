@@ -2,10 +2,10 @@
     height: $navbarHeight;
     border-bottom: 1px solid $navbarBorderColor;
     background-color: $navbarBg;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
+    // position: fixed;
+    // top: 0;
+    // width: 100%;
+    // z-index: $navbarZindex;
 
     .navbar-brand {
         line-height: $navbarHeight;
