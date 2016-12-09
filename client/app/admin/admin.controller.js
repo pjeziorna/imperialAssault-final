@@ -3,10 +3,11 @@
 (function() {
 
     class AdminController {
-        constructor(User, MessagesService, $http) {
+        constructor(User, MessagesService, $http, PopupsService) {
             // Use the User $resource to fetch all users
             this.users = User.query();
             this.messagesService = MessagesService;
+            this.popupsService = PopupsService;
             this.$http = $http;
             this.gameSet = {};
             this.gameSets = [];
@@ -18,8 +19,13 @@
         }
 
         delete(user) {
-            user.$remove();
-            this.users.splice(this.users.indexOf(user), 1);
+            this.popupsService.open({
+                message: `Are you sure you want to delete user ${user.name}?`
+            })
+            .then(() => {
+                user.$remove();
+                this.users.splice(this.users.indexOf(user), 1);
+            });
         }
 
         range(n) {
@@ -72,17 +78,22 @@
             this.$http.put('/api/game-sets/' + set._id, set)
             .then(response => {
                 this.messagesService.addMessage('Game set name updated correctly.', 'success');
-                let index = _.findIndex(this.gameSets, {_id: set.id});
+                let index = _.findIndex(this.gameSets, {_id: set._id});
                 this.gameSets[index] = set;
             });
         }
 
-        removeGameSet(id) {
-            this.$http.delete('/api/game-sets/' + id)
+        removeGameSet(set) {
+            this.popupsService.open({
+                message: `Are you sure you want to delet set ${set.name}?`
+            })
             .then(() => {
-                this.messagesService.addMessage('Game set removed correctly.', 'success');
-                let index = _.findIndex(this.gameSets, {_id: id});
-                this.gameSets.splice(index, 1);
+                this.$http.delete('/api/game-sets/' + set._id)
+                .then(() => {
+                    this.messagesService.addMessage('Game set removed correctly.', 'success');
+                    let index = _.findIndex(this.gameSets, {_id: set._id});
+                    this.gameSets.splice(index, 1);
+                });
             });
         }
 

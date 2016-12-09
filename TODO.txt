@@ -4,7 +4,6 @@ Do poprawy:
 -- add edit mission from list
 
 - admin
--- when deleting user there should be confirmation box
 -- make add-cards form working
 -- add graphic background
 -- edit user's role

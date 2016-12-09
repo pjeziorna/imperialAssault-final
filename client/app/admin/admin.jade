@@ -22,7 +22,7 @@ bg-img(img='bg/main-bg.jpg')
                     button.btn.btn-primary.btn-right(type='submit') Save
                 a.btn.btn-icon.action-btn(href='', ng-click='admin.editGameSet(set)', ng-if='!set.edit')
                     i.fa.fa-pencil
-                a.btn.btn-icon.action-btn(href='', ng-click='admin.removeGameSet(set._id)', ng-if='!set.edit')
+                a.btn.btn-icon.action-btn(href='', ng-click='admin.removeGameSet(set)', ng-if='!set.edit')
                     i.fa.fa-trash
         hr
         p You can add new game set name (ex. twin shadows)
