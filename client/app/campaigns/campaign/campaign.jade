@@ -72,6 +72,7 @@ bg-img(img='bg/main-bg.jpg')
         hr 
         section.missions-section
             h4.list-header Missions
+            p(ng-if='$ctrl.campaign.missions.length === 0') There are no missions yet.
             ul.table-list.missions-list
                 li.list-item.mission(ng-repeat='mission in $ctrl.campaign.missions', aria-label='Mission {{mission.title}}') 
                     span.winner
@@ -81,7 +82,7 @@ bg-img(img='bg/main-bg.jpg')
                     
                     a.btn.btn-icon.action-btn(href='', ng-click='$ctrl.editMission()', ng-if='$ctrl.campaign.active && $ctrl.isCampaignOwner()')
                         i.fa.fa-pencil
-                    a.btn.btn-icon.action-btn(href='', ng-click='$ctrl.deleteMission(mission._id)', ng-if='$ctrl.campaign.active && $ctrl.isCampaignOwner()')
+                    a.btn.btn-icon.action-btn(href='', ng-click='$ctrl.deleteMission(mission)', ng-if='$ctrl.campaign.active && $ctrl.isCampaignOwner()')
                         i.fa.fa-trash
             section.btn-container(ng-if='$ctrl.campaign.active && $ctrl.isCampaignOwner()')
                 a.btn.btn-right.btn-primary.btn-add(ui-sref='add-mission({ id: $ctrl.campaign._id, campaign: $ctrl.campaign })') Add mission

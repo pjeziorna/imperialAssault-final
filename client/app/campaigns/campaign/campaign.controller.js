@@ -59,17 +59,24 @@
             console.log('edit mission');
         }
 
-        deleteMission(id) {
-            let index = _.findIndex(this.campaign.missions, {_id: id});
-            this.campaign.missions.splice(index, 1);
-            this.$http.put(`/api/campaigns/${this.campaignId}/${id}`, this.campaign)
-            .then(response => {
-                if (response.status === 200) {
-                    this.messagesService.addMessage('Mission deleted correctly.', 'success');
-                }
+        deleteMission(mission) {
+            this.popupsService.open({
+                message: `Are you sure you want to delete mission ${mission.title}?`,
+                cancelBtn: 'Cancel',
+                acceptBtn: 'OK'
             })
-            .catch(() => {
-                this.messagesService.addMessage('Mission not delete.', 'error');
+            .then(() => {
+                let index = _.findIndex(this.campaign.missions, {_id: mission._id});
+                this.campaign.missions.splice(index, 1);
+                this.$http.put(`/api/campaigns/${this.campaignId}/${id}`, this.campaign)
+                .then(response => {
+                    if (response.status === 200) {
+                        this.messagesService.addMessage('Mission deleted correctly.', 'success');
+                    }
+                })
+                .catch(() => {
+                    this.messagesService.addMessage('Mission not delete.', 'error');
+                });
             });
         }
 
