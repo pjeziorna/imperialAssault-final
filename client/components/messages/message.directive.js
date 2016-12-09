@@ -6,6 +6,6 @@ angular.module('imperialAssaultApp.messages')
           templateUrl: 'components/messages/message.html',
           restrict: 'E',
           controller: 'MessageController',
-          controllerAs: 'ctrl'
+          controllerAs: 'messageCtrl'
       };
   });

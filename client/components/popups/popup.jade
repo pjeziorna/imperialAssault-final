@@ -1,0 +1,5 @@
+div.overlay(ng-show='popupCtrl.show')
+    div.popup
+        p(ng-bind='popupCtrl.message')
+        a.btn.btn-default(href='', ng-click='popupCtrl.close()', ng-bind='popupCtrl.cancelBtnText')
+        a.btn.btn-primary.btn-right(href='', ng-click='popupCtrl.confirm()', ng-bind='popupCtrl.acceptBtnText')

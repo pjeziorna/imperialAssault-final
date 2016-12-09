@@ -81,7 +81,7 @@ bg-img(img='bg/main-bg.jpg')
                     
                     a.btn.btn-icon.action-btn(href='', ng-click='$ctrl.editMission()', ng-if='$ctrl.campaign.active && $ctrl.isCampaignOwner()')
                         i.fa.fa-pencil
-                    a.btn.btn-icon.action-btn(href='', ng-click='$ctrl.deleteMission()', ng-if='$ctrl.campaign.active && $ctrl.isCampaignOwner()')
+                    a.btn.btn-icon.action-btn(href='', ng-click='$ctrl.deleteMission(mission._id)', ng-if='$ctrl.campaign.active && $ctrl.isCampaignOwner()')
                         i.fa.fa-trash
             section.btn-container(ng-if='$ctrl.campaign.active && $ctrl.isCampaignOwner()')
                 a.btn.btn-right.btn-primary.btn-add(ui-sref='add-mission({ id: $ctrl.campaign._id, campaign: $ctrl.campaign })') Add mission

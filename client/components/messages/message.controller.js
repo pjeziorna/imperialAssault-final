@@ -1,14 +1,14 @@
 'use strict';
 
 class MessageController {
-    constructor ($rootScope, $timeout, MessagesService) {
-        this.rootScope = $rootScope;
-        this.timeout = $timeout;
+    constructor ($rootScope, MessagesService) {
         this.messagesService = MessagesService;
+        this.messages = this.messagesService.getMessages();
+        $rootScope.$on('message.added', this.getMessages.bind(this));
     }
 
     getMessages () {
-        return this.messagesService.getMessages();
+        this.messages = this.messagesService.getMessages();
     }
 
     closeMessage (index) {

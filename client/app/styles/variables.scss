@@ -127,6 +127,13 @@ $calendarHeaderBg: #262218;
 $calendarDayHeaderColor: #b5ad95;
 
 /**
+ * Popups
+ **/
+$popupOverlayBg: transparentize(#000, 0.5);
+$popupBg: #333026;
+$popupBorderColor: #615941;
+
+/**
  * Campaign details
  **/
 $campaignWinnerColor: #5a5445;

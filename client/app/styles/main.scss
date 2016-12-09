@@ -5,6 +5,7 @@
 @import 'typography';
 @import 'panels';
 @import 'messages';
+@import 'popups';
 
 @include generate-grid();
 

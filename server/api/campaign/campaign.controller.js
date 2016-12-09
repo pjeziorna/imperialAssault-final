@@ -32,6 +32,19 @@ function saveUpdates(updates) {
   };
 }
 
+function saveMessagesUpdate(updates, missionId) {
+    return function(entity) {
+        // var updated = _.intersection(entity.missions, updates.missions);
+        // updated.markModified('missions');
+        // console.log('updated', updated);
+        return updatentityes.update({}, {$pull: {'missions' : {_id: missionId}}})
+        .then(updated => {
+            console.log('updated', updated);
+            return updated;
+        });
+    }
+}
+
 function removeEntity(res) {
   return function(entity) {
     if (entity) {
@@ -99,6 +112,17 @@ export function update(req, res) {
   return Campaign.findById(req.params.id).exec()
     .then(handleEntityNotFound(res))
     .then(saveUpdates(req.body))
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+}
+
+// Updates campaign with removed message
+export function updateMission(req, res) {
+    if (req.body._id) {
+      delete req.body._id;
+    }
+    return Campaign.update({'_id': req.params.id}, {$pull: {'missions': {'_id': req.params.mission}}}).exec()
+    .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));
 }

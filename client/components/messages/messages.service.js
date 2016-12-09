@@ -15,7 +15,7 @@ angular.module('imperialAssaultApp.messages')
                 type: type
             };
             messages.push(_message);
-            $rootScope.$emit('messageAdded', {index : messages.length - 1});
+            $rootScope.$emit('message.added', {index : messages.length - 1});
         };
 
         this.removeMessage = (index) => {

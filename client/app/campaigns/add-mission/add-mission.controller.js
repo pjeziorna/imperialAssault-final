@@ -24,13 +24,11 @@
                     this.campaign = response.data;
                     this.mission = this._getEmptyMissionModel();
                     this._subscribeWatchers($scope);
-                    console.log(this.campaign);
                 });
             } else {
                 this.campaign = this.$stateParams.campaign;
                 this.mission = this._getEmptyMissionModel();
                 this._subscribeWatchers($scope);
-                console.log(this.campaign);
             }
         }
 
@@ -67,8 +65,6 @@
         }
 
         submitMission(scope) {
-            // this.messagesService.addMessage('Form filled with errors.', 'error');
-            // return;
             this.messagesService.removeAllMessages();
             if(!scope.addMissionForm.$valid) {
                 this.messagesService.addMessage('Form filled with errors.', 'error');

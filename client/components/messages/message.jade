@@ -1,3 +1,3 @@
-div.message-notify(ng-repeat='message in ctrl.getMessages()', ng-class='message.type')
-    a.btn.btn-icon.btn-remove(ng-click='ctrl.closeMessage($index)')
+div.message-notify(ng-repeat='message in messageCtrl.messages', ng-class='message.type')
+    a.btn.btn-icon.btn-remove(ng-click='messageCtrl.closeMessage($index)')
     span(ng-bind='message.text')
