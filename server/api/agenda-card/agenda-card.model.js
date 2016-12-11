@@ -3,9 +3,9 @@
 import mongoose from 'mongoose';
 
 var AgendaCardSchema = new mongoose.Schema({
-  name: String,
+  gameSet: String,
   agendaSet: String,
-  influenceCost: Number
+  cards: Array
 });
 
 export default mongoose.model('AgendaCard', AgendaCardSchema);

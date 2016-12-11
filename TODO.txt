@@ -16,3 +16,8 @@ Do poprawy:
 - server
 -- api
 --- add method for adding and storing sets names (ex. twin shadows) for administrator only
+
+
+- seed
+-- agenda cards
+--- JSON has been changed, adjust it in app

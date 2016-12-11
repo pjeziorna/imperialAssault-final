@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 
 var HeroCardSchema = new mongoose.Schema({
   name: String,
+  gameSet: String,
   classCards: Array
 });
 

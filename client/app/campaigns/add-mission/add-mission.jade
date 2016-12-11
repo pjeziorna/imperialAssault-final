@@ -83,7 +83,8 @@ bg-img(img='bg/main-bg.jpg')
                         md-input-container.md-block
                             label Agenda cards possessed
                             md-select(name='missionAgendaCards', ng-model='$ctrl.mission.empire.agendaCards', multiple)
-                                md-option(ng-repeat='card in $ctrl.agendaCards | agendaSet:$ctrl.campaign.empire.agendaSets', ng-bind='card.name', value='{{card.name}}')
+                                md-optgroup(ng-repeat='agenda in $ctrl.agendaCards | agendaSet:$ctrl.campaign.empire.agendaSets', label='{{agenda.agendaSet}}')
+                                    md-option(ng-repeat='card in agenda.cards', ng-bind='card.name', value='{{card.name}}')
             hr
             section
                 h4 Rebelion

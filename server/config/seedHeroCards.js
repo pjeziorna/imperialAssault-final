@@ -10,6 +10,7 @@ HeroCard.find({}).remove()
 .then(() => {
     HeroCard.create({
             name: 'Diala Passil',
+            gameSet: 'CORE_SET',
             classCards: [{
                 name: 'Plasteel Staff',
                 xpCost: 0
@@ -40,6 +41,7 @@ HeroCard.find({}).remove()
             }]
         }, {
             name: 'Fenn Signis',
+            gameSet: 'CORE_SET',
             classCards: [{
                 name: 'Infantry Rifle',
                 xpCost: 0
@@ -70,6 +72,7 @@ HeroCard.find({}).remove()
             }]
         }, {
             name: 'Gaarkhan',
+            gameSet: 'CORE_SET',
             classCards: [{
                 name: 'Vibro-Ax',
                 xpCost: 0
@@ -100,6 +103,7 @@ HeroCard.find({}).remove()
             }]
         }, {
             name: 'Gideon Argus',
+            gameSet: 'CORE_SET',
             classCards: [{
                 name: 'Holdout Blaster',
                 xpCost: 0
@@ -130,6 +134,7 @@ HeroCard.find({}).remove()
             }]
         }, {
             name: 'Jyn Odan',
+            gameSet: 'CORE_SET',
             classCards: [{
                 name: 'Vintage Blaster',
                 xpCost: 0
@@ -160,6 +165,7 @@ HeroCard.find({}).remove()
             }]
         }, {
             name: 'Mak Eshka\'rey',
+            gameSet: 'CORE_SET',
             classCards: [{
                 name: 'Longblaster',
                 xpCost: 0

@@ -1,0 +1,26 @@
+form(name='addHeroCards', ng-submit='rebelion.submitHeroCards(this)')
+    section
+        h4 Rebelion 
+        .row
+            .col-xs-12.col-gt-xs-6
+                md-input-container.md-block
+                    label Hero name
+                    input(name='hero', ng-model='rebelion.rebelionHero.name', required)
+            .col-xs-12.col-gt-xs-6
+                md-input-container.value.md-block
+                    label Game set name
+                    md-select(ng-model='rebelion.rebelionHero.gameSet', required)
+                        md-option(ng-repeat='set in admin.gameSets', ng-bind='set.name', value='{{set._id}}')
+        .row
+            div(ng-repeat='card in admin.range(9) track by $index')
+                .col-xs-8.col-sm-4.col-gt-sm-3
+                    md-input-container.md-block
+                        label Hero class card {{$index + 1}}
+                        input(name='heroClassCard{{$index}}', ng-model='rebelion.rebelionHero.classCards[$index].name', required)
+                .col-xs-4.col-sm-2.col-gt-sm-1
+                    md-input-container.md-block
+                        label XP card {{$index + 1}}
+                        input(name='heroClassCardCost{{$index}}', ng-model='rebelion.rebelionHero.classCards[$index].xpCost', required)
+    section.btn-container
+        a.btn.btn-reset.btn-warn(href='', ng-click='rebelion.clearForm(this, addHeroCards)') Reset
+        button.btn.btn-block.btn-primary.btn-add.btn-right(type='submit') Add Cards

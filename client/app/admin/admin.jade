@@ -18,7 +18,7 @@ bg-img(img='bg/main-bg.jpg')
                 span(ng-bind='set.name', ng-if='!set.edit')
                 form(name='editGameSet', ng-submit='admin.updateGameSet(this, set)', ng-if='set.edit')
                     input(type='text', value='{{set.name}}', ng-model='set.name')
-                    a.btn.btn-primary(href='', ng-click='admin.cancelEditingSet(set)') Cancel
+                    a.btn.btn-default(href='', ng-click='admin.cancelEditingSet(set)') Cancel
                     button.btn.btn-primary.btn-right(type='submit') Save
                 a.btn.btn-icon.action-btn(href='', ng-click='admin.editGameSet(set)', ng-if='!set.edit')
                     i.fa.fa-pencil
@@ -40,61 +40,21 @@ bg-img(img='bg/main-bg.jpg')
     h2 Add cards
     .panel
         p You can add cards from some new game set
-        form(name='addCardsForm')
-            section
-                h4 Rebelion 
-                md-input-container.md-block
-                    label Hero name
-                    input(name='hero')
-                .row(ng-repeat='card in admin.range(9) track by $index')
-                    .col-xs-12.col-gt-xs-6
-                        md-input-container.md-block
-                            label Hero class card {{$index + 1}}
-                            input(name='heroClassCard{{$index}}')
-                    .col-xs-12.col-gt-xs-6
-                        md-input-container.md-block
-                            label XP cost
-                            input(name='heroClassCardCost{{$index}}')
+        div(ui-view='rebelion')
                 
-            hr
-            h4 Empire
-            h6 Agenda
-            md-input-container.md-block
-                label Agenda set name
-                input(name='agendaSetName')
-            .row(ng-repeat='card in admin.range(3) track by $index')
-                .col-xs-12.col-gt-xs-6
-                    md-input-container.md-block
-                        label Agenda card {{$index + 1}}
-                        input(name='agenda{{$index}}')
-                .col-xs-12.col-gt-xs-6
-                    md-input-container.md-block
-                        label Influence cost
-                        input(name='agendaInfCost{{$index}}')
-            h6 Class set    
-            md-input-container.md-block
-                label Empire set cards name
-                input(name='empireSetName')
-            .row(ng-repeat='card in admin.range(9) track by $index')
-                .col-xs-12.col-gt-xs-6
-                    md-input-container.md-block
-                        label Empire class card {{$index + 1}}
-                        input(name='empireClassCard{{$index}}')
-                .col-xs-12.col-gt-xs-6
-                    md-input-container.md-block
-                        label Empire class card cost
-                        input(name='empireClassCardCost{{$index}}')
-                
-            hr
-            h4 Items
-            md-input-container.md-block
-                label Item card
-                input(name='item')
-            hr
-            h4 Missions
-            md-input-container.md-block
-                label Mission
-                input(name='mission')
+        hr
+        div(ui-view='empire')
+            
+        hr
+        h4 Items
+        md-input-container.md-block
+            label Item card
+            input(name='item')
+        hr
+        h4 Missions
+        md-input-container.md-block
+            label Mission
+            input(name='mission')
             
     h3 Remove cards
     .panel 

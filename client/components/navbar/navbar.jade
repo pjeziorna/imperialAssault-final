@@ -7,7 +7,7 @@ div.navbar(ng-controller='NavbarController')
             i.fa.fa-bars
         ul.nav-mobile.menu-list(ng-class='{"nav-open": nav.isMenuOpen}')
             li(ng-if='nav.isAdmin()', ui-sref-active='active')
-                a(ui-sref='admin') Admin
+                a(ui-sref='admin.subviews') Admin
             li(ng-if='!nav.isLoggedIn()', ui-sref-active='active')
                 a(ui-sref='signup') Sign up
             li(ng-if='!nav.isLoggedIn()', ui-sref-active='active')
@@ -19,7 +19,7 @@ div.navbar(ng-controller='NavbarController')
         
         ul.nav.navbar-right
             li.admin(ng-if='nav.isAdmin()', ui-sref-active='active')
-                a(ui-sref='admin') Admin
+                a(ui-sref='admin.subviews') Admin
             li.sign-up(ng-if='!nav.isLoggedIn()', ui-sref-active='active')
                 a(ui-sref='signup') Sign up
             li.login(ng-if='!nav.isLoggedIn()', ui-sref-active='active')

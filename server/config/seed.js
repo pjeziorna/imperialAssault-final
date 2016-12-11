@@ -222,9 +222,6 @@ Campaign.find({}).remove()
                 "missionType" : "Story1",
                 "deckType" : "hero",
                 "title" : "A New Threat"
-            }, {
-                title: 'Armed and Operation',
-                _id: 'ARMED_OPERATION'
             }]
         }, {
             "name" : "test campaign",

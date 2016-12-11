@@ -3,7 +3,7 @@
 (function() {
 
     class AdminController {
-        constructor(User, MessagesService, $http, PopupsService) {
+        constructor($http, User, MessagesService, PopupsService) {
             // Use the User $resource to fetch all users
             this.users = User.query();
             this.messagesService = MessagesService;
@@ -18,6 +18,31 @@
             this._getGameSets();
         }
 
+        /**
+        * Global methods for admin view
+        **/
+        range(n) {
+            return new Array(n);
+        }
+
+        clearForm(scope, form) {
+            scope[form.$name].$setPristine();
+            scope[form.$name].$setUntouched();
+            switch (form.$name) {
+                case 'addSetForm':
+                    this.gameSet = {};
+                    break;
+                case 'addHeroCards':
+                    this.rebelionHero = {};
+                    break;
+                default:
+
+            }
+        }
+
+        /**
+        * users' public method
+        **/
         delete(user) {
             this.popupsService.open({
                 message: `Are you sure you want to delete user ${user.name}?`
@@ -28,25 +53,11 @@
             });
         }
 
-        range(n) {
-            return new Array(n);
-        }
-
-        clearForm(scope, formName) {
-            scope[formName.$name].$setPristine();
-            scope[formName.$name].$setUntouched();
-            switch (formName.$name) {
-                case 'addSetForm':
-                    this.gameSet = {};
-                    break;
-                default:
-
-            }
-        }
-
+        /**
+        * game sets form public methods
+        **/
         submitSetName(scope) {
             if(!scope.addSetForm.$valid) {
-                console.log('form not valid', this.messagesService);
                 this.messagesService.addMessage('Form filled with errors.', 'error');
                 return;
             }
@@ -97,6 +108,9 @@
             });
         }
 
+        /**
+        * game sets private methods
+        **/
         _getGameSets() {
             this.gameSets = [];
             this.$http.get('/api/game-sets')
